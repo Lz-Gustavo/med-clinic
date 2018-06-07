@@ -1,0 +1,28 @@
+Achei uma boa deixar as definiçoes do trabalho aqui pra gente ir se guiando, depois de finalizado a gente apaga.
+
+Funcionalidades necessarias:
+
+	-> Atendentes (secretary.hyml/secretary.php):
+	* cadastrar medicos e pacientes;
+	* agendar e buscar consultas (historico total da clinica);
+	* buscar historico de consultas de um medico especifico;
+	* buscar historico de consultas de um paciente especifico;
+
+	-> Medicos (doctor.html/doctor.php):
+	* alterar seu cadastro da clinica;
+	* ver sua agenda de consultas (talvez somente futuras, nao sei);
+	* preencher campos de "Observacoes" e "Receita Medica" no historico de consultas da clinica (history.xml);
+	* ver historico de consultas de um determinado paciente (patient_reg.xml);
+
+Funcionalidades extras:
+
+	-> Atendentes:
+	* confirmar agendamentos;
+
+	-> Pacientes (patient.hml/patient.php):
+	* alterar e realizar seu cadastro (login e senha);
+	* agendar consultas;
+	* ver seu historico de consultas na clinica de forma simplificada (talvez ocultar alguns campos);
+
+OBS:
+	acho interessante a gente definir depois alguma ordem de prioridade entre as features, pra gente conseguir utilizar uma metodologia agil (um scrumm meio chineleado neh) de um jeito mais certo
