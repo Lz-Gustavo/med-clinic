@@ -12,7 +12,7 @@ Funcionalidades necessarias:
 	* alterar seu cadastro da clinica;
 	* ver sua agenda de consultas (talvez somente futuras, nao sei);
 	* preencher campos de "Observacoes" e "Receita Medica" no historico de consultas da clinica (history.xml);
-	* ver historico de consultas de um determinado paciente (patient_reg.xml);
+	* ver historico de consultas de um determinado paciente (history.xml);
 
 Funcionalidades extras:
 
