@@ -3,15 +3,16 @@
 <head>
 	<meta charset="utf-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Interface escrota</title>
+	<title>Medico</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script src="../JScript/"></script>
 </head>
 <body>
-	<h2>Testing I/O Interface with php server</h2>
-	
+
+	<a href = "../index.php"><b> <--- Voltar</b></a><br><br>
+
 	<?php
-		// chamar as classes implementadas aqui
-		echo "<b>Hello World!</b>";
+		echo "mas q bom q tu eh medico tche!<br>";
 	?>
 
 </body>

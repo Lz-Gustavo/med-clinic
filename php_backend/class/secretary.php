@@ -30,28 +30,35 @@
 			}
 		}
 		public function commit_changes($database) {
-			if (strncasecmp($database, "medico") == 0) {
+			$hd = Storage::getInstance();
+
+			if (strcasecmp($database, "medico") == 0) {
 
 				echo "changes commited to the doctors database!<br>";
-				//storage_write($buffer) em doctor_reg.xml 
+				
+				$hd->write($database, $this->temporary_buffer);
 				reset($this->temporary_buffer);
 			}
-			else if (strncasecmp($database, "paciente") == 0) {
+			else if (strcasecmp($database, "paciente") == 0) {
 
 				echo "changes commited to the patients database!<br>";
-				//storage_write(buffer) em patient_reg.xml
+				
+				$hd->write($database, $this->temporary_buffer);
 				reset($this->temporary_buffer);
 			}
 			else {
 
 				echo "changes commited to the history database!<br>";
-				//storage_write(buffer) em history.xml
+				
+				$hd->write($database, $this->temporary_buffer);
 				reset($this->temporary_buffer);
 			}
 
 		}
 		public function check_schedule() {
-			// storage->show_all from history.xml
+			$hd = Storage::getInstance();
+
+			$hd->show_all();
 		}
 		public function search_patient($name) {
 			// storage->show("paciente", $name) em history.xml;

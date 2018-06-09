@@ -12,20 +12,20 @@
 			$this->file_history = fopen("../storage_xml/history.txt", "rw");
 		}
 
-		public function getInstance() {
-			if ($this->instance == null) {
-				$this->instance = new Storage();
+		public static function getInstance() {
+			if (! isset(self::$instance)) {
+				self::$instance = new Storage();
 			}
-			return $this->instance;
+			return self::$instance;
 		}
 
 		public function write($database, $input_array) {
 			$input_text = implode(" ", $input_array);
 			
-			if (strncasecmp($database, "medico") == 0) {
+			if (strcasecmp($database, "medico") == 0) {
 				fwrite($file_doctors, $input_text);				
 			}
-			else if (strncasecmp($database, "paciente") == 0) {
+			else if (strcasecmp($database, "paciente") == 0) {
 				fwrite($file_patients, $input_text);
 			}
 			else {
@@ -35,14 +35,15 @@
 		}
 		public function show($database, $value) {
 			// leitura seletiva nao pq fazer agora, com o formato xml vai ser melhor ja q vai buscar especificamente na row
+			echo "DEBUG: tem nada pra mostrar!<br>";
 		}
 		public function show_all($database) {
 			
-			if (strncasecmp($database, "medico") == 0) {
+			if (strcasecmp($database, "medico") == 0) {
 
 				$extract = fread($file_doctors, filesize("../storage_xml/doctor_reg.txt"));
 			}
-			else if (strncasecmp($database, "paciente") == 0) {
+			else if (strcasecmp($database, "paciente") == 0) {
 				
 				$extract = fread($file_patients, filesize("../storage_xml/patient_reg.txt"));
 			}

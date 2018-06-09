@@ -18,9 +18,8 @@
 
 		}
 
-		public function stage_changes($cell, $value) {
+		public function add_changes($cell, $value) {
 			// call procedure from storage->write to each cell of xml from the array_map
-
 			if (count($temporary_buffer) == 0) {
 				$this->temporary_buffer = array(
 					$cell => $value,
@@ -33,11 +32,16 @@
 		}
 		public function commit_changes() {
 			// agora a ideia seria pasar todo conteudo do array pra storage->write
+			$hd = Storage::getInstance();
+
+			$hd->write("medico", $this->temporary_buffer);
 			echo "changes commited to the database!<br>";
 			reset($this->temporary_buffer);
 		}
 		public function check_schedule() {
-			// storage->show_all from history.xml
+			$hd = Storage::getInstance();
+
+			$hd->show_all();
 		}
 		public function anotate($name, $observation, $recipe) {
 
