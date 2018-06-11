@@ -1,6 +1,6 @@
 <?php
-	require_once "./person.php";
-	require_once "./storage.php";
+	require_once "person.php";
+	require_once "storage.php";
 
 	class Doctor extends Person {
 		private $crm;

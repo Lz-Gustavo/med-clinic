@@ -1,10 +1,10 @@
 <?php
-	require_once "./person.php";
-	require_once "./storage.php";
+	require_once "person.php";
+	require_once "storage.php";
 
 	class Secretary extends Person {
 		private $reg;
-		private $temporary_buffer;
+		private $temporary_buffer = array();
 
 		public function _constructor() {
 			parent::_constructor();
@@ -19,15 +19,8 @@
 		}
 
 		public function add_changes($cell, $value) {
-			if (count($temporary_buffer) == 0) {
-				$this->temporary_buffer = array(
-					$cell => $value,
-				);
-			}
-			else {
-				array_push($this->temporary_buffer, $cell);
-				$this->temporary_buffer[$cell] = $value;
-			}
+			array_push($this->temporary_buffer, $cell);
+			$this->temporary_buffer[$cell] = $value;
 		}
 		public function commit_changes($database) {
 			$hd = Storage::getInstance();

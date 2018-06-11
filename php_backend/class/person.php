@@ -1,9 +1,9 @@
 <?php
 
 	class Person {
-		private $name;
-		private $last_name;
-		private $funcao;
+		protected $name;
+		protected $last_name;
+		protected $funcao;
 
 		public function _constructor() {
 			$this->name = null;

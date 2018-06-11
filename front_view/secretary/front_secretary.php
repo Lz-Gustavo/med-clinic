@@ -9,17 +9,17 @@
 </head>
 <body>
 	<script>
-		function validate() {
+		function validate(var id) {
 			var i;
 			var x = new Array();
 			for (i = 0; i < 3; i++){
-				x[i] = document.forms[0][i].value;
+				x[i] = document.forms[id][i].value;
 				if (x[i] == "") {
 					alert("Todos os campos devem estar preenchidos");
 					return false;
 				}
 			}
-			alert("Dados enviados com sucesso!");
+			//alert("Dados enviados com sucesso!");
 			return true;
 		}
 	</script>
@@ -27,17 +27,32 @@
 	<a href = "../index.php"><b> <--- Voltar</b></a><br><br>
 
 	<h3>Registrar Cadastro:</h3><br>
-	<form onsubmit = "return validate()" method = "get">
+	<form method = "post">
 		<br>
-		<span>Nome: </span><input type = "text" name = "name"><br><br>
+		<span>Nome: </span><input type = "text" name = "name" required><br><br>
 		
 		<span>Sobrenome: </span><input type = "text" name = "last_name"><br><br>
 
-		<span>Funcao: </span><input type = "text" name = "role"><br><br>
+		<span>Funcao: </span><input type = "text" name = "role" required><br><br>
 		
 		<br><br>
 		<button type = "submit">Submeter!</button>
-	</form>
+	</form><br>
+
+	<h3>Agendar Consulta:</h3><br>
+	<form method = "post">
+		<br>
+		<span>Nome: </span><input type = "text" name = "name" required><br><br>
+		
+		<span>Sobrenome: </span><input type = "text" name = "last_name" required><br><br>
+
+		<span>Nome do Medico: </span><input type = "text" name = "doctor_name" required><br><br>
+
+		<span>Data: </span><input type = "date" name = "appt_date" required><br><br>
+		
+		<br><br>
+		<button type = "submit">Submeter!</button>
+	</form><br>
 
 	<?php
 		require_once "../../php_backend/class/storage.php";
@@ -47,22 +62,38 @@
 		require_once "../../php_backend/class/patient.php";
 
 		$hd = Storage::getInstance();
-		$hd->show();
+		//$hd->show_all("medico");
 
 		$secretary = new Secretary("Maria", "da Rosa", "Atendente");
 
-		if (isset($_GET['role'])) {
+		if (isset($_POST['role'])) {
 
-			$role = $_GET['role'];
+			$role = $_POST['role'];
 			if (strcasecmp($role, "medico") == 0) {
 
 					echo "eae meu consagrado doutor!<br>";
-					$secretary->add_changes("Nome", $_GET['name']);
-					$secretary->add_changes("Sobrenome", $_GET['last_name']);
+					$secretary->add_changes("Nome:", $_POST['name']);
+					$secretary->add_changes("Sobrenome:", $_POST['last_name']);
 					$secretary->commit_changes("medico");
 			}
+			else if (strcasecmp($role, "paciente") == 0) {
 
+				echo "eae meu abencoado cidadao!<br>";
+				$secretary->add_changes("Nome:", $_POST['name']);
+				$secretary->add_changes("Sobrenome:", $_POST['last_name']);
+				$secretary->commit_changes("paciente");
+			}
 		}
+		if (isset($_POST['appt_date'])) {
+
+			echo "aquela consultinha maravilha!<br>";
+			$secretary->add_changes("Nome:", $_POST['name']);
+			$secretary->add_changes("Sobrenome:", $_POST['last_name']);
+			$secretary->add_changes("Nome-do-Medico:", $_POST['doctor_name']);
+			$secretary->add_changes("Data:", $_POST['appt_date']);
+			$secretary->commit_changes("history");
+		}
+
 	?>
 
 </body>
