@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<consultas>
+
+<consulta><name>Pelezao</name><last_name>da Massa</last_name><doctor_name>Ronaldinho 10</doctor_name><appt_date>2018-06-16</appt_date></consulta><consulta><name>Parser</name><last_name>XML</last_name><doctor_name>phpdoctor</doctor_name><appt_date>2018-06-20</appt_date></consulta></consultas>

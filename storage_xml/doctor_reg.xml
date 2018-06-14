@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<medicos>
+	<med>
+		<name>Alfredo</name>
+		<last_name>Jani</last_name>
+	</med>
+<med><name>Joao</name><last_name>do Gas</last_name></med><med><name>Ronaldinho</name><last_name>10</last_name></med></medicos>

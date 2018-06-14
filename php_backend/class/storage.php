@@ -9,12 +9,11 @@
 		private $file_patients;
 		private $file_history;
 
-		public function __constructor() {
-			// idk why i cant use them this way
+		public function __construct() {
 
-			//$this->file_doctors = fopen("../../storage_xml/doctor_reg.txt", "r+");
-			//$this->file_patients = fopen("../../storage_xml/patient_reg.txt", "r+");
-			//$this->file_history = fopen("../../storage_xml/history.txt", "r+");
+			$this->file_doctors = "../../storage_xml/doctor_reg.xml";
+			$this->file_patients = "../../storage_xml/patient_reg.xml";
+			$this->file_history = "../../storage_xml/history.xml";
 		}
 
 		public static function getInstance() {
@@ -25,26 +24,36 @@
 		}
 
 		public function write($database, $input_array) {
-
-			$this->file_doctors = fopen("../../storage_xml/doctor_reg.txt", "a+");
-			$this->file_patients = fopen("../../storage_xml/patient_reg.txt", "a+");
-			$this->file_history = fopen("../../storage_xml/history.txt", "a+");
-			
-			$input_text = implode(" ", $input_array)."\n";
 			
 			if (strcasecmp($database, "medico") == 0) {
-				fwrite($this->file_doctors, $input_text);				
+				$xml = simplexml_load_file($this->file_doctors);				
+				$med = $xml->addChild("med");
+
+				$med->addChild("name", $input_array["Nome:"]);
+				$med->addChild("last_name", $input_array["Sobrenome:"]);
+				
+				$xml->asXML($this->file_doctors);
 			}
 			else if (strcasecmp($database, "paciente") == 0) {
-				fwrite($this->file_patients, $input_text);
+				$xml = simplexml_load_file($this->file_patients);				
+				$pct = $xml->addChild("pct");
+
+				$pct->addChild("name", $input_array["Nome:"]);
+				$pct->addChild("last_name", $input_array["Sobrenome:"]);
+				
+				$xml->asXML($this->file_patients);
 			}
 			else {
-				fwrite($this->file_history, $input_text);
-			}
+				$xml = simplexml_load_file($this->file_history);				
+				$hist = $xml->addChild("consulta");
 
-			fclose($this->file_doctors);
-			fclose($this->file_patients);
-			fclose($this->file_history);
+				$hist->addChild("name", $input_array["Nome:"]);
+				$hist->addChild("last_name", $input_array["Sobrenome:"]);
+				$hist->addChild("doctor_name", $input_array["Nome-do-Medico:"]);
+				$hist->addChild("appt_date", $input_array["Data:"]);
+
+				$xml->asXML($this->file_history);
+			}
 
 		}
 		public function show($database, $value) {
@@ -53,30 +62,22 @@
 		}
 		public function show_all($database) {
 
-			$this->file_doctors = fopen("../../storage_xml/doctor_reg.txt", "r+");
-			$this->file_patients = fopen("../../storage_xml/patient_reg.txt", "r+");
-			$this->file_history = fopen("../../storage_xml/history.txt", "r+");
-
 			if (strcasecmp($database, "medico") == 0) {
 
-				$extract = fread($this->file_doctors, filesize("../../storage_xml/doctor_reg.txt"));
+				$extract = simplexml_load_file($this->file_doctors);
 			}
 			else if (strcasecmp($database, "paciente") == 0) {
 				
-				$extract = fread($this->file_patients, filesize("../../storage_xml/patient_reg.txt"));
+				$extract = simplexml_load_file($this->file_patients);
 			}
 			else {
 				
-				$extract = fread($this->file_history, filesize("../../storage_xml/history.txt"));
+				$extract = simplexml_load_file($this->file_history);
 			}
 			echo "<u>Dados extraidos de ".$database.":</u> <br><br>";
-			echo $extract;
+			//echo $extract->asXML();
+			print_r($extract);
 			echo "<br>";
-
-			fclose($this->file_doctors);
-			fclose($this->file_patients);
-			fclose($this->file_history);
-
 		}
 	}
 

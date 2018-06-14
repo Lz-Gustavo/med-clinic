@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>TESTE 123</title>
+	<title>Secretaria</title>
 	<link rel="stylesheet" type="text/css" media="screen" href="main.css" />
 	<script src="../JScript/"></script>
 </head>
@@ -75,6 +75,8 @@
 					$secretary->add_changes("Nome:", $_POST['name']);
 					$secretary->add_changes("Sobrenome:", $_POST['last_name']);
 					$secretary->commit_changes("medico");
+					
+					$secretary->show_all_doctors();
 			}
 			else if (strcasecmp($role, "paciente") == 0) {
 
@@ -82,6 +84,8 @@
 				$secretary->add_changes("Nome:", $_POST['name']);
 				$secretary->add_changes("Sobrenome:", $_POST['last_name']);
 				$secretary->commit_changes("paciente");
+
+				$secretary->show_all_patients();
 			}
 		}
 		if (isset($_POST['appt_date'])) {
@@ -92,6 +96,8 @@
 			$secretary->add_changes("Nome-do-Medico:", $_POST['doctor_name']);
 			$secretary->add_changes("Data:", $_POST['appt_date']);
 			$secretary->commit_changes("history");
+
+			$secretary->check_schedule();
 		}
 
 	?>
