@@ -6,15 +6,11 @@
 		private $reg;
 		private $temporary_buffer = array();
 
-		public function _construct() {
-			parent::_construct();
-			$this->reg = 0;
-		}
 		public function __construct($n, $ln, $id) {
 			parent::__construct($n, $ln, "atendente");
 			$this->reg = $id;
 		}
-		public function _destructor() {
+		public function __destructor() {
 
 		}
 
@@ -48,17 +44,22 @@
 			}
 
 		}
-		public function check_schedule() {
-			$hd = Storage::getInstance();
 
-			$hd->show_all("historico");
-		}
 		public function search_patient($name) {
 			// storage->show("paciente", $name) em history.xml;
 		}
 		public function search_doctor($crm) {
 			// storage->show("medico", $crm) em history.xml;
+			$hd = Storage::getInstance();
+
+			$hd->read("medico", "Joao");
 		}
+		public function search_history($filter) {
+			$hd = Storage::getInstance();
+
+			$hd->read("historico", $filter);
+		}
+
 		public function show_all_patients() {
 			$hd = Storage::getInstance();
 
@@ -69,7 +70,11 @@
 
 			$hd->show_all("medico");
 		}
+		public function show_all_history() {
+			$hd = Storage::getInstance();
 
+			$hd->show_all("historico");
+		}
 	}
 
 ?>

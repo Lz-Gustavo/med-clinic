@@ -9,11 +9,13 @@
 		private $file_patients;
 		private $file_history;
 
-		public function __construct() {
+		private function __construct() {
+			//for some reason i cant use ../filename anymore, REALLY STRANGE
 
-			$this->file_doctors = "../../storage_xml/doctor_reg.xml";
-			$this->file_patients = "../../storage_xml/patient_reg.xml";
-			$this->file_history = "../../storage_xml/history.xml";
+			//$this->file_doctors = "../storage_xml/doctor_reg.xml";
+			$this->file_doctors = "/var/www/html/med-clinic/storage_xml/doctor_reg.xml";
+			$this->file_patients = "/var/www/html/med-clinic/storage_xml/patient_reg.xml";
+			$this->file_history = "/var/www/html/med-clinic/storage_xml/history.xml";
 		}
 
 		public static function getInstance() {
@@ -56,9 +58,32 @@
 			}
 
 		}
-		public function show($database, $value) {
-			// leitura seletiva nao pq fazer agora, com o formato xml vai ser melhor ja q vai buscar especificamente na row
-			echo "DEBUG: tem nada pra mostrar!<br>";
+		public function read($database, $filter) {
+			
+			echo "<br><b>filtro utilizado:</b> ".$filter."<br>";
+
+			if (strcasecmp($database, "medico") == 0) {
+				$xml = simplexml_load_file($this->file_doctors);				
+				$result = $xml->xpath($filter);
+				echo "RESULTADO BUSCA: <br>";
+				print_r($result);
+				return $result;
+			}
+			else if (strcasecmp($database, "paciente") == 0) {
+				$xml = simplexml_load_file($this->file_patients);				
+				$result = $xml->xpath($filter);
+				echo "RESULTADO BUSCAA: <br>";
+				print_r($result);
+				return $result;
+			}
+			else {
+				$xml = simplexml_load_file($this->file_history);				
+				//print_r($xml);
+				$result = $xml->xpath($filter);
+				echo "RESULTADO BUSCAAA: <br>";
+				print_r($result);
+				return $result;
+			}
 		}
 		public function show_all($database) {
 

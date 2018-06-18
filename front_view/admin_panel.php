@@ -8,22 +8,6 @@
 	<script src="../JScript/"></script>
 </head>
 <body>
-	<script>
-		function validate(var id) {
-			var i;
-			var x = new Array();
-			for (i = 0; i < 3; i++){
-				x[i] = document.forms[id][i].value;
-				if (x[i] == "") {
-					alert("Todos os campos devem estar preenchidos");
-					return false;
-				}
-			}
-			//alert("Dados enviados com sucesso!");
-			return true;
-		}
-	</script>
-
 	<a href = "index.html"><b> <--- Voltar</b></a><br><br>
 
 	<h3>Registrar Cadastro:</h3><br>
@@ -35,7 +19,7 @@
 
 		<span>Funcao: </span><input type = "text" name = "role" required><br><br>
 		
-		<br><br>
+		<br>
 		<button type = "submit">Submeter!</button>
 	</form><br>
 
@@ -50,7 +34,19 @@
 
 		<span>Data: </span><input type = "date" name = "appt_date" required><br><br>
 		
-		<br><br>
+		<br>
+		<button type = "submit">Submeter!</button>
+	</form><br>
+
+	<h3>Buscar Consulta: (imagine inves de um form um filtro)</h3><br>
+	<!--dei uma pesquisada e parece que eh mais comum se utilizar o $_GET justamente pra esse tipo de app-->
+	<form method = "get">
+		<br>
+		<span>Nome do Paciente: </span><input type = "text" name = "name" required><br><br>
+		
+		<span>Nome do Medico: </span><input type = "text" name = "doctor_name"><br><br>
+		
+		<br>
 		<button type = "submit">Submeter!</button>
 	</form><br>
 
@@ -97,7 +93,24 @@
 			$secretary->add_changes("Data:", $_POST['appt_date']);
 			$secretary->commit_changes("history");
 
-			$secretary->check_schedule();
+			$secretary->show_all_history();
+		}
+		if (!empty($_GET)) {
+
+			$query_string = "//consulta[";
+
+			if (!empty($_GET['name'])) {
+				//$query_string.= "//consulta[name='".$_GET['name']."']";
+				$query_string.= "name='".$_GET['name']."' ";
+			}
+
+			if (!empty($_GET['doctor_name'])) {
+				//$query_string = "//consulta[name='".$_GET['name']."' and doctor_name='".$_GET['doctor_name']."']";
+				$query_string.= "and doctor_name='".$_GET['doctor_name']."'";
+			}
+
+			$query_string.= "]";
+			$secretary->search_history($query_string);
 		}
 
 	?>
