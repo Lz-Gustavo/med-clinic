@@ -24,7 +24,7 @@
 		}
 	</script>
 
-	<a href = "../index.php"><b> <--- Voltar</b></a><br><br>
+	<a href = "index.html"><b> <--- Voltar</b></a><br><br>
 
 	<h3>Registrar Cadastro:</h3><br>
 	<form method = "post">
@@ -55,11 +55,11 @@
 	</form><br>
 
 	<?php
-		require_once "../../php_backend/class/storage.php";
-		require_once "../../php_backend/class/person.php";
-		require_once "../../php_backend/class/secretary.php";
-		require_once "../../php_backend/class/doctor.php";
-		require_once "../../php_backend/class/patient.php";
+		require_once "../php_backend/class/storage.php";
+		require_once "../php_backend/class/person.php";
+		require_once "../php_backend/class/secretary.php";
+		require_once "../php_backend/class/doctor.php";
+		require_once "../php_backend/class/patient.php";
 
 		$hd = Storage::getInstance();
 		//$hd->show_all("medico");
