@@ -22,42 +22,58 @@
 			$hd = Storage::getInstance();
 
 			if (strcasecmp($database, "medico") == 0) {
-
-				echo "changes commited to the doctors database!<br>";
 				
 				$hd->write($database, $this->temporary_buffer);
 				reset($this->temporary_buffer);
+				echo "changes commited to the doctors database!<br>";
 			}
 			else if (strcasecmp($database, "paciente") == 0) {
-
-				echo "changes commited to the patients database!<br>";
 				
 				$hd->write($database, $this->temporary_buffer);
 				reset($this->temporary_buffer);
+				echo "changes commited to the patients database!<br>";
 			}
 			else {
-
-				echo "changes commited to the history database!<br>";
 				
 				$hd->write($database, $this->temporary_buffer);
 				reset($this->temporary_buffer);
+				echo "changes commited to the history database!<br>";
 			}
-
 		}
 
 		public function search_patient($name) {
-			// storage->show("paciente", $name) em history.xml;
+
 		}
 		public function search_doctor($crm) {
-			// storage->show("medico", $crm) em history.xml;
-			$hd = Storage::getInstance();
 
-			$hd->read("medico", "Joao");
 		}
-		public function search_history($filter) {
+		public function search_history() {
 			$hd = Storage::getInstance();
 
-			$hd->read("historico", $filter);
+			$filter = "//consulta[";
+
+			if (!empty($_GET['name'])) {
+				$filter.= "name='".$_GET['name']."'";
+			}
+
+			if (!empty($_GET['doctor_name'])) {
+				$filter.= " and doctor_name='".$_GET['doctor_name']."'";
+			}
+			$filter.= "]";
+
+			if (strcasecmp($_GET['time'], "future") == 0) {
+				
+				$now = new DateTime(null, new DateTimeZone('America/Sao_Paulo'));
+				$time_filter = " and number(translate(appt_date,'-','')) > ".$now->format("Ymd")."]";
+				//echo "FILTRO TEMPO: ".$time_filter."<br>";
+
+				$filter = rtrim($filter, "]");
+				$filter.= $time_filter;
+			}
+			
+			$result = $hd->read("historico", $filter);
+			echo "RESULTADO BUSCA HISTORICO: <br>";
+			print_r($result);
 		}
 
 		public function show_all_patients() {

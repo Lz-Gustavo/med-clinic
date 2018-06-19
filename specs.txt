@@ -26,3 +26,9 @@ Funcionalidades extras:
 
 OBS:
 	acho interessante a gente definir depois alguma ordem de prioridade entre as features, pra gente conseguir utilizar uma metodologia agil (um scrumm meio chineleado neh) de um jeito mais certo
+
+
+COISA QUE TEM QUE FAZER E ELE NAO FALOU:
+
+	* Atentendentes buscarem medicos e pacientes tambem
+	* Guardar de alguma forma os horarios livres de um medico no XML e permitir consultas somente nesses dias

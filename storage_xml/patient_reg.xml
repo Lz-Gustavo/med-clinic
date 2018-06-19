@@ -1,4 +1,3 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <pacientes>
-
-<pct><name>ronaldo</name><last_name>fenomeno</last_name></pct></pacientes>
+<pct><name>Ronaldo</name><last_name>Fenomeno</last_name><email>ronaldo@hotmail.com</email><tel>12345678</tel></pct></pacientes>

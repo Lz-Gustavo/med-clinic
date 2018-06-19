@@ -33,6 +33,9 @@
 
 				$med->addChild("name", $input_array["Nome:"]);
 				$med->addChild("last_name", $input_array["Sobrenome:"]);
+				$med->addChild("email", $input_array["Email:"]);
+				$med->addChild("tel", $input_array["Telefone:"]);
+				$med->addChild("crm", $input_array["CRM:"]);
 				
 				$xml->asXML($this->file_doctors);
 			}
@@ -42,6 +45,8 @@
 
 				$pct->addChild("name", $input_array["Nome:"]);
 				$pct->addChild("last_name", $input_array["Sobrenome:"]);
+				$pct->addChild("email", $input_array["Email:"]);
+				$pct->addChild("tel", $input_array["Telefone:"]);
 				
 				$xml->asXML($this->file_patients);
 			}
@@ -65,23 +70,20 @@
 			if (strcasecmp($database, "medico") == 0) {
 				$xml = simplexml_load_file($this->file_doctors);				
 				$result = $xml->xpath($filter);
-				echo "RESULTADO BUSCA: <br>";
-				print_r($result);
+				echo "RESULTADO BUSCA MEDICO: <br>";
+				//print_r($result);
 				return $result;
 			}
 			else if (strcasecmp($database, "paciente") == 0) {
 				$xml = simplexml_load_file($this->file_patients);				
 				$result = $xml->xpath($filter);
-				echo "RESULTADO BUSCAA: <br>";
-				print_r($result);
+				echo "RESULTADO BUSCA PACIENTE: <br>";
+				//print_r($result);
 				return $result;
 			}
 			else {
 				$xml = simplexml_load_file($this->file_history);				
-				//print_r($xml);
 				$result = $xml->xpath($filter);
-				echo "RESULTADO BUSCAAA: <br>";
-				print_r($result);
 				return $result;
 			}
 		}
