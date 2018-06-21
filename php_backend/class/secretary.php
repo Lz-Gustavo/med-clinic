@@ -1,4 +1,13 @@
 <?php
+	/*	med-clinic										*/
+	/*												*/
+	/*	"secretary.php" is the code implementation of the Secretary class that represents	*/
+	/* 	the secretary entity of the clinic. It can operate as a full permission administrator	*/
+	/*	of the clinic's database, registering/searching new doctors, patients and future	*/
+	/*	appointments on the system.								*/
+	/*												*/
+	/*	developed by: Luiz G. Xavier and Albano Borba			June/2018		*/
+
 	require_once "person.php";
 	require_once "storage.php";
 
@@ -10,7 +19,7 @@
 			parent::__construct($n, $ln, "atendente");
 			$this->reg = $id;
 		}
-		public function __destructor() {
+		public function __destruct() {
 
 		}
 
@@ -42,10 +51,48 @@
 		}
 
 		public function search_patient($name) {
+			$hd = Storage::getInstance();
 
+			$filter = "//pct[";
+
+			if (!empty($_GET['name'])) {
+				$filter.= "name='".$_GET['name']."'";
+			}
+			if (!empty($_GET['email'])) {
+				$filter.= " and email='".$_GET['email']."'";
+			}
+			if (!empty($_GET['tel'])) {
+				$filter.= " and number(tel)='".$_GET['tel']."'";
+			}
+			$filter.= "]";
+			
+			$result = $hd->read("paciente", $filter);
+			echo "RESULTADO BUSCA PACIENTE: <br>";
+			print_r($result);
 		}
 		public function search_doctor($crm) {
+			$hd = Storage::getInstance();
 
+			$filter = "//med[";
+
+			// name == doctors name
+			if (!empty($_GET['name'])) {
+				$filter.= "name='".$_GET['name']."'";
+			}
+			if (!empty($_GET['crm'])) {
+				$filter.= " and number(crm)='".$_GET['crm']."'";
+			}
+			if (!empty($_GET['email'])) {
+				$filter.= " and email='".$_GET['email']."'";
+			}
+			if (!empty($_GET['tel'])) {
+				$filter.= " and number(tel)='".$_GET['tel']."'";
+			}
+			$filter.= "]";
+			
+			$result = $hd->read("medico", $filter);
+			echo "RESULTADO BUSCA MEDICO: <br>";
+			print_r($result);
 		}
 		public function search_history() {
 			$hd = Storage::getInstance();

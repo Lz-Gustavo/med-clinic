@@ -107,26 +107,11 @@
 
 			$secretary->show_all_history();
 		}
-		// if (!empty($_GET)) {
-
-		// 	$query_string = "//consulta[";
-
-		// 	if (!empty($_GET['name'])) {
-		// 		$query_string.= "name='".$_GET['name']."'";
-		// 	}
-
-		// 	if (!empty($_GET['doctor_name'])) {
-		// 		$query_string.= " and doctor_name='".$_GET['doctor_name']."'";
-		// 	}
-		// 	$query_string.= "]";
-			
-		// 	$secretary->search_history($query_string, $_GET['time']);
-		// }
-
 		if (!empty($_GET)) {
+			// start a Xpath query on the history XML using data from _GET global as data filter
+			
 			$secretary->search_history();
 		}
-
 	?>
 
 </body>
