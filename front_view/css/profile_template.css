@@ -264,3 +264,72 @@ iframe {
     padding: 20px 20px 20px 20px;
 
   }
+
+  .header-show-dados {
+    width: 25%;
+    padding: 20px 0px 0px 40px;
+    
+  }
+
+  .horizontal-align {
+    display: -webkit-box;
+	  display: -webkit-flex;
+	  display: -moz-box;
+	  display: -ms-flexbox;
+	  display: flex;
+	  align-items: center;
+  }
+
+  .show-dados {
+    width: 75%;
+    padding: 20px 0px 0px 40px;
+    
+  }
+  
+  .wrap-input {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    width: 80%;
+    height: 22px;
+    position: relative;
+    border: 1px solid var(--main-color);
+    border-radius: 10px;
+    margin-bottom: 10px;
+  }
+
+  .input {
+    display: block;
+    width: 100%;
+    background: transparent;
+    font-family: Montserrat-Regular;
+    font-size: 15px;
+    color: #555555;
+    line-height: 1.2;
+    padding: 0 26px;
+  }
+
+  .submit-button { 
+    justify-content: right;
+    align-items: center;
+    width: 25%;
+    height: 20px;
+    border-radius: 10px;
+    background: var(--main-color);
+  
+    font-family: Montserrat-Bold;
+    font-size: 10px;
+    color: #fff;
+    line-height: 1.2;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  
+    -webkit-transition: all 0.4s;
+    -o-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    transition: all 0.4s;
+  }
