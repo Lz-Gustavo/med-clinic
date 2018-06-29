@@ -92,6 +92,8 @@
     var url;
     
     $('.login100-form-btn').click(function(){
+        
+        
         if (login == 'adm'){
             url = './admin_panel.php'
         }

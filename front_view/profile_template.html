@@ -21,11 +21,78 @@
 
 
     <div class="box m-b-10">
-        <p class="title">Profile</p>
+        <div class="header-show-dados">
+            <p class="title">Profile</p>
+        </div>
 
+        <div class="show-dados">
+            <div class="horizontal-align w-full">
+                <div style="width: 20%;">
+                    <p>First name:</p>
+                </div>
+                <div class="wrap-input m-t-10">
+                    <input class="input" type="text" name="first_name">
+                </div>
+            </div>
+
+            <div class="horizontal-align w-full">
+                <div style="width: 20%;">
+                    <p>Last name:</p>
+                </div>
+                <div class="wrap-input m-t-10">
+                    <input class="input" type="text" name="last_name">
+                </div>
+            </div>
+
+            <div class="horizontal-align w-full">
+                <div style="width: 20%;">
+                    <p>CRM:</p>
+                </div>
+                <div class="wrap-input m-t-10">
+                    <input class="input" type="number" name="crm">
+                </div>
+            </div>
+
+            <div class="horizontal-align w-full">
+                <div style="width: 20%;">
+                    <p>Email:</p>
+                </div>
+                <div class="wrap-input m-t-10">
+                    <input class="input" type="email" name="email">
+                </div>
+            </div>
+
+            <div class="horizontal-align w-full">
+                <div style="width: 20%;">
+                    <p>Schedule:</p>
+                </div>
+                <div id="target">
+                </div>
+            </div>
+
+            <div style="margin: auto; text-align: center; padding-top: 20px">
+                <button id="submit" class='submit-button'>Submit Changes</button>
+            </div>
+
+        </div>
     </div>
 
-   
+    <!-- JS SCRIPT -->
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="plugins/weekly_schedule/jquery.weekly-schedule-plugin.min.js"></script>
+
+    <script>
+        $('#target').weekly_schedule();
+        $('.schedule').on('selectionmade', function () {
+            console.log("Selection Made");
+        }).on('selectionremoved', function () {
+            console.log("Selection Removed");
+        });
+        
+        $('#submit').click(function(){
+            console.log($('#target').weekly_schedule("getSelectedHour"));
+        });
+    </script>
 
 </body>
 </html
