@@ -10,6 +10,17 @@
 <body>
 	<a href = "index.html"><b> <--- Voltar</b></a><br><br>
 
+	<h3>Teste Login:</h3><br>
+	<form method = "post">
+
+		<span>Usuario: </span><input type = "text" name = "login_user"><br><br>
+		
+		<span>Senha: </span><input type = "password" name = "login_psw"><br><br>
+
+		<br>
+		<button type = "submit">Submeter!</button>
+	</form><br>
+
 	<h3>Registrar Cadastro:</h3><br>
 	<form method = "post">
 
@@ -41,6 +52,8 @@
 
 		<span>Nome do Medico: </span><input type = "text" name = "doctor_name" required><br><br>
 
+		<span>CRM: </span><input type = "number" name = "crm" min = "0" required><br><br>
+
 		<span>Data: </span><input type = "date" name = "appt_date" required><br><br>
 		
 		<br>
@@ -48,7 +61,6 @@
 	</form><br>
 
 	<h3>Buscar Consulta: (imagine inves de um form um filtro)</h3><br>
-	<!--dei uma pesquisada e parece que eh mais comum se utilizar o $_GET justamente pra esse tipo de app-->
 	<form method = "get">
 
 		<span>Nome do Paciente: </span><input type = "text" name = "name" required><br><br>
@@ -63,6 +75,20 @@
 		<button type = "submit">Submeter!</button>
 	</form><br>
 
+	<h3>Alterar Consulta: (eu sei que eh so funcionalidade do medico)</h3><br>
+	<form method = "post">
+
+		<span>Nome do Paciente: </span><input type = "text" name = "name" required><br><br>
+
+		<span>Receita: </span><input type = "text" name = "recipe" required><br><br>
+
+		<span>Observacao: </span><input type = "text" name = "obs"><br><br>
+
+		<br>
+		<button type "submit">Submeter!</button>
+	</form><br>
+
+	<hr>
 	<?php
 		require_once "../php_backend/class/storage.php";
 		require_once "../php_backend/class/person.php";
@@ -70,7 +96,7 @@
 		require_once "../php_backend/class/doctor.php";
 		require_once "../php_backend/class/patient.php";
 
-		$secretary = new Secretary("Maria", "da Rosa", "Atendente");
+		$secretary = new Secretary("admin", "istrator", "Atendente");
 
 		if (isset($_POST['role'])) {
 
@@ -102,8 +128,9 @@
 			$secretary->add_changes("Nome:", $_POST['name']);
 			$secretary->add_changes("Sobrenome:", $_POST['last_name']);
 			$secretary->add_changes("Nome-do-Medico:", $_POST['doctor_name']);
+			$secretary->add_changes("CRM:", $_POST['crm']);
 			$secretary->add_changes("Data:", $_POST['appt_date']);
-			$secretary->commit_changes("history");
+			$secretary->commit_changes("historico");
 
 			$secretary->show_all_history();
 		}
@@ -112,6 +139,25 @@
 			
 			$secretary->search_history();
 		}
+		if (isset($_POST['login_user'])) {
+
+			$hd = Storage::getInstance();
+			$permission = $hd->login("medico", $_POST['login_user'], $_POST['login_psw']);
+		}
+
+		//testing doctors anotate using storage modify
+		if (isset($_POST['recipe'])) {
+
+			$hd = Storage::getInstance();
+
+			$input_array = array(
+				"Observacao:" => $_POST['obs'],
+				"Receita:" => $_POST['recipe'],
+			);
+
+			$hd->modify("historico", $_POST['name'], $input_array);
+		}
+		
 	?>
 
 </body>

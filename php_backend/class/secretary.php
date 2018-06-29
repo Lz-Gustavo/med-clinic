@@ -42,11 +42,18 @@
 				reset($this->temporary_buffer);
 				echo "changes commited to the patients database!<br>";
 			}
-			else {
+			else if ((strcasecmp($database, "historico") == 0) || (strcasecmp($database, "history") == 0)) {
 				
-				$hd->write($database, $this->temporary_buffer);
+				$permission = $hd->check_avaiable($this->temporary_buffer["CRM:"], "dia", "13:30");
+				if ($permission == 1) {
+
+					$hd->write($database, $this->temporary_buffer);
+					echo "changes commited to the history database!<br>";
+				}
+				else {
+					echo "Dr.".$this->temporary_buffer["Nome-do-Medico:"]." is busy in that hour!<br>";
+				}
 				reset($this->temporary_buffer);
-				echo "changes commited to the history database!<br>";
 			}
 		}
 
