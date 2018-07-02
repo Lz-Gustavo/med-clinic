@@ -37,26 +37,42 @@
 
 						<p class="m-b-30">Menu</p>
 
-						<button class="menu-button m-b-20">
+						<button id="profile" class="menu-button m-b-20">
 							Profile
 						</button>
-						<button class="menu-button m-b-20">
-							Schedule
+						<button id="consulties" class="menu-button m-b-20">
+							Consulties
 						</button>
-						<button class="menu-button m-b-20">
+						<button id="patients" class="menu-button m-b-20">
 							Patients
 						</button>
 					</div>
 
 				</div>
-					
+
 				<div class="panel">
-						<iframe src="profile_template.html" class="page-iframe"></iframe>
+					<iframe id='page-frame' src="profile_template.html" class="page-iframe"></iframe>
 				</div>
 			</div>
 
 		</div>
 	</div>
+
+	<!-- JS SCRIPT -->
+	<script src="js/jquery-3.2.1.min.js"></script>
+
+	<script>
+		$(document).ready(function () {
+			$('#profile').click(function () {
+				$('#page-frame').attr('src', 'profile_template.html');
+			});
+
+			$('#consulties').click(function () {
+				$('#page-frame').attr('src', 'table_template.html');
+
+			});
+		});
+	</script>
 
 </body>
 
