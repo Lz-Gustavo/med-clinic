@@ -158,19 +158,19 @@
 				$result = $xml->xpath($filter);
 				
 				if ((count($result) > 0) && ($result[0]->crm == $password)) {
-					echo "eae doutor!<br>";
+					//echo "eae doutor!<br>";
 					return 1;
 				} else {
-					echo "falsario!<br>";
+					//echo "falsario!<br>";
 					return 0;
 				}
 			}
 			else if (strcasecmp($role, "atendente") == 0) {
 				if (($user == "admin") && ($password == "admin")) {
-					echo "eae secretarinha!<br>";
+					//echo "eae secretarinha!<br>";
 					return 1;
 				} else {
-					echo "falsaria!<br>";
+					//echo "falsaria!<br>";
 					return 0;
 				}
 			}

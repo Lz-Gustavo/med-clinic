@@ -64,44 +64,40 @@
                     </thead>
                     <tbody>
                         <?php
-			                ini_set('display_errors', 1);
-			                ini_set('display_startup_errors', 1);
-                            error_reporting(E_ALL);
+							ini_set('display_errors', 1);
+							ini_set('display_startup_errors', 1);
+							error_reporting(E_ALL);
 
-                            require_once "../../php_backend/class/storage.php";
-                            require_once "../../php_backend/class/person.php";
-                            require_once "../../php_backend/class/secretary.php";
-                            require_once "../../php_backend/class/doctor.php";
-                            require_once "../../php_backend/class/patient.php";
-                    
-                            session_start();
-                            echo "<pre>";
-                            print_r($_SESSION);
-                            echo "</pre>";
-                            $_GET['doctor_name'] = $_SESSION['login_user'];
+							require_once "../../php_backend/class/storage.php";
+							require_once "../../php_backend/class/person.php";
+							require_once "../../php_backend/class/secretary.php";
+							require_once "../../php_backend/class/doctor.php";
+							require_once "../../php_backend/class/patient.php";
 
+							session_start();
+							//echo "<pre>";
+							//print_r($_SESSION);
+							//echo "</pre>";
+							$_GET['doctor_name'] = $_SESSION['login_user'];
 
-                            $doctor = new Doctor("admin", "istrator", "Atendente");
-                            
-                            if (isset($_GET['time'])) {
-                                $result = $doctor->search_history();
+							$doctor = new Doctor("admin", "istrator", "1");
 
-                                //print_r($result);
+							if (isset($_GET['time'])) {
+								$result = $doctor->search_history();
 
-                                for ($i = 0; $i < count($result); $i++) {
-                                    
-                                    echo "<tr>";
-                                    echo "<th>".$result[$i]->name."</th>";
-                                    echo "<th>".$result[$i]->last_name."</th>";
-                                    //echo "<th>".$result[$i]->doctor_name."</th>";
-                                    echo "<th>".$result[$i]->appt_date."</th>";
-                                    echo "<th id='notes'>".$result[$i]->obs."</th>";
-                                    echo "<th id='prescription'>".$result[$i]->recipe."</th>";
-                                    echo "</tr>";
-                                }
-                            }
+								for ($i = 0; $i < count($result); $i++) {
 
-                        ?>
+									echo "<tr>";
+									echo "<th>".$result[$i]->name."</th>";
+									echo "<th>".$result[$i]->last_name."</th>";
+									echo "<th>".$result[$i]->appt_date."</th>";
+									echo "<th id='notes'>".$result[$i]->obs."</th>";
+									echo "<th id='prescription'>".$result[$i]->recipe."</th>";
+									echo "</tr>";
+								}
+							}
+
+						?>
                     </tbody>
 
                 </table>

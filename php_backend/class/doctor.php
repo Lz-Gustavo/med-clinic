@@ -35,7 +35,7 @@
 			$hd = Storage::getInstance();
 
 			$hd->write("medico", $this->temporary_buffer);
-			echo "changes commited to the database!<br>";
+			//echo "changes commited to the database!<br>";
 			reset($this->temporary_buffer);
 		}
 		public function search_history() {
@@ -61,6 +61,30 @@
 			
 			$result = $hd->read("historico", $filter);
 			//echo "RESULTADO BUSCA HISTORICO: <br>";
+			//print_r($result);
+			return $result;
+		}
+		public function search_profile() {
+			$hd = Storage::getInstance();
+
+			$filter = "//med[";
+
+			if (!empty($_GET['name'])) {
+				$filter.= "name='".$_GET['name']."'";
+			}
+			if (!empty($_GET['crm'])) {
+				$filter.= " and number(crm)='".$_GET['crm']."'";
+			}
+			if (!empty($_GET['email'])) {
+				$filter.= " and email='".$_GET['email']."'";
+			}
+			if (!empty($_GET['tel'])) {
+				$filter.= " and number(tel)='".$_GET['tel']."'";
+			}
+			$filter.= "]";
+			
+			$result = $hd->read("medico", $filter);
+			//echo "RESULTADO BUSCA MEDICO: <br>";
 			//print_r($result);
 			return $result;
 		}

@@ -18,7 +18,30 @@
 
 <body style="background-color:#fff;">
 
+	<?php
+			ini_set('display_errors', 1);
+			ini_set('display_startup_errors', 1);
+			error_reporting(E_ALL);
 
+			require_once "../../php_backend/class/storage.php";
+			require_once "../../php_backend/class/person.php";
+			require_once "../../php_backend/class/secretary.php";
+			require_once "../../php_backend/class/doctor.php";
+			require_once "../../php_backend/class/patient.php";
+
+			session_start();
+			$_GET['doctor_name'] = $_SESSION['login_user'];
+			$_GET['name'] = $_SESSION['login_user'];
+			$doctor = new Doctor("admin", "istrator", "1");
+
+			$result = $doctor->search_profile();
+
+			$_POST['name'] = $result[0]->name;
+			$_POST['last_name'] = $result[0]->last_name;
+			$_POST['email'] = $result[0]->email;
+			$_POST['tel'] = $result[0]->tel;
+			$_POST['crm'] = $result[0]->crm;
+	?>
 
     <div class="box m-b-10">
         <div class="header-show-dados">
@@ -26,21 +49,32 @@
         </div>
 
         <div class="show-dados">
+		<form method="post">
             <div class="horizontal-align w-full">
                 <div style="width: 20%;">
                     <p>First name:</p>
-                </div>
+				</div>
+				
                 <div class="wrap-input m-t-10">
-                    <input class="input" type="text" name="first_name">
+                    <input class="input" type="text" name="first_name" value="<?php echo $_POST['name'] ?>">
                 </div>
-            </div>
+			</div>
 
             <div class="horizontal-align w-full">
                 <div style="width: 20%;">
                     <p>Last name:</p>
                 </div>
                 <div class="wrap-input m-t-10">
-                    <input class="input" type="text" name="last_name">
+                    <input class="input" type="text" name="last_name" value="<?php echo $_POST['last_name'] ?>">
+                </div>
+			</div>
+			
+			<div class="horizontal-align w-full">
+                <div style="width: 20%;">
+                    <p>Telephone:</p>
+                </div>
+                <div class="wrap-input m-t-10">
+                    <input class="input" type="number" name="last_name" value="<?php echo $_POST['tel'] ?>">
                 </div>
             </div>
 
@@ -49,7 +83,7 @@
                     <p>CRM:</p>
                 </div>
                 <div class="wrap-input m-t-10">
-                    <input class="input" type="number" name="crm">
+                    <input class="input" type="number" min="0" name="crm" value="<?php echo $_POST['crm'] ?>">
                 </div>
             </div>
 
@@ -58,7 +92,7 @@
                     <p>Email:</p>
                 </div>
                 <div class="wrap-input m-t-10">
-                    <input class="input" type="email" name="email">
+                    <input class="input" type="email" name="email" value="<?php echo $_POST['email'] ?>">
                 </div>
             </div>
 
@@ -71,9 +105,10 @@
             </div>
 
             <div style="margin: auto; text-align: center; padding-top: 20px">
-                <button id="submit" class='submit-button'>Submit Changes</button>
+                <button id="submit" class='submit-button' type="submit">Submit Changes</button>
             </div>
-
+		
+		</form>
         </div>
     </div>
 
