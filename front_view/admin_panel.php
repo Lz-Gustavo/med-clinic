@@ -61,19 +61,7 @@
 	</form><br>
 
 	<h3>Buscar Consulta: (imagine inves de um form um filtro)</h3><br>
-	<form method = "get">
-
-		<span>Nome do Paciente: </span><input type = "text" name = "name" required><br><br>
-		
-		<span>Nome do Medico: </span><input type = "text" name = "doctor_name"><br><br>
-
-		<span>Periodo: </span><br>
-		<input type = "radio" name = "time" value = "all" checked> Todas<br>
-		<input type = "radio" name = "time" value = "future"> Futuras<br>
-		
-		<br>
-		<button type = "submit">Submeter!</button>
-	</form><br>
+	<a href = "test_table.php"><b> Consultar! ---></b></a><br><br>
 
 	<h3>Alterar Consulta: (eu sei que eh so funcionalidade do medico)</h3><br>
 	<form method = "post">
@@ -134,11 +122,11 @@
 
 			$secretary->show_all_history();
 		}
-		if (!empty($_GET)) {
-			// start a Xpath query on the history XML using data from _GET global as data filter
+		// if (!empty($_GET)) {
+		// 	// start a Xpath query on the history XML using data from _GET global as data filter
 			
-			$secretary->search_history();
-		}
+		// 	$secretary->search_history();
+		// }
 		if (isset($_POST['login_user'])) {
 
 			$hd = Storage::getInstance();

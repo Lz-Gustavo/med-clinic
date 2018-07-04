@@ -80,7 +80,7 @@
 		}
 		public function read($database, $filter) {
 			
-			echo "<br><b>filtro utilizado:</b> ".$filter."<br>";
+			//echo "<br><b>filtro utilizado:</b> ".$filter."<br>";
 
 			if (strcasecmp($database, "medico") == 0) {
 				$xml = simplexml_load_file($this->file_doctors);				

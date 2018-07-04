@@ -57,7 +57,7 @@
 			}
 		}
 
-		public function search_patient($name) {
+		public function search_patient() {
 			$hd = Storage::getInstance();
 
 			$filter = "//pct[";
@@ -77,7 +77,7 @@
 			echo "RESULTADO BUSCA PACIENTE: <br>";
 			print_r($result);
 		}
-		public function search_doctor($crm) {
+		public function search_doctor() {
 			$hd = Storage::getInstance();
 
 			$filter = "//med[";
@@ -126,8 +126,9 @@
 			}
 			
 			$result = $hd->read("historico", $filter);
-			echo "RESULTADO BUSCA HISTORICO: <br>";
-			print_r($result);
+			//echo "RESULTADO BUSCA HISTORICO: <br>";
+			//print_r($result);
+			return $result;
 		}
 
 		public function show_all_patients() {
