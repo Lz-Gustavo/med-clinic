@@ -21,7 +21,7 @@
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100">
-				<form class="login100-form validate-form">
+				<form class="login100-form" method="post" action="check_login.php">
 					<!--img src="images/logo.png" alt="PSYMED_logo" style="width:290px;height:148px; float:center;"-->
 					<div class="login100-form-title p-b-30 animate-logo">
 						<img src="images/logo.png" style="width:200px;height:102px;">
@@ -43,14 +43,15 @@
 					</div>
 					<div class='hide_div'>
 						<div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
-							<input class="input100" type="text" name="email">
+							<input class="input100" type="text" name="login_user" required>
 							<span class="focus-input100"></span>
 							<span class="label-input100">Email</span>
 						</div>
 
 
+
 						<div class="wrap-input100 validate-input" data-validate="Password is required">
-							<input class="input100" type="password" name="pass">
+							<input class="input100" type="password" name="login_password">
 							<span class="focus-input100"></span>
 							<span class="label-input100">Password</span>
 						</div>
@@ -72,7 +73,7 @@
 
 
 						<div class="container-login100-form-btn">
-							<button class="login100-form-btn">
+							<button class="login100-form-btn" type ="submit">
 								Login
 							</button>
 						</div>

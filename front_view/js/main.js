@@ -91,16 +91,16 @@
     [ Login ]*/
     var url;
     
-    $('.login100-form-btn').click(function(){
+    // $('.login100-form-btn').click(function(){
         
         
-        if (login == 'adm'){
-            url = './admin_panel/admin_panel.html'
-        }
-        if (login == 'doc'){
-            url = './doctor_panel/doctor_panel.html'
-        }
-        location.replace(url);
-    })
+    //     if (login == 'adm'){
+    //         url = './admin_panel/admin_panel.html'
+    //     }
+    //     if (login == 'doc'){
+    //         url = './doctor_panel/doctor_panel.html'
+    //     }
+    //     //location.replace(url);
+    // })
 
 })(jQuery);

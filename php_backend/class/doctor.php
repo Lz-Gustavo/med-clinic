@@ -48,12 +48,8 @@
 			if (!empty($_GET['doctor_name'])) {
 				$filter.= "doctor_name='".$_GET['doctor_name']."'";
 			}
-
-			if (!empty($_GET['name'])) {
-				$filter.= " and name='".$_GET['name']."'";
-			}
 			$filter.= "]";
-
+			
 			if (strcasecmp($_GET['time'], "future") == 0) {
 				
 				$now = new DateTime(null, new DateTimeZone('America/Sao_Paulo'));
@@ -64,8 +60,9 @@
 			}
 			
 			$result = $hd->read("historico", $filter);
-			echo "RESULTADO BUSCA HISTORICO: <br>";
-			print_r($result);
+			//echo "RESULTADO BUSCA HISTORICO: <br>";
+			//print_r($result);
+			return $result;
 		}
 		public function anotate($name, $observation, $recipe) {
 			$hd = Storage::getInstance();
