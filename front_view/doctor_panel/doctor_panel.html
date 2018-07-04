@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>PsyMed</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!--===============================================================================================-->
+
+	<link rel="stylesheet" type="text/css" href="../fonts/font-awesome.min.css">
+	<link rel="icon" type="image/png" href="../images/icons/favicon.ico" />
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="../css/util.css">
+	<link rel="stylesheet" type="text/css" href="../css/doctor_panel.css">
+	<!--===============================================================================================-->
+
+</head>
+
+<body>
+
+	<div class="wrap" style="margin: 0; height: 100%">
+
+		<div class="info">
+			<img src="../images/logo.png" style="width:200px;height:102px;" class="m-t-30">
+
+			<div class="text-infos m-t-30 m-l-10">
+				<p>Name: Albano Oliveira de Borba</p>
+				<p>CRM: 9999999</p>
+				<p>Email: albano@furg.br</p>
+			</div>
+
+			<hr class="m-t-30 m-b-30 m-l-10 m-r-10">
+
+			<div class="wrap-button">
+
+				<p class="m-b-30">Menu</p>
+
+				<button id="profile" class="menu-button m-b-20">
+					Profile
+				</button>
+				<button id="consulties" class="menu-button m-b-20">
+					Consulties
+				</button>
+				<button id="patients" class="menu-button m-b-20">
+					Patients
+				</button>
+			</div>
+
+		</div>
+
+		<div class="panel">
+			<iframe id='page-frame' src="profile_template.html" class="page-iframe"></iframe>
+		</div>
+
+	</div>
+
+	<!-- JS SCRIPT -->
+	<script src="../js/jquery-3.2.1.min.js"></script>
+
+	<script>
+		$(document).ready(function () {
+			$('#profile').click(function () {
+				$('#page-frame').attr('src', 'profile_template.html');
+			});
+
+			$('#consulties').click(function () {
+				$('#page-frame').attr('src', 'consulties_template.html');
+
+			});
+
+			$('#patients').click(function () {
+				$('#page-frame').attr('src', 'patients_template.html');
+
+			});
+		});
+	</script>
+
+</body>
+
+</html>

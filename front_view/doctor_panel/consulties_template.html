@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>PsyMed</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--===============================================================================================-->
+
+    <link rel="stylesheet" type="text/css" href="../fonts/font-awesome.min.css">
+    <link rel="icon" type="image/png" href="../images/icons/favicon.ico" />
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="../css/util.css">
+    <link rel="stylesheet" type="text/css" href="../css/profile_template.css">
+    <!--===============================================================================================-->
+
+    <!-- bootstrap -->
+    <link href="../plugins/x-editable/css/bootstrap.min.css" rel="stylesheet">
+    <script src="../plugins/x-editable/js/bootstrap.min.js"></script>
+
+    <!-- Jquery -->
+    <script src="../plugins/x-editable/js/jquery-2.0.3.min.js"></script>
+
+    <!-- x-editable (bootstrap version) -->
+    <link href="../plugins/x-editable/css/bootstrap-editable.css" rel="stylesheet" />
+    <script src="../plugins/x-editable/js/bootstrap-editable.min.js"></script>
+
+</head>
+
+<body style="background-color:#fff;">
+
+
+
+    <div class="box m-b-10">
+        <div class="header-show-dados">
+            <p class="title">Consulties</p>
+        </div>
+        <div class="p-t-20">
+            <div style="margin: auto; text-align: center;">
+                <button id="submit" class='filter-button m-r-30'>Next</button>
+                <button id="submit" class='filter-button m-r-30'>Performed</button>
+                <button id="submit" class='filter-button'>All</button>
+            </div>
+            <div class="table-box m-t-20 m-l-20">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Patient</th>
+                            <th>Medic</th>
+                            <th>Date</th>
+                            <th>Notes</th>
+                            <th>Prescription</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <a>Albano</a>
+                            </td>
+                            <td>
+                                <a>Luiz</a>
+                            </td>
+                            <td>
+                                <a>01/01/2018</a>
+                            </td>
+                            <td>
+                                <a id="notes">aa</a>
+                            </td>
+                            <td>
+                                <a id="prescription">bb</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a>Albano</a>
+                            </td>
+                            <td>
+                                <a>Luiz</a>
+                            </td>
+                            <td>
+                                <a>01/01/2018</a>
+                            </td>
+                            <td>
+                                <a id="notes">aa</a>
+                            </td>
+                            <td>
+                                <a id="prescription">bb</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a>Albano</a>
+                            </td>
+                            <td>
+                                <a>Luiz</a>
+                            </td>
+                            <td>
+                                <a>01/01/2018</a>
+                            </td>
+                            <td>
+                                <a id="notes">aa</a>
+                            </td>
+                            <td>
+                                <a id="prescription">bb</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a>Albano</a>
+                            </td>
+                            <td>
+                                <a>Luiz</a>
+                            </td>
+                            <td>
+                                <a>01/01/2018</a>
+                            </td>
+                            <td>
+                                <a id="notes">aa</a>
+                            </td>
+                            <td>
+                                <a id="prescription">bb</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a>Albano</a>
+                            </td>
+                            <td>
+                                <a>Luiz</a>
+                            </td>
+                            <td>
+                                <a>01/01/2018</a>
+                            </td>
+                            <td>
+                                <a id="notes">aa</a>
+                            </td>
+                            <td>
+                                <a id="prescription">bb</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a>Albano</a>
+                            </td>
+                            <td>
+                                <a>Luiz</a>
+                            </td>
+                            <td>
+                                <a>01/01/2018</a>
+                            </td>
+                            <td>
+                                <a id="notes">aa</a>
+                            </td>
+                            <td>
+                                <a id="prescription">bb</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a>Albano</a>
+                            </td>
+                            <td>
+                                <a>Luiz</a>
+                            </td>
+                            <td>
+                                <a>01/01/2018</a>
+                            </td>
+                            <td>
+                                <a id="notes">aa</a>
+                            </td>
+                            <td>
+                                <a id="prescription">bb</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a>Albano</a>
+                            </td>
+                            <td>
+                                <a>Luiz</a>
+                            </td>
+                            <td>
+                                <a>01/01/2018</a>
+                            </td>
+                            <td>
+                                <a id="notes">aa</a>
+                            </td>
+                            <td>
+                                <a id="prescription">bb</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a>Albano</a>
+                            </td>
+                            <td>
+                                <a>Luiz</a>
+                            </td>
+                            <td>
+                                <a>01/01/2018</a>
+                            </td>
+                            <td>
+                                <a id="notes">aa</a>
+                            </td>
+                            <td>
+                                <a id="prescription">bb</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a>Albano</a>
+                            </td>
+                            <td>
+                                <a>Luiz</a>
+                            </td>
+                            <td>
+                                <a>01/01/2018</a>
+                            </td>
+                            <td>
+                                <a id="notes">aa</a>
+                            </td>
+                            <td>
+                                <a id="prescription">bb</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a>Albano</a>
+                            </td>
+                            <td>
+                                <a>Luiz</a>
+                            </td>
+                            <td>
+                                <a>01/01/2018</a>
+                            </td>
+                            <td>
+                                <a id="notes">aa</a>
+                            </td>
+                            <td>
+                                <a id="prescription">bb</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a>Albano</a>
+                            </td>
+                            <td>
+                                <a>Luiz</a>
+                            </td>
+                            <td>
+                                <a>01/01/2018</a>
+                            </td>
+                            <td>
+                                <a id="notes">aa</a>
+                            </td>
+                            <td>
+                                <a id="prescription">bb</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a>Albano</a>
+                            </td>
+                            <td>
+                                <a>Luiz</a>
+                            </td>
+                            <td>
+                                <a>01/01/2018</a>
+                            </td>
+                            <td>
+                                <a id="notes">aa</a>
+                            </td>
+                            <td>
+                                <a id="prescription">bb</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a>Albano</a>
+                            </td>
+                            <td>
+                                <a>Luiz</a>
+                            </td>
+                            <td>
+                                <a>01/01/2018</a>
+                            </td>
+                            <td>
+                                <a id="notes">aa</a>
+                            </td>
+                            <td>
+                                <a id="prescription">bb</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a>Albano</a>
+                            </td>
+                            <td>
+                                <a>Luiz</a>
+                            </td>
+                            <td>
+                                <a>01/01/2018</a>
+                            </td>
+                            <td>
+                                <a id="notes">aa</a>
+                            </td>
+                            <td>
+                                <a id="prescription">bb</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a>Albano</a>
+                            </td>
+                            <td>
+                                <a>Luiz</a>
+                            </td>
+                            <td>
+                                <a>01/01/2018</a>
+                            </td>
+                            <td>
+                                <a id="notes">aa</a>
+                            </td>
+                            <td>
+                                <a id="prescription">bb</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a>Albano</a>
+                            </td>
+                            <td>
+                                <a>Luiz</a>
+                            </td>
+                            <td>
+                                <a>01/01/2018</a>
+                            </td>
+                            <td>
+                                <a id="notes">aa</a>
+                            </td>
+                            <td>
+                                <a id="prescription">bb</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a>Albano</a>
+                            </td>
+                            <td>
+                                <a>Luiz</a>
+                            </td>
+                            <td>
+                                <a>01/01/2018</a>
+                            </td>
+                            <td>
+                                <a id="notes">aa</a>
+                            </td>
+                            <td>
+                                <a id="prescription">bb</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a>Albano</a>
+                            </td>
+                            <td>
+                                <a>Luiz</a>
+                            </td>
+                            <td>
+                                <a>01/01/2018</a>
+                            </td>
+                            <td>
+                                <a id="notes">aa</a>
+                            </td>
+                            <td>
+                                <a id="prescription">bb</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a>Albano</a>
+                            </td>
+                            <td>
+                                <a>Luiz</a>
+                            </td>
+                            <td>
+                                <a>01/01/2018</a>
+                            </td>
+                            <td>
+                                <a id="notes">aa</a>
+                            </td>
+                            <td>
+                                <a id="prescription">bb</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a>Albano</a>
+                            </td>
+                            <td>
+                                <a>Luiz</a>
+                            </td>
+                            <td>
+                                <a>01/01/2018</a>
+                            </td>
+                            <td>
+                                <a id="notes">aa</a>
+                            </td>
+                            <td>
+                                <a id="prescription">bb</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a>Albano</a>
+                            </td>
+                            <td>
+                                <a>Luiz</a>
+                            </td>
+                            <td>
+                                <a>01/01/2018</a>
+                            </td>
+                            <td>
+                                <a id="notes">aa</a>
+                            </td>
+                            <td>
+                                <a id="prescription">bb</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a>Albano</a>
+                            </td>
+                            <td>
+                                <a>Luiz</a>
+                            </td>
+                            <td>
+                                <a>01/01/2018</a>
+                            </td>
+                            <td>
+                                <a id="notes">aa</a>
+                            </td>
+                            <td>
+                                <a id="prescription">bb</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a>Albano</a>
+                            </td>
+                            <td>
+                                <a>Luiz</a>
+                            </td>
+                            <td>
+                                <a>01/01/2018</a>
+                            </td>
+                            <td>
+                                <a id="notes">aa</a>
+                            </td>
+                            <td>
+                                <a id="prescription">bb</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a>Albano</a>
+                            </td>
+                            <td>
+                                <a>Luiz</a>
+                            </td>
+                            <td>
+                                <a>01/01/2018</a>
+                            </td>
+                            <td>
+                                <a id="notes">aa</a>
+                            </td>
+                            <td>
+                                <a id="prescription">bb</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a>Albano</a>
+                            </td>
+                            <td>
+                                <a>Luiz</a>
+                            </td>
+                            <td>
+                                <a>01/01/2018</a>
+                            </td>
+                            <td>
+                                <a id="notes">aa</a>
+                            </td>
+                            <td>
+                                <a id="prescription">bb</a>
+                            </td>
+                        </tr>
+                    </tbody>
+
+                </table>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- JS SCRIPT -->
+    <script>
+        $(document).ready(function () {
+            //`popup` / `inline`
+            $.fn.editable.defaults.mode = 'inline';
+            $('#notes, #prescription').editable();
+
+        });
+    </script>
+
+</body>
+</html
