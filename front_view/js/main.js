@@ -95,10 +95,10 @@
         
         
         if (login == 'adm'){
-            url = './admin_panel.php'
+            url = './admin_panel/admin_panel.html'
         }
         if (login == 'doc'){
-            url = './doctor_panel.html'
+            url = './doctor_panel/doctor_panel.html'
         }
         location.replace(url);
     })
