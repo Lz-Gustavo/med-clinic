@@ -54,7 +54,7 @@
 				</div>
 				
                 <div class="wrap-input m-t-10">
-                    <input class="input" type="text" name="first_name" value="<?php echo $_POST['name'] ?>">
+                    <input class="input" type="text" name="name" value="<?php echo $_POST['name'] ?>">
                 </div>
 			</div>
 
@@ -72,7 +72,7 @@
                     <p>Telephone:</p>
                 </div>
                 <div class="wrap-input m-t-10">
-                    <input class="input" type="number" name="telephone" value="<?php echo $_POST['tel'] ?>">
+                    <input class="input" type="number" name="tel" value="<?php echo $_POST['tel'] ?>">
                 </div>
             </div>
 
