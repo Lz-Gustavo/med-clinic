@@ -1,10 +1,5 @@
 <?php
-
 	require_once "../php_backend/class/storage.php";
-
-	//session_start();
-	//$_SESSION['login_user'] = $_POST['login_user'];
-	//header("location: doctor_panel/doctor_panel.html");
 
 	if (isset($_POST['login_user'])) {
 

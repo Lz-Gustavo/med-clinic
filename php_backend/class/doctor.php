@@ -13,7 +13,7 @@
 
 	class Doctor extends Person {
 		private $crm;
-		private $temporary_buffer;
+		private $temporary_buffer = array();
 
 		public function _construct() {
 			parent::_construct();
@@ -34,8 +34,7 @@
 		public function commit_changes() {
 			$hd = Storage::getInstance();
 
-			$hd->write("medico", $this->temporary_buffer);
-			//echo "changes commited to the database!<br>";
+			$hd->modify("medico", $this->temporary_buffer["CRM:"], $this->temporary_buffer);
 			reset($this->temporary_buffer);
 		}
 		public function search_history() {

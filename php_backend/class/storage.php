@@ -118,9 +118,7 @@
 			echo "<br>";
 		}
 		public function modify($database, $key_cell, $modify_array) {
-			// IDEIA INICIAL:
-			// implementar aqui a modificacao de estados, que sera utilizada pra alterar 
-			// o horario como vago e acrescentar OBS e RECEITAS pelo medico
+			// utilizado para alterar campos no cadastro de um medico, paciente, ou acrescentar dados a uma consulta
 
 			if (strcasecmp($database, "medico") == 0) {
 
@@ -128,14 +126,14 @@
 				$xml = simplexml_load_file($this->file_doctors);
 				$result = $xml->xpath($filter);
 
-				$result[0]->week->monday = $modify_array["Seg:"];
-				$result[0]->week->tuesday = $modify_array["Ter:"];
-				$result[0]->week->wednesday = $modify_array["Qua:"];
-				$result[0]->week->thursday = $modify_array["Qui:"];
-				$result[0]->week->friday = $modify_array["Sex:"];
-				print_r($result);
+				$result[0]->name = $modify_array["Nome:"];
+				$result[0]->last_name = $modify_array["Sobrenome:"];
+				$result[0]->email = $modify_array["Email:"];
+				$result[0]->tel = $modify_array["Telefone:"];
+				$result[0]->crm = $modify_array["CRM:"];
+				//print_r($result);
 
-				$xml->asXML($this->file_history);
+				$xml->asXML($this->file_doctors);
 			}
 			else if ((strcasecmp($database, "historico") == 0) || (strcasecmp($database, "history") == 0)) {
 
@@ -145,10 +143,40 @@
 
 				$result[0]->obs = $modify_array["Observacao:"];
 				$result[0]->recipe = $modify_array["Receita:"];
-				print_r($result);
+				//print_r($result);
 
 				$xml->asXML($this->file_history);
 			}
+			else if (strcasecmp($database, "paciente") == 0) {
+
+				$filter = "//pct[name='".$key_cell."']";
+				$xml = simplexml_load_file($this->file_patients);				
+				$result = $xml->xpath($filter);
+
+				$result[0]->name = $modify_array["Nome:"];
+				$result[0]->last_name = $modify_array["Sobrenome:"];
+				$result[0]->email = $modify_array["Email:"];
+				$result[0]->tel = $modify_array["Telefone:"];
+				
+				//print_r($result);
+				$xml->asXML($this->file_patients);
+			}
+		}
+		public function modify_week($crm, $modify_array) {
+			// utilizado para alterar o horario vago de um medico
+
+			$filter = "//med[number(crm)='".$crm."']";
+			$xml = simplexml_load_file($this->file_doctors);
+			$result = $xml->xpath($filter);
+
+			$result[0]->week->monday = $modify_array["Seg:"];
+			$result[0]->week->tuesday = $modify_array["Ter:"];
+			$result[0]->week->wednesday = $modify_array["Qua:"];
+			$result[0]->week->thursday = $modify_array["Qui:"];
+			$result[0]->week->friday = $modify_array["Sex:"];
+			
+			//print_r($result);
+			$xml->asXML($this->file_doctors);
 		}
 		public function login($role, $user, $password) {
 
@@ -158,19 +186,15 @@
 				$result = $xml->xpath($filter);
 				
 				if ((count($result) > 0) && ($result[0]->crm == $password)) {
-					//echo "eae doutor!<br>";
 					return 1;
 				} else {
-					//echo "falsario!<br>";
 					return 0;
 				}
 			}
 			else if (strcasecmp($role, "atendente") == 0) {
 				if (($user == "admin") && ($password == "admin")) {
-					//echo "eae secretarinha!<br>";
 					return 1;
 				} else {
-					//echo "falsaria!<br>";
 					return 0;
 				}
 			}
