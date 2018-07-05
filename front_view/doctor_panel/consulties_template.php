@@ -11,7 +11,7 @@
     <link rel="icon" type="image/png" href="../images/icons/favicon.ico" />
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="../css/util.css">
-    <link rel="stylesheet" type="text/css" href="../css/profile_template.css">
+    <link rel="stylesheet" type="text/css" href="../css/iframe_doctor.css">
     <!--===============================================================================================-->
 
     <!-- bootstrap -->
@@ -29,28 +29,25 @@
 
 <body style="background-color:#fff;">
 
-
-
-    <div class="box m-b-10">
+    <div class="box">
         <div class="header-show-dados">
             <p class="title">Consulties</p>
         </div>
-        <div class="p-t-20">
-            <div style="margin: auto; text-align: center;">
-                
-                <form method = "get">
-                    <span>Periodo: </span><br>
+        <div class="p-t-20">         
+            <form method = "get">
+                <div style="text-align: center;" class="horizontal-align">
+
+                    <button class='filter-button m-l-20 m-r-40' type='submit'>Filter</button>
                     <input type = "radio" name = "time" value = "all" checked> Todas<br>
                     <input type = "radio" name = "time" value = "future"> Futuras<br>
+                </div>
 
-                    <br>
-                    <button type = "submit">Submeter!</button>
-                </form><br>
-                
+            </form>
+                    
                 <!--button id="submit" class='filter-button m-r-30'>Next</button-->
                 <!--button id="submit" class='filter-button m-r-30'>Performed</button-->
                 <!--button id="submit" class='filter-button'>All</button-->
-            </div>
+            
             <div class="table-box m-t-20 m-l-20">
                 <table class="table table-bordered">
                     <thead>
@@ -88,11 +85,11 @@
 								for ($i = 0; $i < count($result); $i++) {
 
 									echo "<tr>";
-									echo "<th>".$result[$i]->name."</th>";
-									echo "<th>".$result[$i]->last_name."</th>";
-									echo "<th>".$result[$i]->appt_date."</th>";
-									echo "<th id='notes'>".$result[$i]->obs."</th>";
-									echo "<th id='prescription'>".$result[$i]->recipe."</th>";
+									echo "<td>".$result[$i]->name."</td>";
+									echo "<td>".$result[$i]->last_name."</td>";
+									echo "<td>".$result[$i]->appt_date."</td>";
+									echo "<td id='notes'>".$result[$i]->obs."</td>";
+									echo "<td id='prescription'>".$result[$i]->recipe."</td>";
 									echo "</tr>";
 								}
 							}
@@ -101,6 +98,10 @@
                     </tbody>
 
                 </table>
+            </div>
+            
+            <div style="margin: auto; text-align: center; padding-top: 20px">
+                <button id="submit" class='submit-button' type="submit">Submit Changes</button>
             </div>
 
         </div>
@@ -118,5 +119,3 @@
 
 </body>
 </html>
-Notice: Undefined index: login_user in /var/www/html/med-clinic/front_view/doctor_panel/consulties_template.php on line 78
-First Name	Last Name	Date	Notes	

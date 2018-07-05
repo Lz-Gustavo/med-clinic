@@ -47,7 +47,10 @@
 					Patients
 				</button>
 			</div>
-
+			
+			<button id="back-button" class="back-button m-t-130">
+				< Logout
+			</button>
 		</div>
 
 		<div class="panel">
@@ -73,6 +76,10 @@
 			$('#patients').click(function () {
 				$('#page-frame').attr('src', 'patients_template.html');
 
+			});
+
+			$('#back-button').click(function () {
+				location.assign('../index.html');
 			});
 		});
 	</script>
