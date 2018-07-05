@@ -25,9 +25,7 @@
 
 			require_once "../../php_backend/class/storage.php";
 			require_once "../../php_backend/class/person.php";
-			require_once "../../php_backend/class/secretary.php";
 			require_once "../../php_backend/class/doctor.php";
-			require_once "../../php_backend/class/patient.php";
 
 			session_start();
 			$_GET['doctor_name'] = $_SESSION['login_user'];
@@ -49,14 +47,14 @@
         </div>
 
         <div class="show-dados">
-		<form method="post">
+		<form method="post" action="save_form.php">
             <div class="horizontal-align w-full">
                 <div style="width: 20%;">
                     <p>First name:</p>
 				</div>
 				
                 <div class="wrap-input m-t-10">
-                    <input class="input" type="text" name="first_name" value="<?php echo $_POST['name'] ?>">
+                    <input class="input" type="text" name="name" value="<?php echo $_POST['name'] ?>">
                 </div>
 			</div>
 
@@ -74,7 +72,7 @@
                     <p>Telephone:</p>
                 </div>
                 <div class="wrap-input m-t-10">
-                    <input class="input" type="number" name="last_name" value="<?php echo $_POST['tel'] ?>">
+                    <input class="input" type="number" name="tel" value="<?php echo $_POST['tel'] ?>">
                 </div>
             </div>
 
