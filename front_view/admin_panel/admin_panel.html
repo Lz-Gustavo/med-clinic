@@ -35,10 +35,10 @@
 
 				<p class="m-b-30">Menu</p>
 
-				<button id="profile" class="menu-button m-b-20">
+				<button id="consulties" class="menu-button m-b-20">
 					Consulties
 				</button>
-				<button id="consulties" class="menu-button m-b-20">
+				<button id="medics" class="menu-button m-b-20">
 					Medics
 				</button>
 				<button id="patients" class="menu-button m-b-20">
@@ -46,10 +46,14 @@
 				</button>
 			</div>
 
+			<button id="back-button" class="back-button m-t-80">
+				< Logout
+			</button>
+
 		</div>
 
 		<div class="panel">
-			<iframe id='page-frame' src="profile_template.html" class="page-iframe"></iframe>
+			<iframe id='page-frame' src="consulties_template.php" class="page-iframe"></iframe>
 		</div>
 
 	</div>
@@ -59,18 +63,22 @@
 
 	<script>
 		$(document).ready(function () {
-			$('#profile').click(function () {
-				$('#page-frame').attr('src', 'profile_template.html');
+			$('#consulties').click(function () {
+				$('#page-frame').attr('src', 'consulties_template.php');
 			});
 
-			$('#consulties').click(function () {
-				$('#page-frame').attr('src', 'consulties_template.html');
+			$('#medics').click(function () {
+				$('#page-frame').attr('src', 'medics_template.php');
 
 			});
 
 			$('#patients').click(function () {
-				$('#page-frame').attr('src', 'patients_template.html');
+				$('#page-frame').attr('src', 'patients_template.php');
 
+			});
+
+			$('#back-button').click(function () {
+				location.assign('../index.html');
 			});
 		});
 	</script>
@@ -78,3 +86,4 @@
 </body>
 
 </html>
+

@@ -11,7 +11,7 @@
     <link rel="icon" type="image/png" href="../images/icons/favicon.ico" />
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="../css/util.css">
-    <link rel="stylesheet" type="text/css" href="../css/iframe_doctor.css">
+    <link rel="stylesheet" type="text/css" href="../css/iframe_admin.css">
     <!--===============================================================================================-->
 
     <!-- bootstrap -->
@@ -30,13 +30,17 @@
 <body style="background-color:#fff;">
 
     <div class="box">
-        <div class="header-show-dados">
-            <p class="title">Patients</p>
+        <div class="horizontal-align">
+            <div class="header-show-dados">
+                <p class="title">Patients</p>
+            </div>
+            <button class='add-button'>New</button>
         </div>
+        
         <div class="p-t-20">
             <div style="text-align: center;" class="horizontal-align">
-
-                <button class='filter-button m-l-20 m-r-40'>Search</button>
+                
+                <button class='filter-button m-l-20 m-r-40'>Filter</button>
                 <div class="wrap-input m-t-10" style="width: 60%">
                     <input class="input" type="text" placeholder="Patient Name">
                 </div>
@@ -45,27 +49,21 @@
                 <table class="table table-bordered">
                     <thead>
                         <tr>
-                            <th>First Name</th>
+                            <th>Fist Name</th>
                             <th>Last Name</th>
-                            <th>Date of Birth</th>
                             <th>Email</th>
+                            <th>Date of Birth</th>
                             <th>Telephone</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td id="fname"> Albano</td>
-                            <td id="lname"> Borba</td>
-                            <td id="date"> 06/04/1996</td>
-                            <td id="email"> albano@albano</td>
-                            <td id="phone"> 99999999</td>
-                        </tr>
+                        
                         
                     </tbody>
 
                 </table>
             </div>
-
+            
             <div style="margin: auto; text-align: center; padding-top: 20px">
                 <button id="submit" class='submit-button' type="submit">Submit Changes</button>
             </div>
@@ -78,10 +76,10 @@
         $(document).ready(function () {
             //`popup` / `inline`
             $.fn.editable.defaults.mode = 'inline';
-            $('#fname, #lname, #date, #email, #phone').editable();
+            $('#notes, #prescription').editable();
 
         });
     </script>
 
 </body>
-</html
+</html>

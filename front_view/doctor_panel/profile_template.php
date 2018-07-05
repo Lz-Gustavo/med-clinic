@@ -11,7 +11,7 @@
     <link rel="icon" type="image/png" href="../images/icons/favicon.ico" />
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="../css/util.css">
-    <link rel="stylesheet" type="text/css" href="../css/profile_template.css">
+    <link rel="stylesheet" type="text/css" href="../css/iframe_doctor.css">
     <!--===============================================================================================-->
 
 </head>
@@ -43,7 +43,7 @@
 			$_POST['crm'] = $result[0]->crm;
 	?>
 
-    <div class="box m-b-10">
+    <div class="box">
         <div class="header-show-dados">
             <p class="title">Profile</p>
         </div>
