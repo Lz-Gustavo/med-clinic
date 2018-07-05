@@ -11,50 +11,27 @@
     <link rel="icon" type="image/png" href="../images/icons/favicon.ico" />
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="../css/util.css">
-    <link rel="stylesheet" type="text/css" href="../css/iframe_doctor.css">
+    <link rel="stylesheet" type="text/css" href="../css/iframe_admin.css">
     <!--===============================================================================================-->
 
 </head>
 
 <body style="background-color:#fff;">
 
-	<?php
-			ini_set('display_errors', 1);
-			ini_set('display_startup_errors', 1);
-			error_reporting(E_ALL);
-
-			require_once "../../php_backend/class/storage.php";
-			require_once "../../php_backend/class/person.php";
-			require_once "../../php_backend/class/doctor.php";
-
-			session_start();
-			$_GET['doctor_name'] = $_SESSION['login_user'];
-			$_GET['name'] = $_SESSION['login_user'];
-			$doctor = new Doctor("admin", "istrator", "1");
-
-            $result = $doctor->search_profile();
-            
-			$_POST['name'] = $result[0]->name;
-			$_POST['last_name'] = $result[0]->last_name;
-			$_POST['email'] = $result[0]->email;
-			$_POST['tel'] = $result[0]->tel;
-			$_POST['crm'] = $result[0]->crm;
-	?>
-
     <div class="box">
         <div class="header-show-dados">
-            <p class="title">Profile</p>
+            <p class="title">New Medic</p>
         </div>
 
         <div class="show-dados">
-		<form method="post" action="save_form.php">
+		<form method="post" action="save_medic.php">
             <div class="horizontal-align w-full">
                 <div style="width: 20%;">
-                    <p>First name:</p>
+                    <p>First Name:</p>
 				</div>
 				
                 <div class="wrap-input m-t-10">
-                    <input class="input" type="text" name="name" value="<?php echo $_POST['name'] ?>">
+                    <input class="input" type="text" name="name">
                 </div>
 			</div>
 
@@ -63,25 +40,16 @@
                     <p>Last name:</p>
                 </div>
                 <div class="wrap-input m-t-10">
-                    <input class="input" type="text" name="last_name" value="<?php echo $_POST['last_name'] ?>">
+                    <input class="input" type="text" name="last_name">
                 </div>
 			</div>
-			
-			<div class="horizontal-align w-full">
-                <div style="width: 20%;">
-                    <p>Telephone:</p>
-                </div>
-                <div class="wrap-input m-t-10">
-                    <input class="input" type="text" name="tel" value="<?php echo $_POST['tel'] ?>">
-                </div>
-            </div>
 
             <div class="horizontal-align w-full">
                 <div style="width: 20%;">
                     <p>CRM:</p>
                 </div>
                 <div class="wrap-input m-t-10">
-                    <input class="input" type="text" min="0" name="crm" value="<?php echo $_POST['crm'] ?>">
+                    <input class="input" type="text" name="crm">
                 </div>
             </div>
 
@@ -90,20 +58,21 @@
                     <p>Email:</p>
                 </div>
                 <div class="wrap-input m-t-10">
-                    <input class="input" type="email" name="email" value="<?php echo $_POST['email'] ?>">
+                    <input class="input" type="email" name="email">
                 </div>
             </div>
 
             <div class="horizontal-align w-full">
-                <div style="width: 20%;">
-                    <p>Schedule:</p>
+                    <div style="width: 20%;">
+                        <p>Telephone:</p>
+                    </div>
+                    <div class="wrap-input m-t-10">
+                        <input class="input" type="text" name="tel">
+                    </div>
                 </div>
-                <div id="target">
-                </div>
-            </div>
 
             <div style="margin: auto; text-align: center; padding-top: 20px">
-                <button id="submit" class='submit-button' type="submit">Submit Changes</button>
+                <button id="submit" class='submit-button' type="submit">Create</button>
             </div>
 		
 		</form>

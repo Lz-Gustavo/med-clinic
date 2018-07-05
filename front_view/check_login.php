@@ -20,7 +20,8 @@
 				header("location: admin_panel/admin_panel.html");
 			}
 			else {
-				header("location: index.html");
+				echo "<script type='text/javascript'>alert('se fudeu');</script>";
+				//header("location: index.html");
 			}
 		}
 		else {
@@ -33,7 +34,8 @@
 				header("location: doctor_panel/doctor_panel.html");
 			}
 			else {
-				header("location: index.html");
+				echo "<script type='text/javascript'>alert('se fudeu');</script>";
+				//header("location: index.html");
 			}
 		}
 	}	

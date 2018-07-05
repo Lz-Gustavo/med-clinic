@@ -54,11 +54,11 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td id="fname"> Albano</td>
-                            <td id="lname"> Borba</td>
-                            <td id="date"> 06/04/1996</td>
-                            <td id="email"> albano@albano</td>
-                            <td id="phone"> 99999999</td>
+                            <td > Albano</td>
+                            <td > Borba</td>
+                            <td > 06/04/1996</td>
+                            <td > albano@albano</td>
+                            <td > 99999999</td>
                         </tr>
     
                     </tbody>
@@ -66,22 +66,10 @@
                 </table>
             </div>
 
-            <div style="margin: auto; text-align: center; padding-top: 20px">
-                <button id="submit" class='submit-button' type="submit">Submit Changes</button>
-            </div>
-
         </div>
     </div>
 
     <!-- JS SCRIPT -->
-    <script>
-        $(document).ready(function () {
-            //`popup` / `inline`
-            $.fn.editable.defaults.mode = 'inline';
-            $('#fname, #lname, #date, #email, #phone').editable();
-
-        });
-    </script>
 
 </body>
 </html

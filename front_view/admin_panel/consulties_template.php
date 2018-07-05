@@ -28,13 +28,13 @@
 </head>
 
 <body style="background-color:#fff;">
-
+    
     <div class="box">
         <div class="horizontal-align">
             <div class="header-show-dados">
                 <p class="title">Consulties</p>
             </div>
-            <button class='add-button'>New</button>
+            <button id="new" class="add-button">New</button>
         </div>
         
         <div class="p-t-20">
@@ -42,7 +42,7 @@
                 
                 <button class='filter-button m-l-20 m-r-40'>Filter</button>
                 <div class="wrap-input m-t-10" style="width: 60%">
-                    <input class="input" type="text" placeholder="Doctor Name">
+                    <input class="input" type="text" placeholder="Patient Name">
                 </div>
             </div>
             <div class="table-box m-t-20 m-l-20">
@@ -52,6 +52,7 @@
                             <th>Patient</th>
                             <th>Doctor</th>
                             <th>Date</th>
+                            <th>Hour</th>
                             <th>Notes</th>
                             <th>Prescription</th>
                         </tr>
@@ -77,6 +78,11 @@
             //`popup` / `inline`
             $.fn.editable.defaults.mode = 'inline';
             $('#notes, #prescription').editable();
+
+            $('#new').click(function () {
+                location.replace("./new_consultie_template.html");
+
+			});
 
         });
     </script>

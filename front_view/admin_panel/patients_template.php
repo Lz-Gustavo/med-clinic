@@ -34,7 +34,7 @@
             <div class="header-show-dados">
                 <p class="title">Patients</p>
             </div>
-            <button class='add-button'>New</button>
+            <button id="new" class='add-button'>New</button>
         </div>
         
         <div class="p-t-20">
@@ -49,7 +49,7 @@
                 <table class="table table-bordered">
                     <thead>
                         <tr>
-                            <th>Fist Name</th>
+                            <th>First Name</th>
                             <th>Last Name</th>
                             <th>Email</th>
                             <th>Date of Birth</th>
@@ -77,8 +77,12 @@
             //`popup` / `inline`
             $.fn.editable.defaults.mode = 'inline';
             $('#notes, #prescription').editable();
-
         });
+
+        $('#new').click(function () {
+                location.replace("./new_patient_template.html");
+
+			});
     </script>
 
 </body>
