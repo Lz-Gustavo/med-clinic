@@ -65,17 +65,15 @@
 			if (!empty($_GET['name'])) {
 				$filter.= "name='".$_GET['name']."'";
 			}
-			if (!empty($_GET['email'])) {
-				$filter.= " and email='".$_GET['email']."'";
-			}
-			if (!empty($_GET['tel'])) {
-				$filter.= " and number(tel)='".$_GET['tel']."'";
+			if (!empty($_GET['cpf'])) {
+				$filter.= " and number(cpf)='".$_GET['cpf']."'";
 			}
 			$filter.= "]";
 			
 			$result = $hd->read("paciente", $filter);
-			echo "RESULTADO BUSCA PACIENTE: <br>";
-			print_r($result);
+			//echo "RESULTADO BUSCA PACIENTE: <br>";
+			//print_r($result);
+			return $result;
 		}
 		public function search_doctor() {
 			$hd = Storage::getInstance();
@@ -98,8 +96,9 @@
 			$filter.= "]";
 			
 			$result = $hd->read("medico", $filter);
-			echo "RESULTADO BUSCA MEDICO: <br>";
-			print_r($result);
+			//echo "RESULTADO BUSCA MEDICO: <br>";
+			//print_r($result);
+			return $result;
 		}
 		public function search_history() {
 			$hd = Storage::getInstance();

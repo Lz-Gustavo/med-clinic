@@ -39,9 +39,11 @@
 				$med = $xml->addChild("med");
 				$med->addChild("name", $input_array["Nome:"]);
 				$med->addChild("last_name", $input_array["Sobrenome:"]);
+				$med->addChild("spec", $input_array["Especializacao:"]);
+				$med->addChild("crm", $input_array["CRM:"]);
 				$med->addChild("email", $input_array["Email:"]);
 				$med->addChild("tel", $input_array["Telefone:"]);
-				$med->addChild("crm", $input_array["CRM:"]);
+				$med->addChild("addr", $input_array["Endereco:"]);
 
 				$week = $med->addChild("week");
 				$week->addChild("monday", "empty");
@@ -58,6 +60,9 @@
 
 				$pct->addChild("name", $input_array["Nome:"]);
 				$pct->addChild("last_name", $input_array["Sobrenome:"]);
+				$pct->addChild("bday", $input_array["Data:"]);
+				$pct->addChild("blood", $input_array["Sangue:"]);
+				$pct->addChild("cpf", $input_array["CPF:"]);
 				$pct->addChild("email", $input_array["Email:"]);
 				$pct->addChild("tel", $input_array["Telefone:"]);
 				

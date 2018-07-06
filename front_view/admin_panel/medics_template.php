@@ -39,11 +39,16 @@
         
         <div class="p-t-20">
             <div style="text-align: center;" class="horizontal-align">
-                
-                <button class='filter-button m-l-20 m-r-40'>Filter</button>
-                <div class="wrap-input m-t-10" style="width: 60%">
-                    <input class="input" type="text" placeholder="Doctor Name">
-                </div>
+                <form method="get">
+                    <button class='filter-button m-l-20 m-r-40' type="submit">Filter</button>
+                    <div class="wrap-input m-t-10" style="width: 60%">
+                        <input class="input" type="text" name="name" placeholder="Doctor's Name">
+                    </div>
+                    
+                    <div class="wrap-input m-t-10" style="width: 60%">
+                        <input class="input" type="text" name="crm" placeholder="CRM">
+                    </div>                
+                </form>
             </div>
             <div class="table-box m-t-20 m-l-20">
                 <table class="table table-bordered">
@@ -51,14 +56,44 @@
                         <tr>
                             <th>First Name</th>
                             <th>Last Name</th>
+                            <th>Specialization</th>
                             <th>CRM</th>
                             <th>Email</th>
                             <th>Telephone</th>
+                            <th>Address</th>
                         </tr>
                     </thead>
                     <tbody>
-                        
-                        
+                        <?php
+
+                            //ini_set('display_errors', 1);
+                            //ini_set('display_startup_errors', 1);
+                            //error_reporting(E_ALL);
+
+                            require_once "../../php_backend/class/storage.php";
+                            require_once "../../php_backend/class/person.php";
+                            require_once "../../php_backend/class/secretary.php";
+
+                            $secretary = new Secretary("admin", "istrator", "1");
+
+                            if ((isset($_GET['name'])) || (isset($_GET['crm']))) {
+                                $result = $secretary->search_doctor();
+
+                                for ($i = 0; $i < count($result); $i++) {
+
+                                    echo "<tr>";
+                                    echo "<td>".$result[$i]->name."</td>";
+                                    echo "<td>".$result[$i]->last_name."</td>";
+                                    echo "<td>".$result[$i]->spec."</td>";
+                                    echo "<td>".$result[$i]->crm."</td>";
+                                    echo "<td>".$result[$i]->email."</td>";
+                                    echo "<td>".$result[$i]->tel."</td>";
+                                    echo "<td>".$result[$i]->addr."</td>";
+                                    echo "</tr>";
+                                }
+                            }
+
+                        ?>
                     </tbody>
 
                 </table>

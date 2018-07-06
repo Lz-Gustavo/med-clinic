@@ -43,10 +43,6 @@
                 </div>
 
             </form>
-                    
-                <!--button id="submit" class='filter-button m-r-30'>Next</button-->
-                <!--button id="submit" class='filter-button m-r-30'>Performed</button-->
-                <!--button id="submit" class='filter-button'>All</button-->
             
             <div class="table-box m-t-20 m-l-20">
                 <table class="table table-bordered">
@@ -67,9 +63,7 @@
 
 							require_once "../../php_backend/class/storage.php";
 							require_once "../../php_backend/class/person.php";
-							require_once "../../php_backend/class/secretary.php";
 							require_once "../../php_backend/class/doctor.php";
-							require_once "../../php_backend/class/patient.php";
 
 							session_start();
 							//echo "<pre>";

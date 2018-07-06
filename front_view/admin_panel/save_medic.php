@@ -11,9 +11,11 @@
 
     $secretary->add_changes("Nome:", $_POST['name']);
     $secretary->add_changes("Sobrenome:", $_POST['last_name']);
+    $secretary->add_changes("Especializacao:", $_POST['spec']);
+    $secretary->add_changes("CRM:", $_POST['crm']);
     $secretary->add_changes("Email:", $_POST['email']);
     $secretary->add_changes("Telefone:", $_POST['tel']);
-    $secretary->add_changes("CRM:", $_POST['crm']);
+    $secretary->add_changes("Endereco:", $_POST['addr']);
     $secretary->commit_changes("medico");
 
 	header("location: medics_template.php");
