@@ -18,13 +18,29 @@
 
 <body style="background-color:#fff;">
 
+    <script>
+        function validate() {
+            var i;
+            var x = new Array();
+            for (i = 0; i < 5; i++){
+                x[i] = document.forms[0][i].value;
+                if (x[i] == "") {
+                    alert("Todos os campos devem estar preenchidos");
+                    return false;
+                }
+            }
+            alert("Dados enviados com sucesso!");
+            return true;
+        }
+    </script>
+
     <div class="box">
         <div class="header-show-dados">
             <p class="title">New Medic</p>
         </div>
 
         <div class="show-dados">
-		<form method="post" action="save_medic.php">
+		<form method="post" action="save_medic.php" onsubmit="return validate()">
             <div class="horizontal-align w-full">
                 <div style="width: 20%;">
                     <p>First Name:</p>
