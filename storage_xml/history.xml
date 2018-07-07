@@ -1,3 +1,3 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <consultas>
-</consultas>
+<consulta><name>Gordo</name><last_name>Matheus</last_name><cpf>666</cpf><doctor_name>Consagrado</doctor_name><crm>1234</crm><appt_date>2018-07-21</appt_date><time>0 1 0 0 0 0 0 0 </time><obs>empty</obs><recipe>empty</recipe></consulta><consulta><name>Gordo</name><last_name>Birtuta</last_name><cpf>999</cpf><doctor_name>Albenia</doctor_name><crm>4321</crm><appt_date>2018-07-25</appt_date><time>0 0 1 0 0 1</time><obs>empty</obs><recipe>empty</recipe></consulta><consulta><name>Ronaldinho</name><last_name>R10</last_name><cpf>2469</cpf><doctor_name>Consagrado</doctor_name><crm>1234</crm><appt_date>2018-07-21</appt_date><time>0 1 0 0 0 0 </time><obs>empty</obs><recipe>empty</recipe></consulta></consultas>

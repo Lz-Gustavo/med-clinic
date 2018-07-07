@@ -92,6 +92,22 @@
                                     echo "</tr>";
                                 }
                             }
+                            else {
+                                $result = $secretary->show_all_doctors();
+
+                                for ($i = 0; $i < count($result->med); $i++) {
+
+                                    echo "<tr>";
+                                    echo "<td>".$result->med[$i]->name."</td>";
+                                    echo "<td>".$result->med[$i]->last_name."</td>";
+                                    echo "<td>".$result->med[$i]->spec."</td>";
+                                    echo "<td>".$result->med[$i]->crm."</td>";
+                                    echo "<td>".$result->med[$i]->email."</td>";
+                                    echo "<td>".$result->med[$i]->tel."</td>";
+                                    echo "<td>".$result->med[$i]->addr."</td>";
+                                    echo "</tr>";
+                                }
+                            }
 
                         ?>
                     </tbody>

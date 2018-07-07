@@ -11,9 +11,11 @@
 
     $secretary->add_changes("Nome:", $_POST['name']);
     $secretary->add_changes("Sobrenome:", $_POST['last_name']);
+    $secretary->add_changes("CPF:", $_POST['cpf']);
     $secretary->add_changes("Nome-do-Medico:", $_POST['doctor_name']);
     $secretary->add_changes("CRM:", $_POST['crm']);
     $secretary->add_changes("Data:", $_POST['appt_date']);
+    $secretary->add_changes("Horario:", $_POST['time']);
     $secretary->commit_changes("historico");
 
 	header("location: consulties_template.php");

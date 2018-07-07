@@ -39,18 +39,27 @@
         
         <div class="p-t-20">
             <div style="text-align: center;" class="horizontal-align">
-                
-                <button class='filter-button m-l-20 m-r-40'>Filter</button>
-                <div class="wrap-input m-t-10" style="width: 60%">
-                    <input class="input" type="text" placeholder="Patient Name">
-                </div>
+                <form method="get">
+                    <button class='filter-button m-l-20 m-r-40' type="submit">Filter</button>
+                    <div class="wrap-input m-t-10" style="width: 60%">
+                        <input class="input" type="text" name="name" placeholder="Patient's Name">
+                    </div>
+
+                    <div class="wrap-input m-t-10" style="width: 60%">
+                        <input class="input" type="text" name="doctor_name" placeholder="Doctor's Name">
+                    </div>
+                </form>
             </div>
+
             <div class="table-box m-t-20 m-l-20">
                 <table class="table table-bordered">
                     <thead>
                         <tr>
-                            <th>Patient</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>CPF</th>
                             <th>Doctor</th>
+                            <th>CRM</th>
                             <th>Date</th>
                             <th>Hour</th>
                             <th>Notes</th>
@@ -58,8 +67,56 @@
                         </tr>
                     </thead>
                     <tbody>
-                        
-                        
+                        <?php
+
+                            //ini_set('display_errors', 1);
+                            //ini_set('display_startup_errors', 1);
+                            //error_reporting(E_ALL);
+
+                            require_once "../../php_backend/class/storage.php";
+                            require_once "../../php_backend/class/person.php";
+                            require_once "../../php_backend/class/secretary.php";
+
+                            $secretary = new Secretary("admin", "istrator", "1");
+
+                            if ((isset($_GET['name'])) || (isset($_GET['doctor_name']))) {
+                                $result = $secretary->search_history();
+
+                                for ($i = 0; $i < count($result); $i++) {
+
+                                    echo "<tr>";
+                                    echo "<td>".$result[$i]->name."</td>";
+                                    echo "<td>".$result[$i]->last_name."</td>";
+                                    echo "<td>".$result[$i]->cpf."</td>";
+                                    echo "<td>".$result[$i]->doctor_name."</td>";
+                                    echo "<td>".$result[$i]->crm."</td>";
+                                    echo "<td>".$result[$i]->appt_date."</td>";
+                                    echo "<td>".$result[$i]->time."</td>";
+                                    echo "<td>".$result[$i]->obs."</td>";
+                                    echo "<td>".$result[$i]->recipe."</td>";
+                                    echo "</tr>";
+                                }
+                            }
+                            else {
+                                $result = $secretary->show_all_history();
+
+                                for ($i = 0; $i < count($result->consulta); $i++) {
+
+                                    echo "<tr>";
+                                    echo "<td>".$result->consulta[$i]->name."</td>";
+                                    echo "<td>".$result->consulta[$i]->last_name."</td>";
+                                    echo "<td>".$result->consulta[$i]->cpf."</td>";
+                                    echo "<td>".$result->consulta[$i]->doctor_name."</td>";
+                                    echo "<td>".$result->consulta[$i]->crm."</td>";
+                                    echo "<td>".$result->consulta[$i]->appt_date."</td>";
+                                    echo "<td>".$result->consulta[$i]->time."</td>";
+                                    echo "<td>".$result->consulta[$i]->obs."</td>";
+                                    echo "<td>".$result->consulta[$i]->recipe."</td>";
+                                    echo "</tr>";
+                                }
+                            }
+
+                        ?> 
                     </tbody>
 
                 </table>

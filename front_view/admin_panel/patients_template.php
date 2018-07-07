@@ -94,6 +94,22 @@
                                     echo "</tr>";
                                 }
                             }
+                            else {
+                                $result = $secretary->show_all_patients();
+
+                                for ($i = 0; $i < count($result->pct); $i++) {
+
+                                    echo "<tr>";
+                                    echo "<td>".$result->pct[$i]->name."</td>";
+                                    echo "<td>".$result->pct[$i]->last_name."</td>";
+                                    echo "<td>".$result->pct[$i]->bday."</td>";
+                                    echo "<td>".$result->pct[$i]->blood."</td>";
+                                    echo "<td>".$result->pct[$i]->cpf."</td>";
+                                    echo "<td>".$result->pct[$i]->email."</td>";
+                                    echo "<td>".$result->pct[$i]->tel."</td>";
+                                    echo "</tr>";
+                                }
+                            }
 
                         ?>
                         

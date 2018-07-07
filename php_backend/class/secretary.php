@@ -34,24 +34,34 @@
 				
 				$hd->write($database, $this->temporary_buffer);
 				reset($this->temporary_buffer);
-				echo "changes commited to the doctors database!<br>";
+				//echo "changes commited to the doctors database!<br>";
 			}
 			else if (strcasecmp($database, "paciente") == 0) {
 				
 				$hd->write($database, $this->temporary_buffer);
 				reset($this->temporary_buffer);
-				echo "changes commited to the patients database!<br>";
+				//echo "changes commited to the patients database!<br>";
 			}
 			else if ((strcasecmp($database, "historico") == 0) || (strcasecmp($database, "history") == 0)) {
-				
-				$permission = $hd->check_avaiable($this->temporary_buffer["CRM:"], "dia", "13:30");
+
+				$day = $this->temporary_buffer["Data:"];
+				$aux = explode("-", $day);
+				unset($aux[0]);
+				unset($aux[1]);
+				$day = implode("-", $aux);
+
+				//$permission = $hd->check_avaiable($this->temporary_buffer["CRM:"], $day, $this->temporary_buffer["Horario:"]);
+				$permission = 1;
 				if ($permission == 1) {
 
 					$hd->write($database, $this->temporary_buffer);
-					echo "changes commited to the history database!<br>";
+					//echo "changes commited to the history database!<br>";
+				}
+				else if ($permission == 0) {
+					echo "<script type='text/javascript'>alert('Doctor is busy in that hour');</script>";
 				}
 				else {
-					echo "Dr.".$this->temporary_buffer["Nome-do-Medico:"]." is busy in that hour!<br>";
+					echo "<script type='text/javascript'>alert('Insert a valid CRM');</script>";
 				}
 				reset($this->temporary_buffer);
 			}
@@ -60,10 +70,10 @@
 		public function search_patient() {
 			$hd = Storage::getInstance();
 
-			$filter = "//pct[";
+			$filter = "//pct";
 
 			if (!empty($_GET['name'])) {
-				$filter.= "name='".$_GET['name']."'";
+				$filter.= "[name='".$_GET['name']."'";
 			}
 			if (!empty($_GET['cpf'])) {
 				$filter.= " and number(cpf)='".$_GET['cpf']."'";
@@ -78,20 +88,17 @@
 		public function search_doctor() {
 			$hd = Storage::getInstance();
 
-			$filter = "//med[";
+			$filter = "//med";
 
 			// name == doctors name
 			if (!empty($_GET['name'])) {
-				$filter.= "name='".$_GET['name']."'";
+				$filter.= "[name='".$_GET['name']."'";
 			}
 			if (!empty($_GET['crm'])) {
 				$filter.= " and number(crm)='".$_GET['crm']."'";
 			}
 			if (!empty($_GET['email'])) {
 				$filter.= " and email='".$_GET['email']."'";
-			}
-			if (!empty($_GET['tel'])) {
-				$filter.= " and number(tel)='".$_GET['tel']."'";
 			}
 			$filter.= "]";
 			
@@ -103,10 +110,10 @@
 		public function search_history() {
 			$hd = Storage::getInstance();
 
-			$filter = "//consulta[";
+			$filter = "//consulta";
 
 			if (!empty($_GET['name'])) {
-				$filter.= "name='".$_GET['name']."'";
+				$filter.= "[name='".$_GET['name']."'";
 			}
 
 			if (!empty($_GET['doctor_name'])) {
@@ -114,16 +121,16 @@
 			}
 			$filter.= "]";
 
-			if (strcasecmp($_GET['time'], "future") == 0) {
-				
-				$now = new DateTime(null, new DateTimeZone('America/Sao_Paulo'));
-				$time_filter = " and number(translate(appt_date,'-','')) > ".$now->format("Ymd")."]";
-				//echo "FILTRO TEMPO: ".$time_filter."<br>";
+			if (isset($_GET['time'])) {
 
-				$filter = rtrim($filter, "]");
-				$filter.= $time_filter;
+				if (strcasecmp($_GET['time'], "future") == 0) {
+					
+					$now = new DateTime(null, new DateTimeZone('America/Sao_Paulo'));
+					$time_filter = " and number(translate(appt_date,'-','')) > ".$now->format("Ymd")."]";
+					$filter = rtrim($filter, "]");
+					$filter.= $time_filter;
+				}
 			}
-			
 			$result = $hd->read("historico", $filter);
 			//echo "RESULTADO BUSCA HISTORICO: <br>";
 			//print_r($result);
@@ -133,17 +140,20 @@
 		public function show_all_patients() {
 			$hd = Storage::getInstance();
 
-			$hd->show_all("paciente");
+			$result = $hd->show_all("paciente");
+			return $result;
 		}
 		public function show_all_doctors() {
 			$hd = Storage::getInstance();
 
-			$hd->show_all("medico");
+			$result = $hd->show_all("medico");
+			return $result;
 		}
 		public function show_all_history() {
 			$hd = Storage::getInstance();
 
-			$hd->show_all("historico");
+			$result = $hd->show_all("historico");
+			return $result;
 		}
 	}
 

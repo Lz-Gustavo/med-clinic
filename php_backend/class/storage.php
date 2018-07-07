@@ -32,7 +32,10 @@
 		}
 
 		public function write($database, $input_array) {
-			
+			// escrita na persistencia XML criando novos campos para as info especificadas,
+			// nao modificando
+
+
 			if (strcasecmp($database, "medico") == 0) {
 				$xml = simplexml_load_file($this->file_doctors);				
 				
@@ -74,9 +77,11 @@
 
 				$hist->addChild("name", $input_array["Nome:"]);
 				$hist->addChild("last_name", $input_array["Sobrenome:"]);
+				$hist->addChild("cpf", $input_array["CPF:"]);
 				$hist->addChild("doctor_name", $input_array["Nome-do-Medico:"]);
-				$hist->addChild("appt_date", $input_array["Data:"]);
 				$hist->addChild("crm", $input_array["CRM:"]);
+				$hist->addChild("appt_date", $input_array["Data:"]);
+				$hist->addChild("time", $input_array["Horario:"]);
 				$hist->addChild("obs", "empty");
 				$hist->addChild("recipe", "empty");
 
@@ -84,6 +89,8 @@
 			}
 		}
 		public function read($database, $filter) {
+			// leitura dos arquivos XML utilizando um filtro previamente estruturado
+			// pela classe invocadora
 			
 			//echo "<br><b>filtro utilizado:</b> ".$filter."<br>";
 
@@ -113,14 +120,13 @@
 				
 				$extract = simplexml_load_file($this->file_patients);
 			}
-			else {
-				
+			else {				
 				$extract = simplexml_load_file($this->file_history);
 			}
-			echo "<u>Dados extraidos de ".$database.":</u> <br><br>";
+			//echo "<u>Dados extraidos de ".$database.":</u> <br><br>";
 			//echo $extract->asXML();
-			print_r($extract);
-			echo "<br>";
+			//print_r($extract);
+			return $extract;
 		}
 		public function modify($database, $key_cell, $modify_array) {
 			// utilizado para alterar campos no cadastro de um medico, paciente, ou acrescentar dados a uma consulta
@@ -209,6 +215,32 @@
 			// implementar aqui a busca pelo horario do medico, para que na hora de agendar uma consulta
 			// so se possa marca-la em um horario disponivel pelo doutor em sua agenda
 
+			$filter = "//med[number(crm)='".$crm."']";
+			$xml = simplexml_load_file($this->file_doctors);
+			$result = $xml->xpath($filter);
+
+			if (isset($result)) {
+				$flag = 0;
+
+				$doctor_hour = $result[0]->week->$day;
+				$vector_doctor = explode(" ", $doctor_hour);
+				$vector_marked = explode(" ", $time);
+
+				for ($i = 0; $i < count($vector_marked); $i++) {
+					if (($vector_marked[$i] == 1) && ($vector_doctor[$i] == 0)) {
+						$flag = 1;
+						$vector_doctor[$i] = 1;
+						break;
+					}
+				}
+				if ($flag == 0) {
+					return 0;
+				}
+			}
+			else {
+				// means that theres no doctor with that crm on the database
+				return 404;
+			}
 			return 1;
 		}
 	}
