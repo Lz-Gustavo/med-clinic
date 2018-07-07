@@ -144,6 +144,7 @@
         
         $('#submit').click(function(){
             console.log($('#target').weekly_schedule("getSelectedHour"));
+            //ajax com php pra salvar horário
         });
     </script>
 

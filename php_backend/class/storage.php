@@ -76,7 +76,7 @@
 				$hist = $xml->addChild("consulta");
 
 				$hist->addChild("name", $input_array["Nome:"]);
-				$hist->addChild("last_name", $input_array["Sobrenome:"]);
+				//$hist->addChild("last_name", $input_array["Sobrenome:"]);
 				$hist->addChild("cpf", $input_array["CPF:"]);
 				$hist->addChild("doctor_name", $input_array["Nome-do-Medico:"]);
 				$hist->addChild("crm", $input_array["CRM:"]);

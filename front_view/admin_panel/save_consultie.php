@@ -10,7 +10,7 @@
 	$secretary = new Secretary("admin", "istrator", "1");
 
     $secretary->add_changes("Nome:", $_POST['name']);
-    $secretary->add_changes("Sobrenome:", $_POST['last_name']);
+    //$secretary->add_changes("Sobrenome:", $_POST['last_name']);
     $secretary->add_changes("CPF:", $_POST['cpf']);
     $secretary->add_changes("Nome-do-Medico:", $_POST['doctor_name']);
     $secretary->add_changes("CRM:", $_POST['crm']);
