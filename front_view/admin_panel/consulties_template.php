@@ -56,7 +56,7 @@
                     <thead>
                         <tr>
                             <th>First Name</th>
-                            <th>Last Name</th>
+                            <!--th>Last Name</th-->
                             <th>CPF</th>
                             <th>Doctor</th>
                             <th>CRM</th>
@@ -86,7 +86,7 @@
 
                                     echo "<tr>";
                                     echo "<td>".$result[$i]->name."</td>";
-                                    echo "<td>".$result[$i]->last_name."</td>";
+                                    //echo "<td>".$result[$i]->last_name."</td>";
                                     echo "<td>".$result[$i]->cpf."</td>";
                                     echo "<td>".$result[$i]->doctor_name."</td>";
                                     echo "<td>".$result[$i]->crm."</td>";
@@ -104,7 +104,7 @@
 
                                     echo "<tr>";
                                     echo "<td>".$result->consulta[$i]->name."</td>";
-                                    echo "<td>".$result->consulta[$i]->last_name."</td>";
+                                    //echo "<td>".$result->consulta[$i]->last_name."</td>";
                                     echo "<td>".$result->consulta[$i]->cpf."</td>";
                                     echo "<td>".$result->consulta[$i]->doctor_name."</td>";
                                     echo "<td>".$result->consulta[$i]->crm."</td>";
