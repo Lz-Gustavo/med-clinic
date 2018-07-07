@@ -139,9 +139,11 @@
 
 				$result[0]->name = $modify_array["Nome:"];
 				$result[0]->last_name = $modify_array["Sobrenome:"];
+				$result[0]->spec = $modify_array["Especializacao:"];
+				$result[0]->crm = $modify_array["CRM:"];
 				$result[0]->email = $modify_array["Email:"];
 				$result[0]->tel = $modify_array["Telefone:"];
-				$result[0]->crm = $modify_array["CRM:"];
+				$result[0]->addr = $modify_array["Endereco:"];
 				//print_r($result);
 
 				$xml->asXML($this->file_doctors);

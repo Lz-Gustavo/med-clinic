@@ -14,7 +14,6 @@
 	<!-- STYLE-->
 	<link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="css/index.css">
-
 </head>
 
 <body style="background-color: #666666;">
@@ -39,17 +38,14 @@
 							Doctor
 						</button>
 					</div>
-					<form method="post" action="check_login.php">
 
-
+					<form method="post">
 						<div class='hide_div'>
 							<div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
 								<input class="input100" type="text" name="login_user" required>
 								<span class="focus-input100"></span>
 								<span class="label-input100">Username</span>
 							</div>
-
-
 
 							<div class="wrap-input100 validate-input" data-validate="Password is required">
 								<input class="input100" type="password" name="login_password">
@@ -72,7 +68,6 @@
 								</div>
 							</div>
 
-
 							<div class="container-login100-form-btn">
 								<button class="login100-form-btn" type="submit">
 									Login
@@ -80,17 +75,51 @@
 							</div>
 						</div>
 					</form>
-				</div>
-				<div class="login100-more" style="background-image: url('images/login_bg_min.png');">
-
-				</div>
+			</div>
+			<div class="login100-more" style="background-image: url('images/login_bg_min.png');">
 			</div>
 		</div>
+	</div>
 
-		<!-- JS SCRIPT -->
-		<script src="js/jquery-3.2.1.min.js"></script>
-		<script src="js/main.js"></script>
+	<?php
+		// using this php script as an action of login form makes unable to notify alerts about wrong user/passw combination
+
+		require_once "../php_backend/class/storage.php";
+
+		if (isset($_POST['login_user'])) {
+
+			$hd = Storage::getInstance();
+			if ($_POST['login_user'] == "admin") {
+				
+				$permission = $hd->login("atendente", $_POST['login_user'], $_POST['login_password']);
+				if ($permission == 1) {
+
+					session_start();
+					$_SESSION['login_user'] = $_POST['login_user'];
+					header("location: admin_panel/admin_panel.html");
+				}
+				else {
+					echo "<script type='text/javascript'>alert('Incorrect Username or Password');</script>";
+				}
+			}
+			else {
+				$permission = $hd->login("medico", $_POST['login_user'], $_POST['login_password']);
+				if ($permission == 1) {
+
+					session_start();
+					$_SESSION['login_user'] = $_POST['login_user'];
+					header("location: doctor_panel/doctor_panel.html");
+				}
+				else {
+					echo "<script type='text/javascript'>alert('Incorrect Username or Password');</script>";
+				}
+			}
+		}
+	?>
+
+	<!-- JS SCRIPT -->
+	<script src="js/jquery-3.2.1.min.js"></script>
+	<script src="js/main.js"></script>
 
 </body>
-
 </html>

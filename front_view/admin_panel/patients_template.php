@@ -38,20 +38,22 @@
         </div>
         
         <div class="p-t-20">
-            <div style="text-align: center;" class="horizontal-align">
-                <form method="get">
+            <form method="get">
+                <div style="text-align: center;" class="horizontal-align">
                     <button class='filter-button m-l-20 m-r-40' type="submit">Filter</button>
                     
                     <div class="wrap-input m-t-10" style="width: 60%">
                         <input class="input" name="name" type="text" placeholder="Patient's Name">
                     </div>
 
+                    <!--
                     <div class="wrap-input m-t-10" style="width: 60%">
                         <input class="input" name="cpf" type="text" placeholder="CPF">
                     </div>
+                    -->
+                </div>
+            </form>
 
-                </form>
-            </div>
             <div class="table-box m-t-20 m-l-20">
                 <table class="table table-bordered">
                     <thead>

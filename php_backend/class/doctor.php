@@ -59,9 +59,28 @@
 					$filter.= $time_filter;
 				}
 			}
+			if (isset($_GET['name'])) {
+				$filter = rtrim($filter, "]");
+				$filter.= " and name='".$_GET['name']."']";
+			}
 			
 			$result = $hd->read("historico", $filter);
 			//echo "RESULTADO BUSCA HISTORICO: <br>";
+			//print_r($result);
+			return $result;
+		}
+		public function search_patient() {
+			$hd = Storage::getInstance();
+
+			$filter = "//pct";
+
+			if (!empty($_GET['name'])) {
+				$filter.= "[name='".$_GET['name']."'";
+			}
+			$filter.= "]";
+			
+			$result = $hd->read("paciente", $filter);
+			//echo "RESULTADO BUSCA PACIENTE: <br>";
 			//print_r($result);
 			return $result;
 		}
@@ -87,6 +106,12 @@
 			$result = $hd->read("medico", $filter);
 			//echo "RESULTADO BUSCA MEDICO: <br>";
 			//print_r($result);
+			return $result;
+		}
+		public function show_all_patients() {
+			$hd = Storage::getInstance();
+
+			$result = $hd->show_all("paciente");
 			return $result;
 		}
 		public function anotate($name, $observation, $recipe) {

@@ -1,3 +1,3 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <pacientes>
-<pct><name>Para</name><last_name>Vinicius</last_name><email>para@clementina.net</email><tel>32139139</tel></pct></pacientes>
+<pct><name>Rafinha</name><last_name>Metralhadora</last_name><bday>24/01/1969</bday><blood>A+</blood><cpf>2469</cpf><email>rafa.bol@yahoo.com.br</email><tel>(53)9090-32139139</tel></pct><pct><name>Odoris</name><last_name>Maximus</last_name><bday>03/03/1980</bday><blood>AB+</blood><cpf>123</cpf><email>tannembaum@furg.br</email><tel>(53)3232-3232</tel></pct></pacientes>

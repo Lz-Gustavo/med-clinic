@@ -38,10 +38,13 @@
                 <div style="text-align: center;" class="horizontal-align">
 
                     <button class='filter-button m-l-20 m-r-40' type='submit'>Filter</button>
+                    
+                    <div class="wrap-input m-t-10" style="width: 60%">
+                        <input class="input" type="text" name="name" placeholder="Patient's Name">
+                    </div>
                     <input type = "radio" name = "time" value = "all" checked> Todas<br>
                     <input type = "radio" name = "time" value = "future"> Futuras<br>
                 </div>
-
             </form>
             
             <div class="table-box m-t-20 m-l-20">

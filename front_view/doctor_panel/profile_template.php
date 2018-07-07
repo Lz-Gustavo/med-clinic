@@ -35,10 +35,12 @@
             $result = $doctor->search_profile();
             
 			$_POST['name'] = $result[0]->name;
-			$_POST['last_name'] = $result[0]->last_name;
+            $_POST['last_name'] = $result[0]->last_name;
+            $_POST['spec'] = $result[0]->spec;
+            $_POST['crm'] = $result[0]->crm;
 			$_POST['email'] = $result[0]->email;
-			$_POST['tel'] = $result[0]->tel;
-			$_POST['crm'] = $result[0]->crm;
+            $_POST['tel'] = $result[0]->tel;
+            $_POST['addr'] = $result[0]->addr;
 	?>
 
     <div class="box">
@@ -65,17 +67,17 @@
                 <div class="wrap-input m-t-10">
                     <input class="input" type="text" name="last_name" value="<?php echo $_POST['last_name'] ?>">
                 </div>
-			</div>
-			
-			<div class="horizontal-align w-full">
+            </div>
+            
+            <div class="horizontal-align w-full">
                 <div style="width: 20%;">
-                    <p>Telephone:</p>
+                    <p>Specialization:</p>
                 </div>
                 <div class="wrap-input m-t-10">
-                    <input class="input" type="text" name="tel" value="<?php echo $_POST['tel'] ?>">
+                    <input class="input" type="text" name="spec" value="<?php echo $_POST['spec'] ?>">
                 </div>
-            </div>
-
+			</div>
+            
             <div class="horizontal-align w-full">
                 <div style="width: 20%;">
                     <p>CRM:</p>
@@ -91,6 +93,24 @@
                 </div>
                 <div class="wrap-input m-t-10">
                     <input class="input" type="email" name="email" value="<?php echo $_POST['email'] ?>">
+                </div>
+            </div>
+
+            <div class="horizontal-align w-full">
+                <div style="width: 20%;">
+                    <p>Telephone:</p>
+                </div>
+                <div class="wrap-input m-t-10">
+                    <input class="input" type="text" name="tel" value="<?php echo $_POST['tel'] ?>">
+                </div>
+            </div>
+
+            <div class="horizontal-align w-full">
+                <div style="width: 20%;">
+                    <p>Address:</p>
+                </div>
+                <div class="wrap-input m-t-10">
+                    <input class="input" type="text" name="addr" value="<?php echo $_POST['addr'] ?>">
                 </div>
             </div>
 

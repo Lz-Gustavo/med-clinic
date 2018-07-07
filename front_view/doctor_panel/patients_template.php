@@ -11,7 +11,7 @@
     <link rel="icon" type="image/png" href="../images/icons/favicon.ico" />
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="../css/util.css">
-    <link rel="stylesheet" type="text/css" href="../css/iframe_admin.css">
+    <link rel="stylesheet" type="text/css" href="../css/iframe_doctor.css">
     <!--===============================================================================================-->
 
     <!-- bootstrap -->
@@ -28,15 +28,11 @@
 </head>
 
 <body style="background-color:#fff;">
-    
+
     <div class="box">
-        <div class="horizontal-align">
-            <div class="header-show-dados">
-                <p class="title">Consulties</p>
-            </div>
-            <button id="new" class="add-button">New</button>
+        <div class="header-show-dados">
+            <p class="title">Patients</p>
         </div>
-        
         <div class="p-t-20">
             <form method="get">
                 <div style="text-align: center;" class="horizontal-align">
@@ -44,28 +40,19 @@
                     <div class="wrap-input m-t-10" style="width: 60%">
                         <input class="input" type="text" name="name" placeholder="Patient's Name">
                     </div>
-
-                    <!--
-                    <div class="wrap-input m-t-10" style="width: 60%">
-                        <input class="input" type="text" name="doctor_name" placeholder="Doctor's Name">
-                    </div>
-                    -->
                 </div>
             </form>
-
             <div class="table-box m-t-20 m-l-20">
                 <table class="table table-bordered">
                     <thead>
                         <tr>
                             <th>First Name</th>
                             <th>Last Name</th>
+                            <th>Date of Birth</th>
+                            <th>Blood Type</th>
                             <th>CPF</th>
-                            <th>Doctor</th>
-                            <th>CRM</th>
-                            <th>Date</th>
-                            <th>Hour</th>
-                            <th>Notes</th>
-                            <th>Prescription</th>
+                            <th>Email</th>
+                            <th>Telephone</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -77,74 +64,52 @@
 
                             require_once "../../php_backend/class/storage.php";
                             require_once "../../php_backend/class/person.php";
-                            require_once "../../php_backend/class/secretary.php";
+                            require_once "../../php_backend/class/doctor.php";
 
-                            $secretary = new Secretary("admin", "istrator", "1");
+                            $doctor = new Doctor("admin", "istrator", "1");
 
-                            if ((isset($_GET['name'])) || (isset($_GET['doctor_name']))) {
-                                $result = $secretary->search_history();
+                            if (isset($_GET['name'])) {
+                                $result = $doctor->search_patient();
 
                                 for ($i = 0; $i < count($result); $i++) {
 
                                     echo "<tr>";
                                     echo "<td>".$result[$i]->name."</td>";
                                     echo "<td>".$result[$i]->last_name."</td>";
+                                    echo "<td>".$result[$i]->bday."</td>";
+                                    echo "<td>".$result[$i]->blood."</td>";
                                     echo "<td>".$result[$i]->cpf."</td>";
-                                    echo "<td>".$result[$i]->doctor_name."</td>";
-                                    echo "<td>".$result[$i]->crm."</td>";
-                                    echo "<td>".$result[$i]->appt_date."</td>";
-                                    echo "<td>".$result[$i]->time."</td>";
-                                    echo "<td>".$result[$i]->obs."</td>";
-                                    echo "<td>".$result[$i]->recipe."</td>";
+                                    echo "<td>".$result[$i]->email."</td>";
+                                    echo "<td>".$result[$i]->tel."</td>";
                                     echo "</tr>";
                                 }
                             }
                             else {
-                                $result = $secretary->show_all_history();
+                                $result = $doctor->show_all_patients();
 
-                                for ($i = 0; $i < count($result->consulta); $i++) {
+                                for ($i = 0; $i < count($result->pct); $i++) {
 
                                     echo "<tr>";
-                                    echo "<td>".$result->consulta[$i]->name."</td>";
-                                    echo "<td>".$result->consulta[$i]->last_name."</td>";
-                                    echo "<td>".$result->consulta[$i]->cpf."</td>";
-                                    echo "<td>".$result->consulta[$i]->doctor_name."</td>";
-                                    echo "<td>".$result->consulta[$i]->crm."</td>";
-                                    echo "<td>".$result->consulta[$i]->appt_date."</td>";
-                                    echo "<td>".$result->consulta[$i]->time."</td>";
-                                    echo "<td>".$result->consulta[$i]->obs."</td>";
-                                    echo "<td>".$result->consulta[$i]->recipe."</td>";
+                                    echo "<td>".$result->pct[$i]->name."</td>";
+                                    echo "<td>".$result->pct[$i]->last_name."</td>";
+                                    echo "<td>".$result->pct[$i]->bday."</td>";
+                                    echo "<td>".$result->pct[$i]->blood."</td>";
+                                    echo "<td>".$result->pct[$i]->cpf."</td>";
+                                    echo "<td>".$result->pct[$i]->email."</td>";
+                                    echo "<td>".$result->pct[$i]->tel."</td>";
                                     echo "</tr>";
                                 }
                             }
-
-                        ?> 
+                        ?>
                     </tbody>
 
                 </table>
-            </div>
-            
-            <div style="margin: auto; text-align: center; padding-top: 20px">
-                <button id="submit" class='submit-button' type="submit">Submit Changes</button>
             </div>
 
         </div>
     </div>
 
     <!-- JS SCRIPT -->
-    <script>
-        $(document).ready(function () {
-            //`popup` / `inline`
-            $.fn.editable.defaults.mode = 'inline';
-            $('#notes, #prescription').editable();
-
-            $('#new').click(function () {
-                location.replace("./new_consultie_template.html");
-
-			});
-
-        });
-    </script>
 
 </body>
-</html>
+</html
