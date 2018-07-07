@@ -50,7 +50,11 @@
                         <tr>
                             <th>First Name</th>
                             <th>Last Name</th>
+                            <th>CPF</th>
+                            <th>Doctor</th>
+                            <th>CRM</th>
                             <th>Date</th>
+                            <th>Hour</th>
                             <th>Notes</th>
                             <th>Prescription</th>
                         </tr>
@@ -73,21 +77,22 @@
 
 							$doctor = new Doctor("admin", "istrator", "1");
 
-							if (isset($_GET['time'])) {
-								$result = $doctor->search_history();
+                            $result = $doctor->search_history();
 
-								for ($i = 0; $i < count($result); $i++) {
+                            for ($i = 0; $i < count($result); $i++) {
 
-									echo "<tr>";
-									echo "<td>".$result[$i]->name."</td>";
-									echo "<td>".$result[$i]->last_name."</td>";
-									echo "<td>".$result[$i]->appt_date."</td>";
-									echo "<td id='notes'>".$result[$i]->obs."</td>";
-									echo "<td id='prescription'>".$result[$i]->recipe."</td>";
-									echo "</tr>";
-								}
-							}
-
+                                echo "<tr>";
+                                echo "<td>".$result[$i]->name."</td>";
+                                echo "<td>".$result[$i]->last_name."</td>";
+                                echo "<td>".$result[$i]->cpf."</td>";
+                                echo "<td>".$result[$i]->doctor_name."</td>";
+                                echo "<td>".$result[$i]->crm."</td>";
+                                echo "<td>".$result[$i]->appt_date."</td>";
+                                echo "<td>".$result[$i]->time."</td>";
+                                echo "<td id='notes'>".$result[$i]->obs."</td>";
+                                echo "<td id='prescription'>".$result[$i]->recipe."</td>";
+                                echo "</tr>";
+                            }
 						?>
                     </tbody>
 

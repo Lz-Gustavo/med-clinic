@@ -49,13 +49,15 @@
 			}
 			$filter.= "]";
 			
-			if (strcasecmp($_GET['time'], "future") == 0) {
-				
-				$now = new DateTime(null, new DateTimeZone('America/Sao_Paulo'));
-				$time_filter = " and number(translate(appt_date,'-','')) > ".$now->format("Ymd")."]";
+			if (isset($_GET['time'])) {
+				if (strcasecmp($_GET['time'], "future") == 0) {
+					
+					$now = new DateTime(null, new DateTimeZone('America/Sao_Paulo'));
+					$time_filter = " and number(translate(appt_date,'-','')) > ".$now->format("Ymd")."]";
 
-				$filter = rtrim($filter, "]");
-				$filter.= $time_filter;
+					$filter = rtrim($filter, "]");
+					$filter.= $time_filter;
+				}
 			}
 			
 			$result = $hd->read("historico", $filter);
