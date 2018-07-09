@@ -49,7 +49,7 @@
         </div>
 
         <div class="show-dados">
-		<form method="post" action="save_form.php">
+		<form method="post" action="save_form.php" id="submit-form">
             <div class="horizontal-align w-full">
                 <div style="width: 20%;">
                     <p>First name:</p>
@@ -168,19 +168,17 @@
                     hours[index] = map.join(" ");
                 }
             }
-            //console.log(hours);
+			var values = $('#submit-form').serializeArray();
             
             //ajax send
             $.post("test_calendar.php",
             {
+                crm: values[3].value,
                 mon: hours[0],
                 tue: hours[1],
                 wed: hours[2],
                 thu: hours[3],
                 fri: hours[4],
-            },
-            function(data){
-                alert(data);
             });
     });
     </script>

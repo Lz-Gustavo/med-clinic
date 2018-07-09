@@ -52,7 +52,7 @@
                     <thead>
                         <tr>
                             <th>First Name</th>
-                            <th>Last Name</th>
+                            <!--th>Last Name</th-->
                             <th>CPF</th>
                             <th>Doctor</th>
                             <th>CRM</th>
@@ -73,9 +73,6 @@
 							require_once "../../php_backend/class/doctor.php";
 
 							session_start();
-							//echo "<pre>";
-							//print_r($_SESSION);
-							//echo "</pre>";
 							$_GET['doctor_name'] = $_SESSION['login_user'];
 
 							$doctor = new Doctor("admin", "istrator", "1");
@@ -86,7 +83,7 @@
 
                                 echo "<tr>";
                                 echo "<td id='name'>".$result[$i]->name."</td>";
-                                echo "<td>".$result[$i]->last_name."</td>";
+                                //echo "<td>".$result[$i]->last_name."</td>";
                                 echo "<td>".$result[$i]->cpf."</td>";
                                 echo "<td>".$result[$i]->doctor_name."</td>";
                                 echo "<td>".$result[$i]->crm."</td>";

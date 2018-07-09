@@ -48,8 +48,10 @@
 				unset($aux[1]);
 				$day = implode("-", $aux);
 
-				//$permission = $hd->check_avaiable($this->temporary_buffer["CRM:"], $day, $this->temporary_buffer["Horario:"]);
-				$permission = 1;
+				$dayofweek = strtolower(date('l', strtotime($this->temporary_buffer["Data:"])));
+
+				$permission = $hd->check_avaiable($this->temporary_buffer["CRM:"], $dayofweek, $this->temporary_buffer["Horario:"]);
+				//$permission = 1;
 				if ($permission == 1) {
 
 					$hd->write($database, $this->temporary_buffer);
