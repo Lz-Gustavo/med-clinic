@@ -33,7 +33,7 @@
 			$this->temporary_buffer[$cell] = $value;
 		}
 		public function commit_changes($database) {
-			// String -> -
+			// String -> Number (Boolean Repr.)
 			//
 			// call Storage::Write() on the specified database, in the case of making a new appointment, calls
 			// Storage::check_avaiable() to verify information
@@ -55,13 +55,16 @@
 				if ($permission == 1) {
 
 					$hd->write($database, $this->temporary_buffer);
-					//echo "changes commited to the history database!<br>";
+					return 1;
 				}
 				else if ($permission == 0) {
+					
 					echo "<script type='text/javascript'>alert('Doctor is busy in that hour');</script>";
+					return 0;
 				}
 				else {
 					echo "<script type='text/javascript'>alert('Insert a valid CRM');</script>";
+					return 404;
 				}
 				reset($this->temporary_buffer);
 			}

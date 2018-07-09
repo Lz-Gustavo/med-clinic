@@ -119,11 +119,6 @@
 
                 </table>
             </div>
-            
-            <div style="margin: auto; text-align: center; padding-top: 20px">
-                <button id="submit" class='submit-button' type="submit">Submit Changes</button>
-            </div>
-
         </div>
     </div>
 

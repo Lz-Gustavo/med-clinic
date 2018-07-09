@@ -39,9 +39,9 @@
 
                     <button class='filter-button m-l-20 m-r-40' type='submit'>Filter</button>
                     
-                    <div class="wrap-input m-t-10" style="width: 60%">
+                    <!--div class="wrap-input m-t-10" style="width: 60%">
                         <input class="input" type="text" name="name" placeholder="Patient's Name">
-                    </div>
+                    </div-->
                     <input type = "radio" name = "time" value = "all" checked> Todas<br>
                     <input type = "radio" name = "time" value = "future"> Futuras<br>
                 </div>
@@ -54,8 +54,8 @@
                             <th>First Name</th>
                             <!--th>Last Name</th-->
                             <th>CPF</th>
-                            <th>Doctor</th>
-                            <th>CRM</th>
+                            <!--th>Doctor</th-->
+                            <!--th>CRM</th-->
                             <th>Date</th>
                             <th>Hour</th>
                             <th>Notes</th>
@@ -64,9 +64,9 @@
                     </thead>
                     <tbody>
                         <?php
-							ini_set('display_errors', 1);
-							ini_set('display_startup_errors', 1);
-							error_reporting(E_ALL);
+							//ini_set('display_errors', 1);
+							//ini_set('display_startup_errors', 1);
+							//error_reporting(E_ALL);
 
 							require_once "../../php_backend/class/storage.php";
 							require_once "../../php_backend/class/person.php";
@@ -76,21 +76,22 @@
 							$_GET['doctor_name'] = $_SESSION['login_user'];
 
 							$doctor = new Doctor("admin", "istrator", "1");
+                            $hd = Storage::getInstance();
 
                             $result = $doctor->search_history();
 
                             for ($i = 0; $i < count($result); $i++) {
 
+                                $hour = $hd->translate_time($result[$i]->time);
+                                $index = $result[$i]->crm."!".$result[$i]->appt_date."!".$result[$i]->time;
+
                                 echo "<tr>";
                                 echo "<td id='name'>".$result[$i]->name."</td>";
-                                //echo "<td>".$result[$i]->last_name."</td>";
                                 echo "<td>".$result[$i]->cpf."</td>";
-                                echo "<td>".$result[$i]->doctor_name."</td>";
-                                echo "<td>".$result[$i]->crm."</td>";
                                 echo "<td>".$result[$i]->appt_date."</td>";
-                                echo "<td>".$result[$i]->time."</td>";
-                                echo "<td id='notes' data-pk='index'>".$result[$i]->obs."</td>";
-                                echo "<td id='prescription' data-pk='index'>".$result[$i]->recipe."</td>";
+                                echo "<td>".$hour."</td>";
+                                echo "<td id='notes' data-pk='".$index."'>".$result[$i]->obs."</td>";
+                                echo "<td id='prescription' data-pk='".$index."'>".$result[$i]->recipe."</td>";
                                 echo "</tr>";
                             }
 						?>
@@ -98,10 +99,6 @@
 
                 </table>
             </div>
-            
-            <!--div style="margin: auto; text-align: center; padding-top: 20px">
-                <button id="submit" class='submit-button' type="submit">Submit Changes</button>
-            </div-->
 
         </div>
     </div>
@@ -114,14 +111,11 @@
             //$.fn.editable.defaults.ajaxOptions = {type: "PUT"};
             $('#notes, #prescription').editable({
                 //pk: 1,
-                url: 'test_table.php',
+                url: 'save_notes.php',
 
                 ajaxOptions:{
                     type:'post'
-                } ,
-                success: function(data) {
-                   alert(data);
-                }, 
+                }
             });
             
             

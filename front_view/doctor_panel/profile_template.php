@@ -19,9 +19,9 @@
 <body style="background-color:#fff;">
 
 	<?php
-			ini_set('display_errors', 1);
-			ini_set('display_startup_errors', 1);
-			error_reporting(E_ALL);
+			//ini_set('display_errors', 1);
+			//ini_set('display_startup_errors', 1);
+			//error_reporting(E_ALL);
 
 			require_once "../../php_backend/class/storage.php";
 			require_once "../../php_backend/class/person.php";
@@ -171,7 +171,7 @@
 			var values = $('#submit-form').serializeArray();
             
             //ajax send
-            $.post("test_calendar.php",
+            $.post("save_schedule.php",
             {
                 crm: values[3].value,
                 mon: hours[0],

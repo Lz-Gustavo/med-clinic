@@ -65,7 +65,7 @@
                     <p>CPF:</p>
                 </div>
                 <div class="wrap-input m-t-10">
-                    <input class="input" type="text" name="cpf">
+                    <input class="input" type="text" name="cpf" pattern=".{11,11}" title="Insert only the 11 numbers">
                 </div>
 			</div>
 			
@@ -100,8 +100,19 @@
                 <div style="width: 20%;">
                     <p>Hour:</p>
                 </div>
-                <div class="wrap-input m-t-10">
-                    <input class="input" type="text" name="time">
+                <div class="m-t-10">
+                    <select name="time">
+                        <option value="1 0 0 0 0 0 0 0 0 0">8:00AM</option>
+                        <option value="0 1 0 0 0 0 0 0 0 0">9:00AM</option>
+                        <option value="0 0 1 0 0 0 0 0 0 0">10:00AM</option>
+                        <option value="0 0 0 1 0 0 0 0 0 0">11:00AM</option>
+                        <option value="0 0 0 0 1 0 0 0 0 0">12:00AM</option>
+                        <option value="0 0 0 0 0 1 0 0 0 0">1:00PM</option>
+                        <option value="0 0 0 0 0 0 1 0 0 0">2:00PM</option>
+                        <option value="0 0 0 0 0 0 0 1 0 0">3:00PM</option>
+                        <option value="0 0 0 0 0 0 0 0 1 0">4:00PM</option>
+                        <option value="0 0 0 0 0 0 0 0 0 1">5:00PM</option>
+                    </select>
                 </div>
             </div>
 
@@ -112,6 +123,6 @@
 		</form>
         </div>
     </div>
-
+    
 </body>
 </html

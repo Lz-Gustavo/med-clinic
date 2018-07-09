@@ -80,11 +80,14 @@
                             require_once "../../php_backend/class/secretary.php";
 
                             $secretary = new Secretary("admin", "istrator", "1");
+                            $hd = Storage::getInstance();
 
                             if ((isset($_GET['name'])) || (isset($_GET['doctor_name']))) {
                                 $result = $secretary->search_history();
 
                                 for ($i = 0; $i < count($result); $i++) {
+
+                                    $hour = $hd->translate_time($result[$i]->time);
 
                                     echo "<tr>";
                                     echo "<td>".$result[$i]->name."</td>";
@@ -93,7 +96,7 @@
                                     echo "<td>".$result[$i]->doctor_name."</td>";
                                     echo "<td>".$result[$i]->crm."</td>";
                                     echo "<td>".$result[$i]->appt_date."</td>";
-                                    echo "<td>".$result[$i]->time."</td>";
+                                    echo "<td>".$hour."</td>";
                                     echo "<td>".$result[$i]->obs."</td>";
                                     echo "<td>".$result[$i]->recipe."</td>";
                                     echo "</tr>";
@@ -104,6 +107,8 @@
 
                                 for ($i = 0; $i < count($result->consulta); $i++) {
 
+                                    $hour = $hd->translate_time($result->consulta[$i]->time);
+
                                     echo "<tr>";
                                     echo "<td>".$result->consulta[$i]->name."</td>";
                                     //echo "<td>".$result->consulta[$i]->last_name."</td>";
@@ -111,7 +116,7 @@
                                     echo "<td>".$result->consulta[$i]->doctor_name."</td>";
                                     echo "<td>".$result->consulta[$i]->crm."</td>";
                                     echo "<td>".$result->consulta[$i]->appt_date."</td>";
-                                    echo "<td>".$result->consulta[$i]->time."</td>";
+                                    echo "<td>".$hour."</td>";
                                     echo "<td>".$result->consulta[$i]->obs."</td>";
                                     echo "<td>".$result->consulta[$i]->recipe."</td>";
                                     echo "</tr>";
@@ -123,11 +128,6 @@
 
                 </table>
             </div>
-            
-            <div style="margin: auto; text-align: center; padding-top: 20px">
-                <button id="submit" class='submit-button' type="submit">Submit Changes</button>
-            </div>
-
         </div>
     </div>
 

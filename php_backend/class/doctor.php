@@ -130,7 +130,7 @@
 			$result = $hd->show_all("paciente");
 			return $result;
 		}
-		public function anotate($name, $observation, $recipe) {
+		public function anotate($key, $observation, $recipe) {
 			// String, String, String -> -
 			// 
 			// calls Storage::Modify() structuring an array using the given 'observation' and 'recipe' info and 
@@ -143,7 +143,7 @@
 				"Receita:" => $recipe,
 			);
 
-			$hd->modify("historico", $name, $input_array);
+			$hd->modify("historico", $key, $input_array);
 		}
 	}
 ?>

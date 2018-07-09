@@ -155,12 +155,19 @@
 			}
 			else if ((strcasecmp($database, "historico") == 0) || (strcasecmp($database, "history") == 0)) {
 
-				$filter = "//consulta[name='".$key_cell."']";
+				$vector_pk = explode("!", $key_cell);
+
+				$filter = "//consulta[crm='".$vector_pk[0]."' and appt_date='".$vector_pk[1]."' and time='".$vector_pk[2]."']";
+
 				$xml = simplexml_load_file($this->file_history);
 				$result = $xml->xpath($filter);
 
-				$result[0]->obs = $modify_array["Observacao:"];
-				$result[0]->recipe = $modify_array["Receita:"];
+				if ($modify_array["Observacao:"] != "dont_change") {
+					$result[0]->obs = $modify_array["Observacao:"];
+				}
+				if ($modify_array["Receita:"] != "dont_change") {
+					$result[0]->recipe = $modify_array["Receita:"];
+				}
 				//print_r($result);
 
 				$xml->asXML($this->file_history);
@@ -240,6 +247,10 @@
 				$flag = 0;
 
 				$doctor_hour = $result[0]->week->$day;
+				if ($doctor_hour == "empty") {
+					return 420;
+				}
+
 				$vector_doctor = explode(" ", $doctor_hour);
 				$vector_marked = explode(" ", $time);
 
@@ -263,6 +274,32 @@
 				return 404;
 			}
 			return 1;
+		}
+		public function translate_time($bitmap) {
+			// String(bitmap) -> Number
+			//
+			// translates a given bitmap into a hour in 12h format
+			$base_hour = 8;
+
+			$vector_bitmap = explode(" ", $bitmap);
+			for ($i = 0; $i < count($vector_bitmap); $i++) {
+				
+				if ($vector_bitmap[$i] == 1) {
+					$hour = $base_hour + $i;
+					if ($hour > 12) {
+						$hour = $hour - 12;
+
+						// concatenates PM
+						$hour .= ":00PM";
+					}
+					else {
+						// concatenates AM
+						$hour .= ":00AM";
+					}
+					break;
+				}
+			}
+			return $hour;
 		}
 	}
 ?>

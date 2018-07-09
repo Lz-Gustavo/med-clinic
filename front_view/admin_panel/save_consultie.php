@@ -18,5 +18,5 @@
     $secretary->add_changes("Horario:", $_POST['time']);
     $secretary->commit_changes("historico");
 
-	header("location: consulties_template.php");
+    header("location: consulties_template.php");
 ?>
