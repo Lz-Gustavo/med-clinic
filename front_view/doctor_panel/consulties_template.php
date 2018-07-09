@@ -85,15 +85,15 @@
                             for ($i = 0; $i < count($result); $i++) {
 
                                 echo "<tr>";
-                                echo "<td>".$result[$i]->name."</td>";
+                                echo "<td id='name'>".$result[$i]->name."</td>";
                                 echo "<td>".$result[$i]->last_name."</td>";
                                 echo "<td>".$result[$i]->cpf."</td>";
                                 echo "<td>".$result[$i]->doctor_name."</td>";
                                 echo "<td>".$result[$i]->crm."</td>";
                                 echo "<td>".$result[$i]->appt_date."</td>";
                                 echo "<td>".$result[$i]->time."</td>";
-                                echo "<td id='notes'>".$result[$i]->obs."</td>";
-                                echo "<td id='prescription'>".$result[$i]->recipe."</td>";
+                                echo "<td id='notes' data-pk='index'>".$result[$i]->obs."</td>";
+                                echo "<td id='prescription' data-pk='index'>".$result[$i]->recipe."</td>";
                                 echo "</tr>";
                             }
 						?>
@@ -114,7 +114,23 @@
         $(document).ready(function () {
             //`popup` / `inline`
             $.fn.editable.defaults.mode = 'inline';
-            $('#notes, #prescription').editable();
+            //$.fn.editable.defaults.ajaxOptions = {type: "PUT"};
+            $('#notes, #prescription').editable({
+                //pk: 1,
+                url: 'test_table.php',
+
+                ajaxOptions:{
+                    type:'post'
+                } ,
+                success: function(data) {
+                   alert(data);
+                }, 
+            });
+            
+            
+            $('#notes, #prescription').on('save', function(e, params) {
+                //console.log(params.newValue);                
+            });
 
         });
     </script>

@@ -8,7 +8,7 @@
 	<title>PsyMed Dashboard</title>
 
 	<!-- ICONS -->
-	<link rel="stylesheet" type="text/css" href="fonts/font-awesome.min.css">
+	<!--link rel="stylesheet" type="text/css" href="fonts/font-awesome.min.css"-->
 	<link rel="icon" type="image/png" href="images/icons/favicon.ico" />
 
 	<!-- STYLE-->
@@ -41,7 +41,7 @@
 
 					<form method="post">
 						<div class='hide_div'>
-							<div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
+							<div class="wrap-input100 validate-input">
 								<input class="input100" type="text" name="login_user" required>
 								<span class="focus-input100"></span>
 								<span class="label-input100">Username</span>
@@ -69,7 +69,7 @@
 							</div>
 
 							<div class="container-login100-form-btn">
-								<button class="login100-form-btn" type="submit">
+								<button id="login-button" class="login100-form-btn">
 									Login
 								</button>
 							</div>

@@ -17,10 +17,11 @@
 				//echo "<pre>";
 				//print_r($_SESSION);
 				//echo "</pre>";
-				header("location: admin_panel/admin_panel.html");
+				//header("location: admin_panel/admin_panel.html");
+				echo "0";
 			}
 			else {
-				echo "<script type='text/javascript'>alert('se fudeu');</script>";
+				echo "-1";
 				//header("location: index.html");
 			}
 		}
@@ -31,10 +32,11 @@
 
 				session_start();
 				$_SESSION['login_user'] = $_POST['login_user'];
-				header("location: doctor_panel/doctor_panel.html");
+				//header("location: doctor_panel/doctor_panel.html");
+				echo "1";
 			}
 			else {
-				echo "<script type='text/javascript'>alert('se fudeu');</script>";
+				echo "-1";				
 				//header("location: index.html");
 			}
 		}
