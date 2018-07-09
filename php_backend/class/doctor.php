@@ -28,17 +28,29 @@
 		}
 
 		public function add_changes($cell, $value) {
+			// Number(key), Number -> -
+			//
+			// stores the given 'key/value' into the mapped temporary buffer to latter store all the required
+			// registry information at once on the XML file
+
 			array_push($this->temporary_buffer, $cell);
 			$this->temporary_buffer[$cell] = $value;
 		}
 		public function commit_changes() {
+			// String -> -
+			//
+			// call Storage::Modify() passing CRM as key to modify his own profile
+
 			$hd = Storage::getInstance();
 
 			$hd->modify("medico", $this->temporary_buffer["CRM:"], $this->temporary_buffer);
 			reset($this->temporary_buffer);
 		}
 		public function search_history() {
-			// same operation as the secretary's history search, but it can only track appointments using his own doctor_name
+			// $_GET[] -> Array
+			//
+			// structures a Xpath filter using the content on the global $_GET array, similar to secretary's method 
+			// but only searching for its own appointments and filtering for 'all/future' ones as requested
 
 			$hd = Storage::getInstance();
 
@@ -65,11 +77,14 @@
 			}
 			
 			$result = $hd->read("historico", $filter);
-			//echo "RESULTADO BUSCA HISTORICO: <br>";
-			//print_r($result);
 			return $result;
 		}
 		public function search_patient() {
+			// $_GET[] -> Array
+			//
+			// structures a Xpath filter using the content on the global $_GET array and returns the resulted array
+			// from Storage::Read() procedure
+
 			$hd = Storage::getInstance();
 
 			$filter = "//pct";
@@ -80,11 +95,14 @@
 			$filter.= "]";
 			
 			$result = $hd->read("paciente", $filter);
-			//echo "RESULTADO BUSCA PACIENTE: <br>";
-			//print_r($result);
 			return $result;
 		}
 		public function search_profile() {
+			// $_GET[] -> Array
+			//
+			// structures a Xpath filter using the content on the global $_GET array and returns the resulted array
+			// from Storage::Read() procedure
+
 			$hd = Storage::getInstance();
 
 			$filter = "//med[";
@@ -104,8 +122,6 @@
 			$filter.= "]";
 			
 			$result = $hd->read("medico", $filter);
-			//echo "RESULTADO BUSCA MEDICO: <br>";
-			//print_r($result);
 			return $result;
 		}
 		public function show_all_patients() {
@@ -115,6 +131,11 @@
 			return $result;
 		}
 		public function anotate($name, $observation, $recipe) {
+			// String, String, String -> -
+			// 
+			// calls Storage::Modify() structuring an array using the given 'observation' and 'recipe' info and 
+			// passing the patients name as key
+
 			$hd = Storage::getInstance();
 
 			$input_array = array(

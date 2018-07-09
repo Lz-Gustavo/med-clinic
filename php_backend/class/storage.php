@@ -32,9 +32,9 @@
 		}
 
 		public function write($database, $input_array) {
-			// escrita na persistencia XML criando novos campos para as info especificadas,
-			// nao modificando
-
+			// String, Array -> -
+			//
+			// writes a NEW NODE on the specified XML structure by 'database' using the given 'input_array' values
 
 			if (strcasecmp($database, "medico") == 0) {
 				$xml = simplexml_load_file($this->file_doctors);				
@@ -89,8 +89,9 @@
 			}
 		}
 		public function read($database, $filter) {
-			// leitura dos arquivos XML utilizando um filtro previamente estruturado
-			// pela classe invocadora
+			// String, String -> Array
+			//
+			// extracts a XML Object array using the given Xpath syntax filter 
 			
 			//echo "<br><b>filtro utilizado:</b> ".$filter."<br>";
 
@@ -111,6 +112,9 @@
 			}
 		}
 		public function show_all($database) {
+			// String -> Array
+			//
+			// returns all the content of the specified XML structure
 
 			if (strcasecmp($database, "medico") == 0) {
 
@@ -123,13 +127,14 @@
 			else {				
 				$extract = simplexml_load_file($this->file_history);
 			}
-			//echo "<u>Dados extraidos de ".$database.":</u> <br><br>";
-			//echo $extract->asXML();
+
 			//print_r($extract);
 			return $extract;
 		}
 		public function modify($database, $key_cell, $modify_array) {
-			// utilizado para alterar campos no cadastro de um medico, paciente, ou acrescentar dados a uma consulta
+			// String, Number, Array -> -
+			//
+			// used to modify data on patients and doctors or to add information on an appointment registry 
 
 			if (strcasecmp($database, "medico") == 0) {
 
@@ -176,7 +181,9 @@
 			}
 		}
 		public function modify_week($crm, $modify_array) {
-			// utilizado para alterar o horario vago de um medico
+			// Number, Array -> -
+			//
+			// used to modify a week schedule of a certain doctors, searching by its passed crm
 
 			$filter = "//med[number(crm)='".$crm."']";
 			$xml = simplexml_load_file($this->file_doctors);
@@ -192,6 +199,10 @@
 			$xml->asXML($this->file_doctors);
 		}
 		public function login($role, $user, $password) {
+			// String, String, Number -> Number (Boolean Repr.)
+			//
+			// authenticates login for doctors and patients, verifying matching credentials of 'Name/CRM' for
+			// doctors and 'admin/admin' for administrators
 
 			if (strcasecmp($role, "medico") == 0) {
 				$filter = "//med[name='".$user."']";
@@ -213,9 +224,13 @@
 			}
 		}
 		public function check_avaiable($crm, $day, $time) {
-			// IDEIA INICIAL:
-			// implementar aqui a busca pelo horario do medico, para que na hora de agendar uma consulta
-			// so se possa marca-la em um horario disponivel pelo doutor em sua agenda
+			// Number, String, String(bitmap) -> Number
+			//
+			// implements searching for the specified doctor,
+			// -- if it exists: 
+			//	check if he s avaiable and makes the appointment returning 1, otherwise returns 0
+			// -- if it doesnt exists:
+			//	returns an error code that is captured by the invoker class, aborting the operation
 
 			$filter = "//med[number(crm)='".$crm."']";
 			$xml = simplexml_load_file($this->file_doctors);
@@ -232,6 +247,10 @@
 					if (($vector_marked[$i] == 1) && ($vector_doctor[$i] == 0)) {
 						$flag = 1;
 						$vector_doctor[$i] = 1;
+						
+						$aux = implode(" ", $vector_doctor);
+						$result[0]->week->$day = $aux;
+						$xml->asXML($this->file_doctors);
 						break;
 					}
 				}

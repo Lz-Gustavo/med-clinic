@@ -39,7 +39,7 @@
 						</button>
 					</div>
 
-					<form method="post">
+					<form id="login-form" method="post">
 						<div class='hide_div'>
 							<div class="wrap-input100 validate-input">
 								<input class="input100" type="text" name="login_user" required>
@@ -81,45 +81,39 @@
 		</div>
 	</div>
 
-	<?php
-		// using this php script as an action of login form makes unable to notify alerts about wrong user/passw combination
-
-		require_once "../php_backend/class/storage.php";
-
-		if (isset($_POST['login_user'])) {
-
-			$hd = Storage::getInstance();
-			if ($_POST['login_user'] == "admin") {
-				
-				$permission = $hd->login("atendente", $_POST['login_user'], $_POST['login_password']);
-				if ($permission == 1) {
-
-					session_start();
-					$_SESSION['login_user'] = $_POST['login_user'];
-					header("location: admin_panel/admin_panel.html");
-				}
-				else {
-					echo "<script type='text/javascript'>alert('Incorrect Username or Password');</script>";
-				}
-			}
-			else {
-				$permission = $hd->login("medico", $_POST['login_user'], $_POST['login_password']);
-				if ($permission == 1) {
-
-					session_start();
-					$_SESSION['login_user'] = $_POST['login_user'];
-					header("location: doctor_panel/doctor_panel.html");
-				}
-				else {
-					echo "<script type='text/javascript'>alert('Incorrect Username or Password');</script>";
-				}
-			}
-		}
-	?>
-
 	<!-- JS SCRIPT -->
 	<script src="js/jquery-3.2.1.min.js"></script>
-	<script src="js/main.js"></script>
+		<script src="js/main.js"></script>
+		<script>
+			$(document).ready(function () {
+				$('#login-button').click(function () {
+					// get login values from input form
+					var values = $('#login-form').serializeArray();
+					//console.log(values[0].name);
+
+					// ajax submit
+					$.post("check_login.php",
+						{
+							login_user: values[0].value,
+							login_password: values[1].value,
+						},
+						function (data) {
+							// admin
+							if (data == "0") {
+								location.assign('./admin_panel/admin_panel.html');
+							}
+							// doctor
+							if (data == "1") {
+								location.assign('./doctor_panel/doctor_panel.html');								
+							}
+							// unsuccessful login 
+							if (data == "-1")
+								alert("Incorrect Username or Password");
+						});
+				});
+
+			});
+		</script>
 
 </body>
 </html>

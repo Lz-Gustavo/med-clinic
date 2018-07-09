@@ -24,25 +24,23 @@
 		}
 
 		public function add_changes($cell, $value) {
+			// Number(key), Number -> -
+			//
+			// stores the given 'key/value' into the mapped temporary buffer to latter store all the required
+			// registry information at once on the XML file
+
 			array_push($this->temporary_buffer, $cell);
 			$this->temporary_buffer[$cell] = $value;
 		}
 		public function commit_changes($database) {
+			// String -> -
+			//
+			// call Storage::Write() on the specified database, in the case of making a new appointment, calls
+			// Storage::check_avaiable() to verify information
+
 			$hd = Storage::getInstance();
 
-			if (strcasecmp($database, "medico") == 0) {
-				
-				$hd->write($database, $this->temporary_buffer);
-				reset($this->temporary_buffer);
-				//echo "changes commited to the doctors database!<br>";
-			}
-			else if (strcasecmp($database, "paciente") == 0) {
-				
-				$hd->write($database, $this->temporary_buffer);
-				reset($this->temporary_buffer);
-				//echo "changes commited to the patients database!<br>";
-			}
-			else if ((strcasecmp($database, "historico") == 0) || (strcasecmp($database, "history") == 0)) {
+			if ((strcasecmp($database, "historico") == 0) || (strcasecmp($database, "history") == 0)) {
 
 				$day = $this->temporary_buffer["Data:"];
 				$aux = explode("-", $day);
@@ -65,9 +63,18 @@
 				}
 				reset($this->temporary_buffer);
 			}
+			else {
+				$hd->write($database, $this->temporary_buffer);
+				reset($this->temporary_buffer);
+			}
 		}
 
 		public function search_patient() {
+			// $_GET[] -> Array
+			//
+			// structures a Xpath filter using the content on the global $_GET array and returns the resulted array
+			// from Storage::Read() procedure
+
 			$hd = Storage::getInstance();
 
 			$filter = "//pct";
@@ -81,16 +88,19 @@
 			$filter.= "]";
 			
 			$result = $hd->read("paciente", $filter);
-			//echo "RESULTADO BUSCA PACIENTE: <br>";
-			//print_r($result);
 			return $result;
 		}
 		public function search_doctor() {
+			// $_GET[] -> Array
+			//
+			// structures a Xpath filter using the content on the global $_GET array and returns the resulted array
+			// from Storage::Read() procedure
+
 			$hd = Storage::getInstance();
 
 			$filter = "//med";
 
-			// name == doctors name
+			// 'name' is the doctors name, trust me
 			if (!empty($_GET['name'])) {
 				$filter.= "[name='".$_GET['name']."'";
 			}
@@ -103,11 +113,14 @@
 			$filter.= "]";
 			
 			$result = $hd->read("medico", $filter);
-			//echo "RESULTADO BUSCA MEDICO: <br>";
-			//print_r($result);
 			return $result;
 		}
 		public function search_history() {
+			// $_GET[] -> Array
+			//
+			// structures a Xpath filter using the content on the global $_GET array and returns the resulted array
+			// from Storage::Read() procedure
+
 			$hd = Storage::getInstance();
 
 			$filter = "//consulta";
@@ -132,8 +145,6 @@
 				}
 			}
 			$result = $hd->read("historico", $filter);
-			//echo "RESULTADO BUSCA HISTORICO: <br>";
-			//print_r($result);
 			return $result;
 		}
 

@@ -5,7 +5,6 @@
 
 		$hd = Storage::getInstance();
 		
-		//alterar depois que ta uma merda, tem q ter radio option no form
 		if ($_POST['login_user'] == "admin") {
 			
 			$permission = $hd->login("atendente", $_POST['login_user'], $_POST['login_password']);
@@ -14,15 +13,10 @@
 
 				session_start();
 				$_SESSION['login_user'] = $_POST['login_user'];
-				//echo "<pre>";
-				//print_r($_SESSION);
-				//echo "</pre>";
-				//header("location: admin_panel/admin_panel.html");
 				echo "0";
 			}
 			else {
 				echo "-1";
-				//header("location: index.html");
 			}
 		}
 		else {
@@ -32,12 +26,10 @@
 
 				session_start();
 				$_SESSION['login_user'] = $_POST['login_user'];
-				//header("location: doctor_panel/doctor_panel.html");
 				echo "1";
 			}
 			else {
-				echo "-1";				
-				//header("location: index.html");
+				echo "-1";
 			}
 		}
 	}	
