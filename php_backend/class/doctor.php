@@ -12,19 +12,28 @@
 	require_once "storage.php";
 
 	class Doctor extends Person {
-		private $crm;
+		private $db_connection;
 		private $temporary_buffer = array();
 
 		public function _construct() {
 			parent::_construct();
-			$this->crm = 0;
 		}
-		public function __construct($n, $ln, $id) {
-			parent::__construct($n, $ln, "medico");
-			$this->crm = $id;
+		public function __construct($user, $pw) {
+
+			parent::__construct($user, "medico");
+			try {
+
+				$this->db_connection = new PDO("mysql:host=".$host, $user, $pw);
+				$this->db_connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+				
+				echo "foi<br>";
+			}
+			catch (PDOException $e) {
+				echo $e->getMessage();
+			}
 		}
 		public function __destruct() {
-
+			$this->db_connection = null;
 		}
 
 		public function add_changes($cell, $value) {

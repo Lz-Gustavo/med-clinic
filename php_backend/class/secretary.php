@@ -12,15 +12,25 @@
 	require_once "storage.php";
 
 	class Secretary extends Person {
-		private $reg;
+		private $db_connection;
 		private $temporary_buffer = array();
 
-		public function __construct($n, $ln, $id) {
-			parent::__construct($n, $ln, "atendente");
-			$this->reg = $id;
+		public function __construct($user, $pw) {
+
+			parent::__construct($user, "atendente");
+			try {
+				
+				$this->db_connection = new PDO("mysql:host=".$host, $user, $pw);
+				$this->db_connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+				
+				echo "foi<br>";
+			}
+			catch (PDOException $e) {
+				echo $e->getMessage();
+			}
 		}
 		public function __destruct() {
-
+			$this->db_connection = null;
 		}
 
 		public function add_changes($cell, $value) {

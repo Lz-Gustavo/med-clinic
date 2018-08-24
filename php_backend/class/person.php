@@ -2,22 +2,18 @@
 
 	class Person {
 		protected $name;
-		protected $last_name;
 		protected $funcao;
 
 		public function _construct() {
 			$this->name = null;
-			$this->last_name = null;
 			$this->funcao = null;
 		}
-		public function __construct($n, $ln, $fnc) {
+		public function __construct($n, $fnc) {
 			$this->name = $n;
-			$this->last_name = $ln;
 			$this->funcao = $fnc;
 		}
 		public function __destructor() {
 			$this->name = null;
-			$this->last_name = null;
 			$this->funcao = null;
 		}
 
