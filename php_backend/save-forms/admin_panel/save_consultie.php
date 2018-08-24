@@ -3,9 +3,9 @@
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);
 
-	require_once "../../php_backend/class/storage.php";
-	require_once "../../php_backend/class/person.php";
-	require_once "../../php_backend/class/secretary.php";
+	require_once "../../class/storage.php";
+	require_once "../../class/person.php";
+	require_once "../../class/secretary.php";
 
 	$secretary = new Secretary("admin", "istrator", "1");
 
@@ -18,5 +18,5 @@
     $secretary->add_changes("Horario:", $_POST['time']);
     $secretary->commit_changes("historico");
 
-    header("location: consulties_template.php");
+    header("location: ../../../front_view/admin_panel/consulties_template.php");
 ?>

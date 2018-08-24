@@ -49,7 +49,7 @@
         </div>
 
         <div class="show-dados">
-		<form method="post" action="save_form.php" id="submit-form">
+		<form method="post" action="../../php_backend/save-forms/doctor_panel/save_form.php" id="submit-form">
             <div class="horizontal-align w-full">
                 <div style="width: 20%;">
                     <p>First name:</p>
@@ -171,7 +171,7 @@
 			var values = $('#submit-form').serializeArray();
             
             //ajax send
-            $.post("save_schedule.php",
+            $.post("../../php_backend/save-forms/doctor_panel/save_schedule.php",
             {
                 crm: values[3].value,
                 mon: hours[0],

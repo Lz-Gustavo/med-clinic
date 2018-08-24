@@ -64,8 +64,8 @@
                             <th>CRM</th>
                             <th>Date</th>
                             <th>Hour</th>
-                            <th>Notes</th>
-                            <th>Prescription</th>
+                            <!--th>Notes</th-->
+                            <!--th>Prescription</th-->
                         </tr>
                     </thead>
                     <tbody>
@@ -97,8 +97,8 @@
                                     echo "<td>".$result[$i]->crm."</td>";
                                     echo "<td>".$result[$i]->appt_date."</td>";
                                     echo "<td>".$hour."</td>";
-                                    echo "<td>".$result[$i]->obs."</td>";
-                                    echo "<td>".$result[$i]->recipe."</td>";
+                                    //echo "<td>".$result[$i]->obs."</td>";
+                                    //echo "<td>".$result[$i]->recipe."</td>";
                                     echo "</tr>";
                                 }
                             }
@@ -117,8 +117,8 @@
                                     echo "<td>".$result->consulta[$i]->crm."</td>";
                                     echo "<td>".$result->consulta[$i]->appt_date."</td>";
                                     echo "<td>".$hour."</td>";
-                                    echo "<td>".$result->consulta[$i]->obs."</td>";
-                                    echo "<td>".$result->consulta[$i]->recipe."</td>";
+                                    //echo "<td>".$result->consulta[$i]->obs."</td>";
+                                    //echo "<td>".$result->consulta[$i]->recipe."</td>";
                                     echo "</tr>";
                                 }
                             }

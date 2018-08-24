@@ -1,8 +1,8 @@
 <?php
 
-    require_once "../../php_backend/class/storage.php";
-    require_once "../../php_backend/class/person.php";
-    require_once "../../php_backend/class/doctor.php";
+    require_once "../../class/storage.php";
+    require_once "../../class/person.php";
+    require_once "../../class/doctor.php";
 
     $pk = $_POST['pk'];     // primary key
     $name = $_POST['name']; // nome do campo (consulta ou prescrição)

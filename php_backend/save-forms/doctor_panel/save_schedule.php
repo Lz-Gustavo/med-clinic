@@ -1,8 +1,8 @@
 <?php
 
-    require_once "../../php_backend/class/storage.php";
-    require_once "../../php_backend/class/person.php";
-    require_once "../../php_backend/class/doctor.php";
+    require_once "../../class/storage.php";
+    require_once "../../class/person.php";
+    require_once "../../class/doctor.php";
 
     $mon = $_POST["mon"];
     $tue = $_POST["tue"];

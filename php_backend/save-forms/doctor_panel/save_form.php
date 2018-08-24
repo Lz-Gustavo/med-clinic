@@ -2,9 +2,9 @@
 
 	//action do form de profile_template.php
 	//vou ter q modificar o modify de storage...
-	require_once "../../php_backend/class/storage.php";
-	require_once "../../php_backend/class/person.php";
-	require_once "../../php_backend/class/doctor.php";
+	require_once "../../class/storage.php";
+	require_once "../../class/person.php";
+	require_once "../../class/doctor.php";
 
 	$doctor = new Doctor("admin", "istrator", "1");
 
@@ -21,5 +21,5 @@
 	session_start();
 	$_SESSION['login_user'] = $_POST['name'];
 
-	header("location: profile_template.php");
+	header("location: ../../../front_view/doctor_panel/profile_template.php");
 ?>

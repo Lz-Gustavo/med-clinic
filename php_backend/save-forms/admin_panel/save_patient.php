@@ -1,8 +1,8 @@
 <?php
 
-	require_once "../../php_backend/class/storage.php";
-	require_once "../../php_backend/class/person.php";
-	require_once "../../php_backend/class/secretary.php";
+	require_once "../../class/storage.php";
+	require_once "../../class/person.php";
+	require_once "../../class/secretary.php";
 
 	$secretary = new Secretary("admin", "istrator", "1");   
 
@@ -15,5 +15,5 @@
     $secretary->add_changes("Telefone:", $_POST['tel']);
     $secretary->commit_changes("paciente");
 
-	header("location: patients_template.php");
+	header("location: ../../../front_view/admin_panel/patients_template.php");
 ?>
