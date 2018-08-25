@@ -29,10 +29,11 @@
 		}
 
 		public function write($conection, $table, $input_array) {
-			// String, Array -> -
+			// PDO, String, Array -> -
 			//
-			// writes a NEW NODE on the specified XML structure by 'database' using the given 'input_array' values
+			// writes a NEW NODE on the specified database table using the given 'input_array' values
 
+			$sql = "INSERT INTO ".$table." VALUES ....";
 			
 		}
 		public function read($conection, $table, $filter) {
@@ -43,10 +44,16 @@
 			
 		}
 		public function show_all($connection, $table) {
-			// PDO, String -> Array
+			// PDO -> Array
 			//
 			// returns all the content on the specified table within the database
 
+			$sql = "SELECT * FROM ".$table;
+			$result = $conection->query($sql);
+			$rows = $result->fetchAll();
+
+			print_r($rows);
+			return $rows;
 		}
 		public function modify($conection, $table, $key_cell, $modify_array) {
 			// PDO, Number, Array -> -

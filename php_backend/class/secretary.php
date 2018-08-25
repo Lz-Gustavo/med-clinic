@@ -20,13 +20,13 @@
 			parent::__construct($user, "atendente");
 			try {
 				
-				$this->db_connection = new PDO("mysql:host=".$host, $user, $pw);
+				$this->db_connection = new PDO("mysql:host=localhost;dbname=GeracaoSaude", $user, $pw);
 				$this->db_connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 				
 				echo "foi<br>";
 			}
 			catch (PDOException $e) {
-				echo $e->getMessage();
+				echo "Exception: ".$e->getMessage();
 			}
 		}
 		public function __destruct() {
@@ -166,19 +166,19 @@
 		public function show_all_patients() {
 			$hd = Storage::getInstance();
 
-			$result = $hd->show_all("paciente");
+			$result = $hd->show_all($this->db_connection, "pacientes");
 			return $result;
 		}
 		public function show_all_doctors() {
 			$hd = Storage::getInstance();
 
-			$result = $hd->show_all("medico");
+			$result = $hd->show_all($this->db_connection, "medicos");
 			return $result;
 		}
 		public function show_all_history() {
 			$hd = Storage::getInstance();
 
-			$result = $hd->show_all("historico");
+			$result = $hd->show_all($this->db_connection, "consultas");
 			return $result;
 		}
 	}

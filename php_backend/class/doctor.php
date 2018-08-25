@@ -136,8 +136,8 @@
 		public function show_all_patients() {
 			$hd = Storage::getInstance();
 
-			$result = $hd->show_all("paciente");
-			return $result;
+			$result = $hd->show_all($this->db_connection, "pacientes");
+			print_r($result);
 		}
 		public function anotate($key, $observation, $recipe) {
 			// String, String, String -> -
