@@ -58,11 +58,11 @@
                 <table class="table table-bordered">
                     <thead>
                         <tr>
+                            <th>CPF</th>
                             <th>First Name</th>
                             <th>Last Name</th>
                             <th>Date of Birth</th>
                             <th>Blood Type</th>
-                            <th>CPF</th>
                             <th>Email</th>
                             <th>Telephone</th>
                         </tr>
@@ -75,43 +75,34 @@
                             //error_reporting(E_ALL);
 
                             require_once "../../php_backend/class/storage.php";
-                            require_once "../../php_backend/class/person.php";
-                            require_once "../../php_backend/class/secretary.php";
 
-                            $secretary = new Secretary("admin", "istrator", "1");
+                            $db_instance = Storage::getInstance();
+                            $db_instance->connect("GeracaoSaude");
 
                             if ((isset($_GET['name'])) || (isset($_GET['cpf']))) {
-                                $result = $secretary->search_patient();
-
-                                for ($i = 0; $i < count($result); $i++) {
-
-                                    echo "<tr>";
-                                    echo "<td>".$result[$i]->name."</td>";
-                                    echo "<td>".$result[$i]->last_name."</td>";
-                                    echo "<td>".$result[$i]->bday."</td>";
-                                    echo "<td>".$result[$i]->blood."</td>";
-                                    echo "<td>".$result[$i]->cpf."</td>";
-                                    echo "<td>".$result[$i]->email."</td>";
-                                    echo "<td>".$result[$i]->tel."</td>";
-                                    echo "</tr>";
-                                }
+                                
+                                //TODO: call 'read()' with specific cpf and name
+                                $result = $db_instance->read_all("pacientes");
                             }
                             else {
-                                $result = $secretary->show_all_patients();
 
-                                for ($i = 0; $i < count($result->pct); $i++) {
-
-                                    echo "<tr>";
-                                    echo "<td>".$result->pct[$i]->name."</td>";
-                                    echo "<td>".$result->pct[$i]->last_name."</td>";
-                                    echo "<td>".$result->pct[$i]->bday."</td>";
-                                    echo "<td>".$result->pct[$i]->blood."</td>";
-                                    echo "<td>".$result->pct[$i]->cpf."</td>";
-                                    echo "<td>".$result->pct[$i]->email."</td>";
-                                    echo "<td>".$result->pct[$i]->tel."</td>";
-                                    echo "</tr>";
-                                }
+                                $result = $db_instance->read_all("pacientes");
                             }
+
+                            for ($i = 0; $i < count($result); $i++) {
+
+                                echo "<tr>";
+                                echo "<td>".$result[$i]['cpf']."</td>";
+                                echo "<td>".$result[$i]['nome']."</td>";
+                                echo "<td>".$result[$i]['sobrenome']."</td>";
+                                echo "<td>".$result[$i]['nascimento']."</td>";
+                                echo "<td>".$result[$i]['sangue']."</td>";
+                                echo "<td>".$result[$i]['email']."</td>";
+                                echo "<td>".$result[$i]['telefone']."</td>";
+                                echo "</tr>";
+                            }
+
+                            $db_instance->disconnect();
 
                         ?>
                         

@@ -76,52 +76,38 @@
                             //error_reporting(E_ALL);
 
                             require_once "../../php_backend/class/storage.php";
-                            require_once "../../php_backend/class/person.php";
-                            require_once "../../php_backend/class/secretary.php";
 
-                            $secretary = new Secretary("admin", "istrator", "1");
-                            $hd = Storage::getInstance();
+                            $db_instance = Storage::getInstance();
+                            $db_instance->connect("GeracaoSaude");
 
                             if ((isset($_GET['name'])) || (isset($_GET['doctor_name']))) {
-                                $result = $secretary->search_history();
-
-                                for ($i = 0; $i < count($result); $i++) {
-
-                                    $hour = $hd->translate_time($result[$i]->time);
-
-                                    echo "<tr>";
-                                    echo "<td>".$result[$i]->name."</td>";
-                                    //echo "<td>".$result[$i]->last_name."</td>";
-                                    echo "<td>".$result[$i]->cpf."</td>";
-                                    echo "<td>".$result[$i]->doctor_name."</td>";
-                                    echo "<td>".$result[$i]->crm."</td>";
-                                    echo "<td>".$result[$i]->appt_date."</td>";
-                                    echo "<td>".$hour."</td>";
-                                    //echo "<td>".$result[$i]->obs."</td>";
-                                    //echo "<td>".$result[$i]->recipe."</td>";
-                                    echo "</tr>";
-                                }
+                             
+                                //TODO: call 'read()' with specific name and doctor name filters
+                                $result = $db_instance->read_all("consultas");
                             }
                             else {
-                                $result = $secretary->show_all_history();
 
-                                for ($i = 0; $i < count($result->consulta); $i++) {
-
-                                    $hour = $hd->translate_time($result->consulta[$i]->time);
-
-                                    echo "<tr>";
-                                    echo "<td>".$result->consulta[$i]->name."</td>";
-                                    //echo "<td>".$result->consulta[$i]->last_name."</td>";
-                                    echo "<td>".$result->consulta[$i]->cpf."</td>";
-                                    echo "<td>".$result->consulta[$i]->doctor_name."</td>";
-                                    echo "<td>".$result->consulta[$i]->crm."</td>";
-                                    echo "<td>".$result->consulta[$i]->appt_date."</td>";
-                                    echo "<td>".$hour."</td>";
-                                    //echo "<td>".$result->consulta[$i]->obs."</td>";
-                                    //echo "<td>".$result->consulta[$i]->recipe."</td>";
-                                    echo "</tr>";
-                                }
+                                $result = $db_instance->read_all("consultas");
                             }
+
+                            for ($i = 0; $i < count($result); $i++) {
+
+                                $hour = $hd->translate_time($result[$i]['hora']);
+
+                                echo "<tr>";
+                                echo "<td>".$result[$i]['nome']."</td>";
+                                //echo "<td>".$result[$i]['sobrenome']."</td>";
+                                echo "<td>".$result[$i]['cpf']."</td>";
+                                echo "<td>".$result[$i]['medico']."</td>";
+                                echo "<td>".$result[$i]['crm']."</td>";
+                                echo "<td>".$result[$i]['data']."</td>";
+                                echo "<td>".$hour."</td>";
+                                //echo "<td>".$result[$i]['obs']."</td>";
+                                //echo "<td>".$result[$i]['receita']."</td>";
+                                echo "</tr>";
+                            }
+
+                            $db_instance->disconnect();
 
                         ?> 
                     </tbody>

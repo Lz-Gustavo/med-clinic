@@ -57,10 +57,10 @@
                 <table class="table table-bordered">
                     <thead>
                         <tr>
+                            <th>CRM</th>
                             <th>First Name</th>
                             <th>Last Name</th>
                             <th>Specialization</th>
-                            <th>CRM</th>
                             <th>Email</th>
                             <th>Telephone</th>
                             <th>Address</th>
@@ -74,44 +74,36 @@
                             //error_reporting(E_ALL);
 
                             require_once "../../php_backend/class/storage.php";
-                            require_once "../../php_backend/class/person.php";
-                            require_once "../../php_backend/class/secretary.php";
 
-                            $secretary = new Secretary("admin", "istrator", "1");
+                            $db_instance = Storage::getInstance();
+                            $db_instance->connect("GeracaoSaude");
 
                             if ((isset($_GET['name'])) || (isset($_GET['crm']))) {
-                                $result = $secretary->search_doctor();
-
-                                for ($i = 0; $i < count($result); $i++) {
-
-                                    echo "<tr>";
-                                    echo "<td>".$result[$i]->name."</td>";
-                                    echo "<td>".$result[$i]->last_name."</td>";
-                                    echo "<td>".$result[$i]->spec."</td>";
-                                    echo "<td>".$result[$i]->crm."</td>";
-                                    echo "<td>".$result[$i]->email."</td>";
-                                    echo "<td>".$result[$i]->tel."</td>";
-                                    echo "<td>".$result[$i]->addr."</td>";
-                                    echo "</tr>";
-                                }
+                                
+                                //TODO: call 'read()' method with name and crm filters
+                                $result = $db_instance->read_all("medicos");
                             }
+
                             else {
-                                $result = $secretary->show_all_doctors();
-
-                                for ($i = 0; $i < count($result->med); $i++) {
-
-                                    echo "<tr>";
-                                    echo "<td>".$result->med[$i]->name."</td>";
-                                    echo "<td>".$result->med[$i]->last_name."</td>";
-                                    echo "<td>".$result->med[$i]->spec."</td>";
-                                    echo "<td>".$result->med[$i]->crm."</td>";
-                                    echo "<td>".$result->med[$i]->email."</td>";
-                                    echo "<td>".$result->med[$i]->tel."</td>";
-                                    echo "<td>".$result->med[$i]->addr."</td>";
-                                    echo "</tr>";
-                                }
+                        
+                                $result = $db_instance->read_all("medicos");
                             }
 
+                            for ($i = 0; $i < count($result); $i++) {
+
+                                echo "<tr>";
+                                echo "<td>".$result[$i]['crm']."</td>";
+                                echo "<td>".$result[$i]['nome']."</td>";
+                                echo "<td>".$result[$i]['sobrenome']."</td>";
+                                echo "<td>".$result[$i]['especializacao']."</td>";
+                                echo "<td>".$result[$i]['email']."</td>";
+                                echo "<td>".$result[$i]['telefone']."</td>";
+                                echo "<td>".$result[$i]['endereco']."</td>";
+                                echo "</tr>";
+                            }
+
+                            $db_instance->disconnect();
+                            
                         ?>
                     </tbody>
 

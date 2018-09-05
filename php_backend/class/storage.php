@@ -1,12 +1,12 @@
 <?php
-	/*	med-clinic										*/
+	/*	med-clinic	v2.0 									*/
 	/*												*/
 	/*	"storage.php" contains the implementation of the Storage class, which provides		*/
 	/*	read/writes primitives to the data storing methods from other classes. Basically	*/
-	/*	acts like a API set that manipulates information over the XML files, that represent	*/
+	/*	acts like a API set that manipulates information over a MySQL DB, that represent	*/
 	/*	the persistent storage for the system data.						*/
 	/* 												*/
-	/*	developed by: Luiz G. Xavier and Albano Borba			June/2018		*/
+	/*	developed by: Luiz G. Xavier and Albano Borba			Sept/2018		*/
 
 	//ini_set('display_errors', 1);
 	//ini_set('display_startup_errors', 1);
@@ -14,9 +14,7 @@
 
 	class Storage {
 		private static $instance = NULL;
-		private $file_doctors;
-		private $file_patients;
-		private $file_history;
+		private $db_connectiton;
 
 		private function __construct() {
 
@@ -28,33 +26,121 @@
 			return self::$instance;
 		}
 
-		public function write($conection, $table, $input_array) {
-			// PDO, String, Array -> -
-			//
-			// writes a NEW NODE on the specified database table using the given 'input_array' values
+		public function connect($schema) {
+			// String -> Int (Boolean rep.)
+			// ...
+			// establishes a connection on the given schema on the mysql database hosted locally
 
-			$sql = "INSERT INTO ".$table." VALUES ....";
+			$user = "administrator";
+			$pw = "ronaldinho10";
+			$host = "localhost";
+
+			try {		
+				$this->db_connection = new PDO("mysql:host=".$host.";dbname=".$schema.";charset=utf8", $user, $pw);
+				$this->db_connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+				
+				//echo "foi<br>";
+			}
+			catch (PDOException $e) {
+				echo "Exception: ".$e->getMessage()."<br>";
+			}
+		}
+
+		public function disconnect() {
+			// deletes PDO connection with the database
+
+			$this->db_connection = NULL;
+		}
+
+		public function write($array_data) {
+			// Array -> Int (Boolean rep.)
+			// ...
+			// structures a SQL instruction to insert values from array map into  the specified
+			// using an universal db access key
+
+			try {
+				$index = array_keys($array_data);
+
+				$sql = "INSERT INTO ".$array_data["TABLE:"]."(";
+				for ($i = 1; $i < count($array_data); $i++) {
+
+					//$sql .= rtrim(strtolower(implode("", [$index[$i]])), ":").", ";
+					$sql .= rtrim($index[$i], ":").", ";
+				}
+				$sql = rtrim($sql, ", ");
+				$sql .= ") VALUES (";
+
+				//echo "<br>INDEX: ".count($index);
+				for ($i = 1; $i < count($index); $i++) {
+					
+					$sql .= "'".$array_data[$index[$i]]."', ";
+				}
+				$sql = rtrim($sql, ", ");
+				$sql .= ");";
+				//echo "<br><b>SQL query:</b> ".$sql."<br><br>";
+
+				$this->db_connection->exec($sql);
+				
+				return 1;
+			}
+			catch (Exception $e) {
+				echo "Exception: ".$e->getMessage()."<br>";
+				return 0;
+			}
+		}
+
+		public function read($array_fields) {
+			// Array -> String
+			// ...
+			// receives a list of specific fields to be extracted from the db, with the table
+			// name on first pos, and returns an entire string with the query result
+
+			try {
+				//echo "teste<br>";
+				//print_r($array_fields);
+				//echo "<br>";
+				//echo count($array_fields);
+
+				$sql = "SELECT ";
+				for ($i = 0; $i < count($array_fields)-1; $i++) {
+					$sql .= $array_fields[$i].", ";
+				}
+				$sql = rtrim($sql, ", ");
+				$sql .= " FROM ".$array_fields["TABLE:"].";";
+
+				//echo "<br><b>SQL query:</b> ".$sql."<br><br>";
+
+				$result = $this->db_connection->query($sql);
+				$rows = $result->fetchAll();
+
+				//print_r($rows);
+				return $rows;
+			}
+			catch (Exception $e) {
+				echo "Exception: ".$e->getMessage()."<br>";
+			}
+		}
+		public function read_all($table_name) {
+			// String -> String
+			// ...
+			// select all results from a given table name
+
+			try {
+				$sql = "SELECT * FROM ".$table_name.";";
+
+				//echo "<br><b>SQL query:</b> ".$sql."<br><br>";
+
+				$result = $this->db_connection->query($sql);
+				$rows = $result->fetchAll();
 			
+				//print_r($rows);
+				return $rows;
+			}
+			catch (Exception $e) {
+				echo "Exception: ".$e->getMessage()."<br>";
+			}
 		}
-		public function read($conection, $table, $filter) {
-			// String, String -> Array
-			//
-			// structures a SQL query with received data and returns the result in array format
-
-			
-		}
-		public function show_all($connection, $table) {
-			// PDO -> Array
-			//
-			// returns all the content on the specified table within the database
-
-			$sql = "SELECT * FROM ".$table;
-			$result = $conection->query($sql);
-			$rows = $result->fetchAll();
-
-			print_r($rows);
-			return $rows;
-		}
+		
 		public function modify($conection, $table, $key_cell, $modify_array) {
 			// PDO, Number, Array -> -
 			//

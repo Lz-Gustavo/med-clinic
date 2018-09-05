@@ -1,12 +1,12 @@
 <?php
-	/*	med-clinic										*/
+	/*	med-clinic	v2.0									*/
 	/*												*/
 	/*	"doctor.php" is the code implementation of the doctor entity of the clinic. Just	*/
 	/* 	like the secretary it has admin. privileges on the database, being able to modify	*/
-	/*	certain fields in the history of appointments XML file, changing its registry info.	*/
+	/*	certain fields in the history of appointments on the db, changing its registry info.	*/
 	/*	and searching for specific patient's or its own future appointments.			*/
 	/*												*/
-	/*	developed by: Luiz G. Xavier and Albano Borba			June/2018		*/
+	/*	developed by: Luiz G. Xavier and Albano Borba			Sept/2018		*/
 
 	require_once "person.php";
 	require_once "storage.php";

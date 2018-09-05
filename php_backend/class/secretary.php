@@ -1,12 +1,12 @@
 <?php
-	/*	med-clinic										*/
+	/*	med-clinic	v2.0									*/
 	/*												*/
 	/*	"secretary.php" is the code implementation of the Secretary class that represents	*/
 	/* 	the secretary entity of the clinic. It can operate as a full permission administrator	*/
 	/*	of the clinic's database, registering/searching new doctors, patients and future	*/
 	/*	appointments on the system.								*/
 	/*												*/
-	/*	developed by: Luiz G. Xavier and Albano Borba			June/2018		*/
+	/*	developed by: Luiz G. Xavier and Albano Borba			Sept/2018		*/
 
 	require_once "person.php";
 	require_once "storage.php";
