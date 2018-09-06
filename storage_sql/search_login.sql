@@ -1,0 +1,1 @@
+select * from GeracaoSaude.credentials where cpf=(select cpf from GeracaoSaude.pacientes where nome like 'user';);

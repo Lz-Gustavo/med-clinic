@@ -8,9 +8,9 @@
 	/* 												*/
 	/*	developed by: Luiz G. Xavier and Albano Borba			Sept/2018		*/
 
-	//ini_set('display_errors', 1);
-	//ini_set('display_startup_errors', 1);
-	//error_reporting(E_ALL);
+	ini_set('display_errors', 1);
+	ini_set('display_startup_errors', 1);
+	error_reporting(E_ALL);
 
 	class Storage {
 		private static $instance = NULL;
@@ -126,7 +126,7 @@
 			// select all results from a given table name
 
 			try {
-				$sql = "SELECT * FROM ".$table_name.";";
+				$sql = "SELECT * FROM GeracaoSaude.".$table_name.";";
 
 				//echo "<br><b>SQL query:</b> ".$sql."<br><br>";
 
@@ -147,12 +147,56 @@
 			// used to modify data on patients and doctors or to add information on an appointment registry 
 
 		}
-		public function login($connection, $table, $role, $user, $password) {
-			// PDO, String, String, Number -> Number (Boolean Repr.)
+		public function login($role, $user, $password) {
+			// String, String, String -> Number (Boolean Repr.)
 			//
 			// authenticates login for doctors and patients, verifying matching credentials of 'Name/CRM' for
-			// doctors and 'admin/admin' for administrators
+			// doctors and patientes, or 'admin/admin' for administrators
 
+			try {
+
+				if ($role == "atendente") {
+
+					if ($password == "admin")
+						return 1;
+					
+					return 0;
+				}
+				else if ($role == "paciente")
+					$sql = "select * from GeracaoSaude.credentials where cpf=(select cpf from GeracaoSaude.pacientes where nome like '".$user."');";
+				
+				else if ($role == "medico")
+					$sql = "select * from GeracaoSaude.credentials where crm=(select crm from GeracaoSaude.medicos where nome like '".$user."');";
+			
+				$result = $this->db_connection->query($sql);
+				$rows = $result->fetchAll();
+
+				if (count($rows) == 0) {
+					
+					//user not found
+					return 0;
+				}
+
+				$pw = hash("md5", $password);
+
+				//var_dump($rows);
+				//echo "<br>pass: ".$pw;
+
+				for ($i = 0; $i < count($rows); ++$i) {
+
+					if ($rows[$i]['pw'] == $pw) {
+						
+						//all good
+						return 1;
+					}
+				}
+
+				//incorrect password
+				return 0;
+			}
+			catch (Exception $e) {
+				echo "Exception: ".$e->getMessage()."<br>";
+			}
 		}
 		public function check_avaiable($conection, $table, $crm, $day, $time) {
 			// PDO, Number, String, String(bitmap) -> Number
