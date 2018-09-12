@@ -57,10 +57,7 @@
                 <table class="table table-bordered">
                     <thead>
                         <tr>
-                            <th>First Name</th>
-                            <!--th>Last Name</th-->
                             <th>CPF</th>
-                            <th>Doctor</th>
                             <th>CRM</th>
                             <th>Date</th>
                             <th>Hour</th>
@@ -92,15 +89,12 @@
 
                             for ($i = 0; $i < count($result); $i++) {
 
-                                $hour = $hd->translate_time($result[$i]['hora']);
+                                $hour = $db_instance->translate_time($result[$i]['horario']);
 
                                 echo "<tr>";
-                                echo "<td>".$result[$i]['nome']."</td>";
-                                //echo "<td>".$result[$i]['sobrenome']."</td>";
                                 echo "<td>".$result[$i]['cpf']."</td>";
-                                echo "<td>".$result[$i]['medico']."</td>";
                                 echo "<td>".$result[$i]['crm']."</td>";
-                                echo "<td>".$result[$i]['data']."</td>";
+                                echo "<td>".$result[$i]['dia']."</td>";
                                 echo "<td>".$hour."</td>";
                                 //echo "<td>".$result[$i]['obs']."</td>";
                                 //echo "<td>".$result[$i]['receita']."</td>";

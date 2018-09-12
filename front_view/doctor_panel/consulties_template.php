@@ -51,11 +51,8 @@
                 <table class="table table-bordered">
                     <thead>
                         <tr>
-                            <th>First Name</th>
-                            <!--th>Last Name</th-->
+                            <!--th>First Name</th-->
                             <th>CPF</th>
-                            <!--th>Doctor</th-->
-                            <!--th>CRM</th-->
                             <th>Date</th>
                             <th>Hour</th>
                             <th>Notes</th>
@@ -64,36 +61,44 @@
                     </thead>
                     <tbody>
                         <?php
-							//ini_set('display_errors', 1);
-							//ini_set('display_startup_errors', 1);
-							//error_reporting(E_ALL);
+							ini_set('display_errors', 1);
+							ini_set('display_startup_errors', 1);
+							error_reporting(E_ALL);
 
 							require_once "../../php_backend/class/storage.php";
-							require_once "../../php_backend/class/person.php";
-							require_once "../../php_backend/class/doctor.php";
 
-							session_start();
-							$_GET['doctor_name'] = $_SESSION['login_user'];
+							//session_start();
+							//$_GET['doctor_name'] = $_SESSION['login_user'];
 
-							$doctor = new Doctor("admin", "istrator", "1");
-                            $hd = Storage::getInstance();
+							
+                            $db_instance = Storage::getInstance();
+                            $db_instance->connect("GeracaoSaude");
 
-                            $result = $doctor->search_history();
+                            if ((isset($_GET['name'])) || (isset($_GET['doctor_name']))) {
+                             
+                                //TODO: call 'read()' with specific name and doctor name filters
+                                $result = $db_instance->read_all("consultas");
+                            }
+                            else {
+
+                                $result = $db_instance->read_all("consultas");
+                            }
 
                             for ($i = 0; $i < count($result); $i++) {
 
-                                $hour = $hd->translate_time($result[$i]->time);
-                                $index = $result[$i]->crm."!".$result[$i]->appt_date."!".$result[$i]->time;
+                                $hour = $db_instance->translate_time($result[$i]['horario']);
+                                $index = $result[$i]['crm']."!".$result[$i]['dia']."!".$result[$i]['horario'];
 
                                 echo "<tr>";
-                                echo "<td id='name'>".$result[$i]->name."</td>";
-                                echo "<td>".$result[$i]->cpf."</td>";
-                                echo "<td>".$result[$i]->appt_date."</td>";
+                                echo "<td>".$result[$i]['cpf']."</td>";
+                                echo "<td>".$result[$i]['dia']."</td>";
                                 echo "<td>".$hour."</td>";
-                                echo "<td id='notes' data-pk='".$index."'>".$result[$i]->obs."</td>";
-                                echo "<td id='prescription' data-pk='".$index."'>".$result[$i]->recipe."</td>";
+                                echo "<td id='notes' data-pk='".$index."'>".$result[$i]['obs']."</td>";
+                                echo "<td id='prescription' data-pk='".$index."'>".$result[$i]['receita']."</td>";
                                 echo "</tr>";
                             }
+
+                            $db_instance->disconnect();
 						?>
                     </tbody>
 

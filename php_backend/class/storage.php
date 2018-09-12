@@ -220,7 +220,10 @@
 				
 				if ($vector_bitmap[$i] == 1) {
 					$hour = $base_hour + $i;
-					if ($hour > 12) {
+					if ($hour >= 12) {
+
+						//lunch time
+						$hour++;
 						$hour = $hour - 12;
 
 						// concatenates PM
