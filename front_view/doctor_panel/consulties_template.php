@@ -39,9 +39,10 @@
 
                     <button class='filter-button m-l-20 m-r-40' type='submit'>Filter</button>
                     
-                    <!--div class="wrap-input m-t-10" style="width: 60%">
-                        <input class="input" type="text" name="name" placeholder="Patient's Name">
-                    </div-->
+                    <div class="wrap-input m-t-10" style="width: 60%">
+                        <input class="input" type="text" name="cpf" placeholder="Patient's CPF">
+                    </div>
+
                     <input type = "radio" name = "time" value = "all" checked> Todas<br>
                     <input type = "radio" name = "time" value = "future"> Futuras<br>
                 </div>
@@ -67,22 +68,27 @@
 
 							require_once "../../php_backend/class/storage.php";
 
-							//session_start();
-							//$_GET['doctor_name'] = $_SESSION['login_user'];
-
+							session_start();
 							
                             $db_instance = Storage::getInstance();
                             $db_instance->connect("GeracaoSaude");
 
-                            if ((isset($_GET['name'])) || (isset($_GET['doctor_name']))) {
-                             
-                                //TODO: call 'read()' with specific name and doctor name filters
-                                $result = $db_instance->read_all("consultas");
-                            }
-                            else {
+                            $check_info = array(
+                                "TABLE:" => "medicos",
+                                "nome:" => $_SESSION['login_user']
+                            );
 
-                                $result = $db_instance->read_all("consultas");
-                            }
+                            $aux_data = $db_instance->read($check_info);
+
+                            $filter = array(
+                                "TABLE:" => "consultas",
+                                "crm:" => $aux_data[0]['crm']
+                            );
+
+                            if ((isset($_GET['cpf'])) && (is_numeric($_GET['cpf'])))
+                                $filter['cpf:'] = $_GET['cpf'];
+
+                            $result = $db_instance->read($filter);
 
                             for ($i = 0; $i < count($result); $i++) {
 

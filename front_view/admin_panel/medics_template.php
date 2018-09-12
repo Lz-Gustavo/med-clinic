@@ -42,14 +42,12 @@
                 <div style="text-align: center;" class="horizontal-align">
                     <button class='filter-button m-l-20 m-r-40' type="submit">Filter</button>
                     <div class="wrap-input m-t-10" style="width: 60%">
-                        <input class="input" type="text" name="name" placeholder="Doctor's Name">
+                        <input class="input" type="text" name="crm" placeholder="Doctor's CRM">
                     </div>
                     
-                    <!--
                     <div class="wrap-input m-t-10" style="width: 60%">
-                        <input class="input" type="text" name="crm" placeholder="CRM">
+                        <input class="input" type="text" name="name" placeholder="Doctor's Name">
                     </div>
-                    -->
                 </div>          
             </form>
             
@@ -80,8 +78,18 @@
 
                             if ((isset($_GET['name'])) || (isset($_GET['crm']))) {
                                 
-                                //TODO: call 'read()' method with name and crm filters
-                                $result = $db_instance->read_all("medicos");
+                                $filter = array(
+                                    "TABLE:" => "medicos"
+                                );
+
+                                if (is_numeric($_GET['crm']))
+                                    $filter["crm:"] = $_GET['crm'];
+                                
+                                if (strlen($_GET['name']) >= 1)
+                                    $filter["nome:"] = $_GET['name'];
+
+
+                                $result = $db_instance->read($filter);
                             }
 
                             else {

@@ -37,6 +37,11 @@
             <form method="get">
                 <div style="text-align: center;" class="horizontal-align">
                     <button class='filter-button m-l-20 m-r-40' type="submit">Filter</button>
+
+                    <div class="wrap-input m-t-10" style="width: 60%">
+                        <input class="input" name="cpf" type="text" placeholder="Patient's CPF">
+                    </div>
+
                     <div class="wrap-input m-t-10" style="width: 60%">
                         <input class="input" type="text" name="name" placeholder="Patient's Name">
                     </div>
@@ -69,8 +74,18 @@
 
                             if ((isset($_GET['name'])) || (isset($_GET['cpf']))) {
                                 
-                                //TODO: call 'read()' with specific cpf and name
-                                $result = $db_instance->read_all("pacientes");
+                                $filter = array(
+                                    "TABLE:" => "pacientes"
+                                );
+
+                                if (is_numeric($_GET['cpf']))
+                                    $filter["cpf:"] = $_GET['cpf'];
+                                
+                                if (strlen($_GET['name']) >= 1)
+                                    $filter["nome:"] = $_GET['name'];
+
+
+                                $result = $db_instance->read($filter);
                             }
                             else {
 

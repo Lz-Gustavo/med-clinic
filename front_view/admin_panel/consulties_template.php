@@ -42,14 +42,13 @@
                 <div style="text-align: center;" class="horizontal-align">
                     <button class='filter-button m-l-20 m-r-40' type="submit">Filter</button>
                     <div class="wrap-input m-t-10" style="width: 60%">
-                        <input class="input" type="text" name="name" placeholder="Patient's Name">
+                        <input class="input" type="text" name="cpf" placeholder="Patient's CPF">
                     </div>
 
-                    <!--
                     <div class="wrap-input m-t-10" style="width: 60%">
-                        <input class="input" type="text" name="doctor_name" placeholder="Doctor's Name">
+                        <input class="input" type="text" name="crm" placeholder="Doctor's CRM">
                     </div>
-                    -->
+
                 </div>
             </form>
 
@@ -77,10 +76,20 @@
                             $db_instance = Storage::getInstance();
                             $db_instance->connect("GeracaoSaude");
 
-                            if ((isset($_GET['name'])) || (isset($_GET['doctor_name']))) {
-                             
-                                //TODO: call 'read()' with specific name and doctor name filters
-                                $result = $db_instance->read_all("consultas");
+                            if ((isset($_GET['crm'])) || (isset($_GET['cpf']))) {
+
+                                $filter = array(
+                                    "TABLE:" => "consultas"
+                                );
+
+                                if (is_numeric($_GET['crm']))
+                                    $filter["crm:"] = $_GET['crm'];
+                                
+                                if (is_numeric($_GET['cpf']))
+                                    $filter["cpf:"] = $_GET['cpf'];
+
+
+                                $result = $db_instance->read($filter);
                             }
                             else {
 
@@ -101,6 +110,7 @@
                                 echo "</tr>";
                             }
 
+                            unset($_GET);
                             $db_instance->disconnect();
 
                         ?> 

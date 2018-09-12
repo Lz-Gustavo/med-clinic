@@ -19,28 +19,35 @@
 <body style="background-color:#fff;">
 
 	<?php
-			//ini_set('display_errors', 1);
-			//ini_set('display_startup_errors', 1);
-			//error_reporting(E_ALL);
+			ini_set('display_errors', 1);
+			ini_set('display_startup_errors', 1);
+			error_reporting(E_ALL);
 
 			require_once "../../php_backend/class/storage.php";
-			require_once "../../php_backend/class/person.php";
-			require_once "../../php_backend/class/doctor.php";
 
 			session_start();
 			$_GET['doctor_name'] = $_SESSION['login_user'];
 			$_GET['name'] = $_SESSION['login_user'];
-			$doctor = new Doctor("admin", "istrator", "1");
 
-            $result = $doctor->search_profile();
+            $db_instance = Storage::getInstance();
+            $db_instance->connect("GeracaoSaude");
             
-			$_POST['name'] = $result[0]->name;
-            $_POST['last_name'] = $result[0]->last_name;
-            $_POST['spec'] = $result[0]->spec;
-            $_POST['crm'] = $result[0]->crm;
-			$_POST['email'] = $result[0]->email;
-            $_POST['tel'] = $result[0]->tel;
-            $_POST['addr'] = $result[0]->addr;
+            $retrieve_data = array(
+                "TABLE:" => "medicos",
+                "nome" => $_SESSION['login_user']
+            );
+
+            $result = $db_instance->read($retrieve_data);
+
+			$_POST['name'] = $result[0]['nome'];
+            $_POST['last_name'] = $result[0]['sobrenome'];
+            $_POST['spec'] = $result[0]['especializacao'];
+            $_POST['crm'] = $result[0]['crm'];
+			$_POST['email'] = $result[0]['email'];
+            $_POST['tel'] = $result[0]['telefone'];
+            $_POST['addr'] = $result[0]['endereco'];
+
+            $db_instance->disconnect();
 	?>
 
     <div class="box">

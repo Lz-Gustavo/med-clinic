@@ -101,12 +101,19 @@
 				//echo "<br>";
 				//echo count($array_fields);
 
-				$sql = "SELECT ";
-				for ($i = 0; $i < count($array_fields)-1; $i++) {
-					$sql .= $array_fields[$i].", ";
+				$index = array_keys($array_fields);
+
+				$sql = "SELECT * FROM GeracaoSaude.".$array_fields["TABLE:"];
+
+				for ($i = 1; $i < count($array_fields); $i++) {
+
+					if ($i == 1)
+						$sql .= " WHERE ";
+
+					$sql .= rtrim($index[$i], ":")."='".$array_fields[$index[$i]]."' AND ";
 				}
-				$sql = rtrim($sql, ", ");
-				$sql .= " FROM ".$array_fields["TABLE:"].";";
+				$sql = rtrim($sql, " AND ");
+				$sql .= ";";
 
 				//echo "<br><b>SQL query:</b> ".$sql."<br><br>";
 
