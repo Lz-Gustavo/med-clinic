@@ -4,19 +4,23 @@
     error_reporting(E_ALL);
 
 	require_once "../../class/storage.php";
-	require_once "../../class/person.php";
-	require_once "../../class/secretary.php";
 
-	$secretary = new Secretary("admin", "istrator", "1");
+    session_start();
 
-    $secretary->add_changes("Nome:", $_POST['name']);
-    //$secretary->add_changes("Sobrenome:", $_POST['last_name']);
-    $secretary->add_changes("CPF:", $_POST['cpf']);
-    $secretary->add_changes("Nome-do-Medico:", $_POST['doctor_name']);
-    $secretary->add_changes("CRM:", $_POST['crm']);
-    $secretary->add_changes("Data:", $_POST['appt_date']);
-    $secretary->add_changes("Horario:", $_POST['time']);
-    $secretary->commit_changes("historico");
+    $db_instance = Storage::getInstance();
+	$db_instance->connect("GeracaoSaude");
+
+	$array_data = array(
+		"TABLE:" => "consultas",
+		"crm:" => $_POST['crm'],
+		"cpf:" => $_POST['cpf'],
+        "clinica:" => $_SESSION['clinic'],
+        "dia:" => $_POST['appt_date'],
+        "horario:" => $_POST['time']
+	);
+
+	$db_instance->write($array_data);
+	$db_instance->disconnect();
 
     header("location: ../../../front_view/admin_panel/consulties_template.php");
 ?>

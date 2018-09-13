@@ -14,6 +14,7 @@
 
 				session_start();
 				$_SESSION['login_user'] = $_POST['login_user'];
+				$_SESSION['clinic'] = 1;
 				echo "0";
 			}
 			else {
@@ -27,6 +28,7 @@
 
 				session_start();
 				$_SESSION['login_user'] = $_POST['login_user'];
+				$_SESSION['clinic'] = 1;
 				echo "1";
 			}
 			else {

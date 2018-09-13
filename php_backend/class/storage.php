@@ -77,7 +77,8 @@
 				}
 				$sql = rtrim($sql, ", ");
 				$sql .= ");";
-				//echo "<br><b>SQL query:</b> ".$sql."<br><br>";
+				
+				echo "<br><b>SQL query:</b> ".$sql."<br><br>";
 
 				$this->db_connection->exec($sql);
 				
