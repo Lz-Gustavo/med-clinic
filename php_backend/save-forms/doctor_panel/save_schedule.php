@@ -1,8 +1,6 @@
 <?php
 
     require_once "../../class/storage.php";
-    require_once "../../class/person.php";
-    require_once "../../class/doctor.php";
 
     $mon = $_POST["mon"];
     $tue = $_POST["tue"];

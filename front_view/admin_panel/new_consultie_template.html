@@ -19,6 +19,43 @@
 <body style="background-color:#fff;">
 
     <script>
+
+        function getPacientes() {
+            
+            if (window.XMLHttpRequest) {
+                // code for IE7+, Firefox, Chrome, Opera, Safari
+                xmlhttp = new XMLHttpRequest();
+            } else {
+                // code for IE6, IE5
+                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            xmlhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById("PacCpf").innerHTML = this.responseText;
+                }
+            };
+            xmlhttp.open("GET","../../php_backend/save-forms/admin_panel/ajax_patients.php", true);
+            xmlhttp.send();
+        }
+
+        function getMedicos() {
+            
+            if (window.XMLHttpRequest) {
+                // code for IE7+, Firefox, Chrome, Opera, Safari
+                xmlhttp = new XMLHttpRequest();
+            } else {
+                // code for IE6, IE5
+                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            xmlhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById("MedCrm").innerHTML = this.responseText;
+                }
+            };
+            xmlhttp.open("GET","../../php_backend/save-forms/admin_panel/ajax_doctors.php", true);
+            xmlhttp.send();
+        }
+
         function validate() {
             var i;
             var x = new Array();
@@ -41,49 +78,24 @@
 
         <div class="show-dados">
 		<form method="post" action="../../php_backend/save-forms/admin_panel/save_consultie.php" onsubmit="return validate()">
-            <!--div class="horizontal-align w-full">
-                <div style="width: 20%;">
-                    <p>First Name:</p>
-				</div>
-				
-                <div class="wrap-input m-t-10">
-                    <input class="input" type="text" name="name">
-                </div>
-			</div-->
-
-            <!--div class="horizontal-align w-full">
-                <div style="width: 20%;">
-                    <p>Last name:</p>
-                </div>
-                <div class="wrap-input m-t-10">
-                    <input class="input" type="text" name="last_name">
-                </div>
-            </div-->
             
             <div class="horizontal-align w-full">
                 <div style="width: 20%;">
                     <p>CPF:</p>
                 </div>
                 <div class="wrap-input m-t-10">
-                    <input class="input" type="text" name="cpf" > <!--pattern=".{11,11}" title="Insert only the 11 numbers"> -->
+                    <select class="input" id="PacCpf" name="cpf" onclick="getPacientes()">
+                    </select>
                 </div>
 			</div>
 			
-			<!--div class="horizontal-align w-full">
-                <div style="width: 20%;">
-                    <p>Doctor Name:</p>
-                </div>
-                <div class="wrap-input m-t-10">
-                    <input class="input" type="text" name="doctor_name">
-                </div>
-            </div-->
-
             <div class="horizontal-align w-full">
                 <div style="width: 20%;">
                     <p>CRM:</p>
                 </div>
                 <div class="wrap-input m-t-10">
-                    <input class="input" type="text" name="crm">
+                    <select class="input" id="MedCrm" name="crm" onclick="getMedicos()">
+                    </select>
                 </div>
             </div>
 
