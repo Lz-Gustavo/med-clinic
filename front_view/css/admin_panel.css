@@ -217,9 +217,9 @@ border: none !important;
 }
 
 .info {
-  width: 25%;
-  padding-left: 30px;
-  padding-right: 30px;
+  width: 100%;
+  padding-top: 30px;
+  padding-bottom: 10px;
   text-align: center;
 
   background: #f7f7f7;
@@ -231,7 +231,7 @@ border: none !important;
 }
 
 .panel {
-  width: 75%;
+  width: 100%;
   padding-left: 30px;
   padding-right: 30px;
   padding-top: 30px;
@@ -252,19 +252,21 @@ border: none !important;
 
 .text-infos {
   text-align: left;
+  justify-content: left;
 }
 
 .wrap-button {
   overflow: hidden;
   align-items: center;
+  width: 100%;
 }
 
 .menu-button {
   
   justify-content: center;
   align-items: center;
-  width: 60%;
-  height: 60px;
+  width: 10%;
+  height: 40px;
   border-radius: 10px;
   background: var(--main-color);
 
@@ -285,8 +287,8 @@ border: none !important;
   
   justify-content: center;
   align-items: center;
-  width: 30%;
-  height: 20px;
+  width: 10%;
+  height: 40px;
   border-radius: 10px;
   background: gray;
 
