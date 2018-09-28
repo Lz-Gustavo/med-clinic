@@ -99,8 +99,8 @@
                                 echo "<td>".$result[$i]['cpf']."</td>";
                                 echo "<td>".$result[$i]['dia']."</td>";
                                 echo "<td>".$hour."</td>";
-                                echo "<td id='notes' data-pk='".$index."'>".$result[$i]['obs']."</td>";
-                                echo "<td id='prescription' data-pk='".$index."'>".$result[$i]['receita']."</td>";
+                                echo "<td id='obs' data-pk='".$index."'>".$result[$i]['obs']."</td>";
+                                echo "<td id='receita' data-pk='".$index."'>".$result[$i]['receita']."</td>";
                                 echo "</tr>";
                             }
 
@@ -120,9 +120,9 @@
             //`popup` / `inline`
             $.fn.editable.defaults.mode = 'inline';
             //$.fn.editable.defaults.ajaxOptions = {type: "PUT"};
-            $('#notes, #prescription').editable({
+            $('#obs, #receita').editable({
                 //pk: 1,
-                url: 'save_notes.php',
+                url: '../../php_backend/save-forms/doctor_panel/save_notes.php',
 
                 ajaxOptions:{
                     type:'post'
@@ -130,7 +130,7 @@
             });
             
             
-            $('#notes, #prescription').on('save', function(e, params) {
+            $('#obs, #receita').on('save', function(e, params) {
                 //console.log(params.newValue);                
             });
 

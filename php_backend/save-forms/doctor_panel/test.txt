@@ -1,0 +1,1 @@
+UPDATE GeracaoSaude.consultas SET receita='se fude' WHERE crm='1234' AND dia='2018-09-29' AND horario='1 0 0 0 0 0 0 0';

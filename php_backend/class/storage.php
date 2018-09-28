@@ -155,6 +155,7 @@
 			// used to modify data on patients and doctors or to add information on an appointment registry 
 
 		}
+
 		public function login($role, $user, $password) {
 			// String, String, String -> Number (Boolean Repr.)
 			//
@@ -245,6 +246,29 @@
 				}
 			}
 			return $hour;
+		}
+
+		public function SQLinsert($sql) {
+
+			try {
+				$this->db_connection->exec($sql);
+			}
+			catch (Exception $e) {
+				echo "Exception: ".$e->getMessage()."<br>";
+			}
+		}
+
+		public function SQLretrieve($sql) {
+			
+			try {
+				$result = $this->db_connection->query($sql);
+				$rows = $result->fetchAll();
+			}
+			catch (Exception $e) {
+				echo "Exception: ".$e->getMessage()."<br>";
+			}
+
+			return $rows;
 		}
 	}
 ?>
