@@ -31,6 +31,68 @@
 
     <div class="box">
         <div class="header-show-dados">
+            <p class="title">Future Consulties</p>
+        </div>
+        <div class="p-t-20">
+            <div class="table-box m-t-20 m-l-20">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <!--th>First Name</th-->
+                            <th>CPF</th>
+                            <th>Date</th>
+                            <th>Hour</th>
+                            <th>Notes</th>
+                            <th>Prescription</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                            
+                            ini_set('display_errors', 1);
+							ini_set('display_startup_errors', 1);
+							error_reporting(E_ALL);
+
+							require_once "../../php_backend/class/storage.php";
+
+							session_start();
+							
+                            $db_instance = Storage::getInstance();
+                            $db_instance->connect("GeracaoSaude");
+
+                            $now = new DateTime(null, new DateTimeZone('America/Sao_Paulo'));
+
+                            $sql = "SELECT * FROM GeracaoSaude.consultas WHERE crm='".$_SESSION['login_crm']."' AND CAST(dia AS Date)>='".$now->format("Ymd"."';");
+
+                            $result = $db_instance->SQLretrieve($sql);
+
+                            for ($i = 0; $i < count($result); $i++) {
+
+                                $hour = $db_instance->translate_time($result[$i]['horario']);
+                                $index = $result[$i]['crm']."!".$result[$i]['dia']."!".$result[$i]['horario'];
+
+                                echo "<tr>";
+                                echo "<td>".$result[$i]['cpf']."</td>";
+                                echo "<td>".$result[$i]['dia']."</td>";
+                                echo "<td>".$hour."</td>";
+                                echo "<td id='obs' data-pk='".$index."'>".$result[$i]['obs']."</td>";
+                                echo "<td id='receita' data-pk='".$index."'>".$result[$i]['receita']."</td>";
+                                echo "</tr>";
+                            }
+
+                            $db_instance->disconnect();
+						?>
+                    </tbody>
+
+                </table>
+            </div>
+
+        </div>
+    </div>
+
+
+    <div class="box">
+        <div class="header-show-dados">
             <p class="title">Consulties</p>
         </div>
         <div class="p-t-20">         
@@ -42,9 +104,6 @@
                     <div class="wrap-input m-t-10" style="width: 60%">
                         <input class="input" type="text" name="cpf" placeholder="Patient's CPF">
                     </div>
-
-                    <input type = "radio" name = "time" value = "all" checked> Todas<br>
-                    <input type = "radio" name = "time" value = "future"> Futuras<br>
                 </div>
             </form>
             
@@ -68,28 +127,28 @@
 
 							require_once "../../php_backend/class/storage.php";
 
-							session_start();
+							//session_start();
 							
                             $db_instance = Storage::getInstance();
                             $db_instance->connect("GeracaoSaude");
 
-                            $check_info = array(
-                                "TABLE:" => "medicos",
-                                "nome:" => $_SESSION['login_user']
-                            );
-
-                            $aux_data = $db_instance->read($check_info);
-
-                            $filter = array(
+                            /*$filter = array(
                                 "TABLE:" => "consultas",
-                                "crm:" => $aux_data[0]['crm']
+                                "crm:" => $_SESSION['login_crm']
                             );
 
                             if ((isset($_GET['cpf'])) && (is_numeric($_GET['cpf'])))
                                 $filter['cpf:'] = $_GET['cpf'];
-
-                            $result = $db_instance->read($filter);
-
+                            
+                            $result = $db_instance->read($filter);*/
+                            
+                            $now = new DateTime(null, new DateTimeZone('America/Sao_Paulo'));
+                            
+                            $sql = "SELECT * FROM GeracaoSaude.consultas WHERE crm='".$_SESSION['login_crm']."' AND CAST(dia AS Date)<'".$now->format("Ymd"."';");
+                            
+                            // TODO: must decide if we r gonna display all history or just past appts on this table...
+                            $result = $db_instance->SQLretrieve($sql);
+                            
                             for ($i = 0; $i < count($result); $i++) {
 
                                 $hour = $db_instance->translate_time($result[$i]['horario']);
