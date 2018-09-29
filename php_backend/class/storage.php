@@ -163,6 +163,7 @@
 			// doctors and patientes, or 'admin/admin' for administrators
 
 			try {
+				//session_start();
 
 				if ($role == "atendente") {
 
@@ -195,6 +196,12 @@
 
 					if ($rows[$i]['pw'] == $pw) {
 						
+						if ($role == "medico")
+							$_SESSION['login_crm'] = $rows[$i]['crm'];
+						
+						else if ($role == "paciente")
+							$_SESSION['login_cpf'] = $rows[$i]['cpf'];
+
 						//all good
 						return 1;
 					}

@@ -10,11 +10,6 @@
     $name = $_POST['name'];
     $value = $_POST['value'];
 
-    //$text = $pk."-".$name."-".$value."\n";
-    //$file = fopen("test.txt", "w");
-    //fwrite($file, $text);
-    //fclose($file);
-
     $db_instance = Storage::getInstance();
     $db_instance->connect("GeracaoSaude");
 
@@ -22,9 +17,9 @@
     
     $sql = "UPDATE GeracaoSaude.consultas SET ".$name."='".$value."' WHERE crm='".$array[0]."' AND dia='".$array[1]."' AND horario='".$array[2]."';";
 
-    $file = fopen("test.txt", "w");
-    fwrite($file, $sql);
-    fclose($file);
+    //$file = fopen("test.txt", "w");
+    //fwrite($file, $sql);
+    //fclose($file);
 
     $db_instance->SQLinsert($sql);
     
