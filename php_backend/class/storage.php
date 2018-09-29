@@ -149,10 +149,29 @@
 			}
 		}
 		
-		public function modify($conection, $table, $key_cell, $modify_array) {
+		public function modify_week($modify_array) {
 			// PDO, Number, Array -> -
 			//
-			// used to modify data on patients and doctors or to add information on an appointment registry 
+			// used to modify doctors week schedule
+			
+			try {
+
+				$seg = str_replace(' ', '', $modify_array['seg']);
+				$ter = str_replace(' ', '', $modify_array['ter']);
+				$qua = str_replace(' ', '', $modify_array['qua']);
+				$qui = str_replace(' ', '', $modify_array['qui']);
+				$sex = str_replace(' ', '', $modify_array['sex']);
+
+				$sql = "UPDATE GeracaoSaude.func_clinica SET seg='".$seg."', ter='".$ter."', qua='".$qua."', qui='".$qui."', sex='".$sex."'"; 
+				$sql .= " WHERE crm='".$_SESSION['login_crm']."' AND clinica='".$_SESSION['clinic']."';";
+
+				$this->db_connection->exec($sql);
+
+				return;
+			}
+			catch (Exception $e) {
+				echo "Exception: ".$e->getMessage()."<br>";
+			}
 
 		}
 

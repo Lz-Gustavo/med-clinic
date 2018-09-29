@@ -25,7 +25,8 @@
 
 			require_once "../../php_backend/class/storage.php";
 
-			session_start();
+            session_start();
+
 			$_GET['doctor_name'] = $_SESSION['login_user'];
 			$_GET['name'] = $_SESSION['login_user'];
 
@@ -142,7 +143,10 @@
     <script src="../plugins/weekly_schedule/jquery.weekly-schedule-plugin.min.js"></script>
 
     <script>
-        $('#target').weekly_schedule();
+        $('#target').weekly_schedule({
+            hours: "8:00AM-4:00PM",
+        });
+
         $('.schedule').on('selectionmade', function () {
             console.log("Selection Made");
         }).on('selectionremoved', function () {
@@ -157,37 +161,56 @@
             for (let index = 0; index < 5; index++) {
                 // if day is not selected
                 if (week[index].length == 0){
-                    hours[index] = "1 1 1 1 1 1 1 1 1 1";                
+                    hours[index] = "1 1 1 1 1 1 1 1";                
                 }
                 else {
-                    var map = [[1],[1],[1],[1],[1],[1],[1],[1],[1],[1]];                    
+                    var map = [[1],[1],[1],[1],[1],[1],[1],[1]];                    
 
-                    for (let hour = 0; hour < week[index].length; hour++) {
-                        var aux = week[index][hour].className; 
-                        aux = parseInt(aux.match(/\d+/)[0]);
-                        //console.log(aux);
+                    for (let hour = 0; hour < 4; hour++) {
 
-                        if (aux > 5) map[aux-8] = 0;
-                        else map[aux+4] = 0;
-                        //console.log(map);
+                        if (typeof week[index][hour] !== 'undefined') {
+                            
+                            var aux = week[index][hour].className; 
+                            aux = parseInt(aux.match(/\d+/)[0]);
+                            //console.log(aux);
 
+                            if (aux > 5) map[aux-8] = 0;
+                            else map[aux+3] = 0;
+                            //console.log(map);
+                        }
                     }
+                    //skip 12:00PM
+                    for (let hour = 5; hour < 9; hour++) {
+
+                        if (typeof week[index][hour] !== 'undefined') {
+                            
+                            var aux = week[index][hour].className; 
+                            aux = parseInt(aux.match(/\d+/)[0]);
+                            //console.log(aux);
+
+                            if (aux > 5) map[aux-8] = 0;
+                            else map[aux+3] = 0;
+                            //console.log(map);
+                        }
+                    }
+
                     hours[index] = map.join(" ");
                 }
+                console.log(hours[index]);
             }
 			var values = $('#submit-form').serializeArray();
             
             //ajax send
             $.post("../../php_backend/save-forms/doctor_panel/save_schedule.php",
             {
-                crm: values[3].value,
                 mon: hours[0],
                 tue: hours[1],
                 wed: hours[2],
                 thu: hours[3],
                 fri: hours[4],
             });
-    });
+        });
+
     </script>
 
 </body>
