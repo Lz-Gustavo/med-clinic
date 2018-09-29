@@ -5,10 +5,12 @@
 
     require_once "../../class/storage.php";
     
+	session_start();
+
 	$db_instance = Storage::getInstance();
 	$db_instance->connect("GeracaoSaude");
-    
-	$array_data = array(
+
+	$medic_data = array(
         "TABLE:" => "medicos",
 		"CRM:" => $_POST['crm'],
 		"NOME:" => $_POST['name'],
@@ -18,8 +20,21 @@
 		"TELEFONE:" => $_POST['tel'],
 		"ENDERECO:" => $_POST['addr'],
 	);
+
+	$func_data = array(
+		"TABLE:" => "func_clinica",
+		"CRM:" => $_POST['crm'],
+		"CLINICA:" => $_SESSION['clinic'],
+		"SEG:" => "00000000",
+		"TER:" => "00000000",
+		"QUA:" => "00000000",
+		"QUI:" => "00000000",
+		"SEX:" => "00000000",
+	);
     
-	$db_instance->write($array_data);
+	$db_instance->write($medic_data);
+	$db_instance->write($func_data);
+
 	$db_instance->disconnect();
     
     header("location: ../../../front_view/admin_panel/medics_template.php");
