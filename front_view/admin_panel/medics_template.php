@@ -75,7 +75,7 @@
                             $db_instance->connect("GeracaoSaude");
 
                             $sql = "SELECT medicos.crm, medicos.nome, medicos.sobrenome, medicos.especializacao, medicos.email, medicos.telefone, medicos.endereco ";
-                            $sql .= "FROM GeracaoSaude.medicos RIGHT JOIN GeracaoSaude.func_clinica ON medicos.crm=func_clinica.crm WHERE clinica='1'";
+                            $sql .= "FROM GeracaoSaude.medicos RIGHT JOIN GeracaoSaude.func_clinica ON medicos.crm=func_clinica.crm WHERE clinica='".$_SESSION['clinic']."'";
 
                             if (isset($_GET['crm']) && (is_numeric($_GET['crm'])))
                                 $sql .= " AND medicos.crm='".$_GET['crm']."'";
