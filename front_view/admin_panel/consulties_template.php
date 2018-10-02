@@ -34,7 +34,7 @@
             <div class="header-show-dados">
                 <p class="title">Consulties</p>
             </div>
-            <button id="new" class="add-button">New</button>
+            <!--button id="new" class="add-button">New</button-->
         </div>
         
         <div class="p-t-20">

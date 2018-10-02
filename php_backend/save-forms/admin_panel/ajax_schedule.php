@@ -46,7 +46,8 @@
 				$hour = $db_instance->translate_time($value);
 				
 				//print equivalent option
-				echo "<option value=\"".$value."\">".$hour."</option>";
+				//echo "<option value=\"".$value."\">".$hour."</option>";
+				echo "<input type=\"radio\" name=\"time\" value=\"".$value."\">".$hour."<br>"; 
 
 				//reset mask
 				$mask = array("0", "0", "0", "0", "0", "0", "0", "0");
