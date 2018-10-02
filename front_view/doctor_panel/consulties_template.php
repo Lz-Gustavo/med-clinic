@@ -33,7 +33,7 @@
         <div class="header-show-dados">
             <p class="title">Future Consulties</p>
         </div>
-        <div class="p-t-20">
+        <div>
             <div class="table-box m-t-20 m-l-20">
                 <table class="table table-bordered">
                     <thead>
@@ -95,7 +95,7 @@
         <div class="header-show-dados">
             <p class="title">Consulties</p>
         </div>
-        <div class="p-t-20">         
+        <div>         
             <form method = "get">
                 <div style="text-align: center;" class="horizontal-align">
 
@@ -107,7 +107,7 @@
                 </div>
             </form>
             
-            <div class="table-box m-t-20 m-l-20">
+            <div class="table-box-bot m-t-20 m-l-20">
                 <table class="table table-bordered">
                     <thead>
                         <tr>

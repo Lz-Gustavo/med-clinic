@@ -1,6 +1,8 @@
 <?php
 	require_once "../php_backend/class/storage.php";
 
+	session_start();
+
 	if (isset($_POST['login_user'])) {
 
 		$hd = Storage::getInstance();
@@ -12,7 +14,6 @@
 
 			if ($permission == 1) {
 
-				session_start();
 				$_SESSION['login_user'] = $_POST['login_user'];
 				$_SESSION['clinic'] = 1;
 				echo "0";
@@ -26,7 +27,6 @@
 
 			if ($permission == 1) {
 
-				session_start();
 				$_SESSION['login_user'] = $_POST['login_user'];
 				$_SESSION['clinic'] = 1;
 				echo "1";

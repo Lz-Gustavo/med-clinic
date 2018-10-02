@@ -19,6 +19,8 @@
         "horario:" => $_POST['time']
 	);
 
+	//TODO: alterar o horario disponivel do medico em func_clinicas com base nessa nova consulta agendada
+
 	$db_instance->write($array_data);
 	$db_instance->disconnect();
 

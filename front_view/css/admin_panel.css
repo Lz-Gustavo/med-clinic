@@ -264,7 +264,7 @@ border: none !important;
 }
 
 .wrap-button {
-  width: 60%;
+  width: 100%;
 
   display: -webkit-box;
   display: -webkit-flex;
@@ -301,7 +301,7 @@ border: none !important;
   
   justify-content: center;
   align-items: center;
-  width: 25%;
+  width: 20%;
   height: 20px;
   border-radius: 10px;
   background: gray;
@@ -319,13 +319,13 @@ border: none !important;
   transition: all 0.4s;
 }
 
-.menu-button:hover {
+.menu-button:hover, .back-button:hover {
   background: #333333;
 }
 
 .page-iframe {
   width: 100%;
-  height: 600px;
+  height: 95%;
   position: relative;
   border: none;
 }
