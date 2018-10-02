@@ -155,6 +155,7 @@
 			// used to modify data on patients and doctors or to add information on an appointment registry 
 
 		}
+
 		public function login($role, $user, $password) {
 			// String, String, String -> Number (Boolean Repr.)
 			//
@@ -162,6 +163,7 @@
 			// doctors and patientes, or 'admin/admin' for administrators
 
 			try {
+				//session_start();
 
 				if ($role == "atendente") {
 
@@ -194,6 +196,12 @@
 
 					if ($rows[$i]['pw'] == $pw) {
 						
+						if ($role == "medico")
+							$_SESSION['login_crm'] = $rows[$i]['crm'];
+						
+						else if ($role == "paciente")
+							$_SESSION['login_cpf'] = $rows[$i]['cpf'];
+
 						//all good
 						return 1;
 					}
@@ -245,6 +253,29 @@
 				}
 			}
 			return $hour;
+		}
+
+		public function SQLinsert($sql) {
+
+			try {
+				$this->db_connection->exec($sql);
+			}
+			catch (Exception $e) {
+				echo "Exception: ".$e->getMessage()."<br>";
+			}
+		}
+
+		public function SQLretrieve($sql) {
+			
+			try {
+				$result = $this->db_connection->query($sql);
+				$rows = $result->fetchAll();
+			}
+			catch (Exception $e) {
+				echo "Exception: ".$e->getMessage()."<br>";
+			}
+
+			return $rows;
 		}
 	}
 ?>

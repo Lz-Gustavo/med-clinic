@@ -1,0 +1,1 @@
+UPDATE GeracaoSaude.medicos SET sobrenome='Pilantra', especializacao='Obstretero', email='ronaldao@hotzao.com', telefone='32139139', endereco='Rua das Flores, 25' WHERE crm='1234';

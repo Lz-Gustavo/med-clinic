@@ -63,7 +63,7 @@
 				</div>
 				
                 <div class="wrap-input m-t-10">
-                    <input class="input" type="text" name="name" value="<?php echo $_POST['name'] ?>">
+                    <input class="input" type="text" name="name" value="<?php echo $_POST['name'] ?>" disabled>
                 </div>
 			</div>
 
@@ -90,7 +90,7 @@
                     <p>CRM:</p>
                 </div>
                 <div class="wrap-input m-t-10">
-                    <input class="input" type="text" min="0" name="crm" value="<?php echo $_POST['crm'] ?>">
+                    <input class="input" type="text" min="0" name="crm" value="<?php echo $_POST['crm'] ?>" disabled>
                 </div>
             </div>
 

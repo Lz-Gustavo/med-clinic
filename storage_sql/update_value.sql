@@ -1,0 +1,1 @@
+UPDATE GeracaoSaude.consultas SET obs='karalho' WHERE crm='1234' AND dia='2018-11-12' AND horario='0 0 1 0 0 0 0 0';

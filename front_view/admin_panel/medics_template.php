@@ -67,35 +67,25 @@
                     <tbody>
                         <?php
 
-                            //ini_set('display_errors', 1);
-                            //ini_set('display_startup_errors', 1);
-                            //error_reporting(E_ALL);
-
                             require_once "../../php_backend/class/storage.php";
+
+                            session_start();
 
                             $db_instance = Storage::getInstance();
                             $db_instance->connect("GeracaoSaude");
 
-                            if ((isset($_GET['name'])) || (isset($_GET['crm']))) {
-                                
-                                $filter = array(
-                                    "TABLE:" => "medicos"
-                                );
+                            $sql = "SELECT medicos.crm, medicos.nome, medicos.sobrenome, medicos.especializacao, medicos.email, medicos.telefone, medicos.endereco ";
+                            $sql .= "FROM GeracaoSaude.medicos RIGHT JOIN GeracaoSaude.func_clinica ON medicos.crm=func_clinica.crm WHERE clinica='1'";
 
-                                if (is_numeric($_GET['crm']))
-                                    $filter["crm:"] = $_GET['crm'];
-                                
-                                if (strlen($_GET['name']) >= 1)
-                                    $filter["nome:"] = $_GET['name'];
+                            if (isset($_GET['crm']) && (is_numeric($_GET['crm'])))
+                                $sql .= " AND medicos.crm='".$_GET['crm']."'";
+                            
+                            if ((isset($_GET['name'])) && (strlen($_GET['name']) >= 1))
+                                $sql .= " AND medicos.nome='".$_GET['name']."'";
+                            
+                            $sql .= ";";
 
-
-                                $result = $db_instance->read($filter);
-                            }
-
-                            else {
-                        
-                                $result = $db_instance->read_all("medicos");
-                            }
+                            $result = $db_instance->SQLretrieve($sql);
 
                             for ($i = 0; $i < count($result); $i++) {
 
