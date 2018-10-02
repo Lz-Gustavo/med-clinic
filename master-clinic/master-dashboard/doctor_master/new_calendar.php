@@ -11,26 +11,31 @@
         <script src="../js/daypilot-all.min.js?v=2018.2.232" type="text/javascript"></script>
     </head>
     <body>
-        <?php
-        
-            $start = $_GET['start'];
-            $end = $_GET['end'];
-        ?>
         
         <form id="f" style="padding:20px;">
             <h1>Add Appointment</h1>
             <div>Name: </div>
-            <!--div><input type="text" id="name" name="name" value="" /></div-->
+            <!--chama as clinicas do médico-->
             <select id="clinic" name="clinic">
-                <option value="1">Clinica 1</option>
-                <option value="2">Clinica 2</option>
-                <option value="3">Clinica 3</option>
+                <option value="Clinica 1">Clinica 1</option>
+                <option value="Clinica 2">Clinica 2</option>
+                <option value="Clinica 3">Clinica 3</option>
             </select>
             <div>Start:</div>
-            <div><input type="text" id="start" name="start" /></div>
+            <div>
+            <?php
+                
+                if (isset($_GET['start']))
+                    echo "<input type=\"text\" id=\"start\" name=\"start\" value=\"".$_GET['start']."\" disabled>";
+            ?>
+            </div>
             <div>End:</div>
-            <div><input type="text" id="end" name="end" /></div>
-            
+            <div>
+            <?php
+                
+                if (isset($_GET['end']))
+                    echo "<input type=\"text\" id=\"end\" name=\"end\" value=\"".$_GET['end']."\" disabled>";
+            ?>
             <div class="space"><input type="submit" value="Save" /> <a href="javascript:close();">Cancel</a></div>
         </form>
         
@@ -41,7 +46,14 @@
 
         $("#f").submit(function (ev) {
             
-            DayPilot.Modal.close("foi");
+            var clinic = document.getElementById("clinic").value;
+            var start = document.getElementById("start").value;
+            var end = document.getElementById("end").value;
+            
+            var aux = '{"args" : [{ "start":"'+ start +'", "end":"'+ end +'", "clinic":"'+ clinic +'"}]}';
+            var obj = JSON.parse(aux);
+
+            DayPilot.Modal.close(obj);
         });
 
         $(document).ready(function () {

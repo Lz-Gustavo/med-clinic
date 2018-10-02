@@ -140,12 +140,12 @@
         //var name = prompt("New event name:", "Event");
         var modal = new DayPilot.Modal();
         modal.onClosed = function (args) {
-          console.log(args)
+          console.log(args.result.args[0]);
           var e = new DayPilot.Event({
-            start: args.start,
-            end: args.end,
+            start: args.result.args[0].start,
+            end: args.result.args[0].end,
             //id: DayPilot.guid(),
-            text: name
+            text: args.result.args[0].clinic,
           });
           dp.events.add(e);
           dp.clearSelection();
