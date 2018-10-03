@@ -131,20 +131,10 @@
 							
                             $db_instance = Storage::getInstance();
                             $db_instance->connect("GeracaoSaude");
-
-                            /*$filter = array(
-                                "TABLE:" => "consultas",
-                                "crm:" => $_SESSION['login_crm']
-                            );
-
-                            if ((isset($_GET['cpf'])) && (is_numeric($_GET['cpf'])))
-                                $filter['cpf:'] = $_GET['cpf'];
-                            
-                            $result = $db_instance->read($filter);*/
                             
                             $now = new DateTime(null, new DateTimeZone('America/Sao_Paulo'));
                             
-                            $sql = "SELECT * FROM GeracaoSaude.consultas WHERE crm='".$_SESSION['login_crm']."' AND CAST(dia AS Date)<'".$now->format("Ymd"."';");
+                            $sql = "SELECT * FROM GeracaoSaude.consultas WHERE crm='".$_SESSION['login_crm']."' AND CAST(dia AS Date)<'".$now->format("Ymd")."';";
                             
                             // TODO: must decide if we r gonna display all history or just past appts on this table...
                             $result = $db_instance->SQLretrieve($sql);
