@@ -93,31 +93,31 @@
 
 			require_once "../../../php_backend/class/storage.php";
 
-            session_start();
+			session_start();
 
-            $db_instance = Storage::getInstance();
-            $db_instance->connect("GeracaoSaude");
-			
+			$db_instance = Storage::getInstance();
+			$db_instance->connect("GeracaoSaude");
+					
 			// TODO: search for cpf from $_SESSION['cpf'] after implementing login
 			$_SESSION['login_cpf'] = "35123456";
 
-            $retrieve_data = array(
-                "TABLE:" => "pacientes",
-                "cpf" => $_SESSION['login_cpf']
-            );
+			$retrieve_data = array(
+				"TABLE:" => "pacientes",
+				"cpf" => $_SESSION['login_cpf']
+			);
 
-            $result = $db_instance->read($retrieve_data);
+			$result = $db_instance->read($retrieve_data);
 
 			$_POST['cpf'] = $result[0]['cpf'];
 			$_POST['name'] = $result[0]['nome'];
-            $_POST['last_name'] = $result[0]['sobrenome'];
-            $_POST['bday'] = $result[0]['nascimento'];
-            $_POST['blood'] = $result[0]['sangue'];
+			$_POST['last_name'] = $result[0]['sobrenome'];
+			$_POST['bday'] = $result[0]['nascimento'];
+			$_POST['blood'] = $result[0]['sangue'];
 			$_POST['email'] = $result[0]['email'];
-            $_POST['tel'] = $result[0]['telefone'];
+			$_POST['tel'] = $result[0]['telefone'];
 
-            $db_instance->disconnect();
-	?>
+			$db_instance->disconnect();
+		?>
 			
 	<!-- End Navbar -->
 	<div class="content">
