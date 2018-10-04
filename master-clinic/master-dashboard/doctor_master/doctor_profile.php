@@ -96,9 +96,6 @@
 
 			$db_instance = Storage::getInstance();
 			$db_instance->connect("GeracaoSaude");
-					
-			// TODO: search for crm from $_SESSION['crm'] after implementing login
-			$_SESSION['login_crm'] = "1234";
 
 			$retrieve_data = array(
 				"TABLE:" => "medicos",
