@@ -38,13 +38,13 @@
 			<li class="nav-item">
 				<a class="nav-link" href="doctor_consulties.html">
 				<i class="material-icons">calendar_today</i>
-				<p>Consulties</p>
+				<p>Calendar</p>
 				</a>
 			</li>
 			<li class="nav-item">
 				<a class="nav-link" href="doctor_schedule.html">
 				<i class="material-icons">schedule</i>
-				<p>Schedule</p>
+				<p>Weekly Schedule</p>
 				</a>
 			</li>
 			<li class="nav-item">
@@ -63,7 +63,7 @@
       <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
         <div class="container-fluid">
           <div class="navbar-wrapper">
-            <a class="navbar-brand" href="#pablo">Doctor: Luiz</a>
+            <a class="navbar-brand" href="#pablo"></a>
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index"
             aria-expanded="false" aria-label="Toggle navigation">
@@ -125,8 +125,8 @@
 				<div class="col-md-12">
 				<div class="card">
 					<div class="card-header card-header-primary">
-					<h4 class="card-title">Edit Profile</h4>
-					<p class="card-category">Complete your profile</p>
+					<h4 class="card-title">Personal Information</h4>
+					<p class="card-category">By sharing your data, you agree to abide by our MedClinic Terms of Service and Honor Code and agree to our Privacy Policy.</p>
 					</div>
 					<div class="card-body">
 					<form method="post" action="../../../php_backend/save-forms/master/med_profile.php">

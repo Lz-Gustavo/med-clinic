@@ -38,13 +38,13 @@
 					<li class="nav-item">
 						<a class="nav-link" href="patient_new_consultie.html">
 							<i class="material-icons">add_circle</i>
-							<p>New consultie</p>
+							<p>New Appointment</p>
 						</a>
 					</li>
 					<li class="nav-item active">
 						<a class="nav-link" href="#0">
 							<i class="material-icons">schedule</i>
-							<p>Consulties</p>
+							<p>History</p>
 						</a>
 					</li>
 				</ul>
@@ -56,7 +56,7 @@
 			<nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
 				<div class="container-fluid">
 					<div class="navbar-wrapper">
-						<a class="navbar-brand" href="#pablo">Patient: Albano</a>
+						<a class="navbar-brand" href="#pablo"></a>
 					</div>
 					<button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
 						<span class="sr-only">Toggle navigation</span>

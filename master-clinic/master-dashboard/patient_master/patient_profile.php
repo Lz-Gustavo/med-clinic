@@ -7,7 +7,7 @@
 	<link rel="icon" type="image/png" href="assets/img/favicon.png">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 	<title>
-		MediClinic
+		MedClinic
 	</title>
 	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
 	<!--     Fonts and icons     -->
@@ -43,13 +43,13 @@
 			<li class="nav-item">
 			<a class="nav-link" href="patient_new_consultie.html">
 				<i class="material-icons">add_circle</i>
-				<p>New consultie</p>
+				<p>New Appointment</p>
 			</a>
 			</li>
 			<li class="nav-item">
 			<a class="nav-link" href="patient_consulties.php">
 				<i class="material-icons">schedule</i>
-				<p>Consulties</p>
+				<p>History</p>
 			</a>
 			</li>
 			<!-- your sidebar here -->
@@ -63,7 +63,7 @@
 		<div class="container-fluid">
 			
 			<div class="navbar-wrapper">
-				<a class="navbar-brand" href="#pablo">Patient: Albano</a>
+				<a class="navbar-brand" href="#pablo"></a>
 			</div>
 			
 			<button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">	
@@ -126,8 +126,8 @@
 		<div class="col-md-12">
 			<div class="card">
 			<div class="card-header card-header-primary">
-				<h4 class="card-title">Edit Profile</h4>
-				<p class="card-category">Complete your profile</p>
+				<h4 class="card-title">Personal Information</h4>
+				<p class="card-category">By sharing your data, you agree to abide by our MedClinic Terms of Service and Honor Code and agree to our Privacy Policy.</p>
 			</div>
 			<div class="card-body">
 				<form method="post" action="../../../php_backend/save-forms/master/pat_profile.php">

@@ -43,13 +43,13 @@
 					<li class="nav-item">
 						<a class="nav-link" href="doctor_consulties.html">
 							<i class="material-icons">calendar_today</i>
-							<p>Consulties</p>
+							<p>Calendar</p>
 						</a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="doctor_schedule.html">
 							<i class="material-icons">schedule</i>
-							<p>Schedule</p>
+							<p>Weekly Schedule</p>
 						</a>
 					</li>
 					<li class="nav-item active">
@@ -67,7 +67,7 @@
 			<nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
 				<div class="container-fluid">
 					<div class="navbar-wrapper">
-						<a class="navbar-brand" href="#pablo">Doctor: Luiz</a>
+						<a class="navbar-brand" href="#pablo"></a>
 					</div>
 					<button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
 						<span class="sr-only">Toggle navigation</span>
@@ -105,6 +105,10 @@
 					// TODO: show just clinics that are associated with $_SESSION['login_crm'] on func_clinicas
 					// table, and a hiperlink to each corresponding page
 					$sql = "SELECT * FROM GeracaoSaude.clinicas;";
+
+
+
+
 					$result = $db_instance->SQLretrieve($sql);
 					
 					for ($i = 0; $i < count($result); $i++) {
