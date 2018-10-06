@@ -97,9 +97,6 @@
 
 			$db_instance = Storage::getInstance();
 			$db_instance->connect("GeracaoSaude");
-					
-			// TODO: search for cpf from $_SESSION['cpf'] after implementing login
-			$_SESSION['login_cpf'] = "35123456";
 
 			$retrieve_data = array(
 				"TABLE:" => "pacientes",

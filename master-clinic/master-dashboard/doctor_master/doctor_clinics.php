@@ -104,10 +104,9 @@
 					
 					// TODO: show just clinics that are associated with $_SESSION['login_crm'] on func_clinicas
 					// table, and a hiperlink to each corresponding page
-					$sql = "SELECT * FROM GeracaoSaude.clinicas;";
 
-
-
+					$sql = "SELECT clinicas.nome, clinicas.descricao ";
+                    $sql .= "FROM GeracaoSaude.clinicas RIGHT JOIN GeracaoSaude.func_clinica ON clinicas.id=func_clinica.clinica WHERE func_clinica.crm='".$_SESSION['login_crm']."'";
 
 					$result = $db_instance->SQLretrieve($sql);
 					
@@ -118,9 +117,6 @@
 
 					$db_instance->disconnect();
 				?>
-
-				<p>conteudo aqui</p>
-				
 			</div>
 		</div>
 		<!--   Core JS Files   -->
