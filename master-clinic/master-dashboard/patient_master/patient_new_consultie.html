@@ -94,6 +94,45 @@
 			</nav>
 			<!-- End Navbar -->
 			<div class="content">
+
+				<form method="post" action="../../../php_backend/save-forms/master/pat_save_appt.php">
+			
+					<div class="horizontal-align w-full">
+						<div style="width: 20%;">
+							<p>Clinic:</p>
+						</div>
+						<div class="wrap-input m-t-10">
+							<select class="input" id="ClinicID" name="clinic" onfocus="getClinics()" onchange="getSpec()">
+							</select>
+						</div>
+					</div>
+					<div class="horizontal-align w-full">
+						<div style="width: 20%;">
+							<p>Specialization:</p>
+						</div>
+						<div class="wrap-input m-t-10">
+							<select class="input" id="MedSpec" name="spec" onfocus="getSpec()" onchange="getMedicos()">
+							</select>
+						</div>
+					</div>
+
+					<div class="horizontal-align w-full">
+						<div style="width: 20%;">
+							<p>CRM:</p>
+						</div>
+						<div class="wrap-input m-t-10">
+							<select class="input" id="MedCrm" name="crm" onfocus="getMedicos()" onchange="getSchedule()">
+							</select>
+						</div>
+					</div>
+					
+					<!--div style="margin: auto; text-align: center; padding-top: 20px">
+						<button id="submit" class='submit-button' type="submit">Create</button>
+					</div-->
+					
+				</form>
+
+
 				<div class="container-fluid">
 					Week:
 					<a href="javascript:dp.startDate = dp.startDate.addMonths(-1); dp.update();">Previous</a>
@@ -122,6 +161,74 @@
 		<script src="assets/js/plugins/bootstrap-notify.js"></script>
 		<!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
 		<script src="assets/js/material-dashboard.min.js?v=2.1.0" type="text/javascript"></script>
+
+		<script>
+			
+			function getClinics() {
+				
+				if (window.XMLHttpRequest) {
+					// code for IE7+, Firefox, Chrome, Opera, Safari
+					xmlhttp = new XMLHttpRequest();
+				} else {
+					// code for IE6, IE5
+					xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+				}
+				xmlhttp.onreadystatechange = function() {
+					if (this.readyState == 4 && this.status == 200) {
+						document.getElementById("ClinicID").innerHTML = this.responseText;
+					}
+				};
+				xmlhttp.open("GET","../../../php_backend/save-forms/master/pat_ajax_clinics.php", true);
+				xmlhttp.send();
+			}
+
+			function getSpec() {
+
+				var clinic = document.getElementById("ClinicID").value;
+				
+				if (window.XMLHttpRequest) {
+					// code for IE7+, Firefox, Chrome, Opera, Safari
+					xmlhttp = new XMLHttpRequest();
+				} else {
+					// code for IE6, IE5
+					xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+				}
+				xmlhttp.onreadystatechange = function() {
+					if (this.readyState == 4 && this.status == 200) {
+						document.getElementById("MedSpec").innerHTML = this.responseText;
+					}
+				};
+				xmlhttp.open("GET","../../../php_backend/save-forms/master/pat_ajax_specs.php?clinic="+clinic, true);
+				xmlhttp.send();
+			}
+
+			function getMedicos() {
+
+				var clinic = document.getElementById("ClinicID").value;
+				var spec = document.getElementById("MedSpec").value;
+				
+				if (window.XMLHttpRequest) {
+					// code for IE7+, Firefox, Chrome, Opera, Safari
+					xmlhttp = new XMLHttpRequest();
+				} else {
+					// code for IE6, IE5
+					xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+				}
+				xmlhttp.onreadystatechange = function() {
+					if (this.readyState == 4 && this.status == 200) {
+						document.getElementById("MedCrm").innerHTML = this.responseText;
+					}
+				};
+				xmlhttp.open("GET","../../../php_backend/save-forms/master/pat_ajax_doctors.php?clinic="+clinic+"&spec="+spec, true);
+				xmlhttp.send();
+			}
+
+			function getSchedule() {
+
+				// ...
+			}
+		</script>
+
 
 		<!--Daypilot JS-->
 		<script type="text/javascript">
