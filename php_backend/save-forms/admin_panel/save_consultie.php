@@ -17,11 +17,9 @@
         "clinica:" => $_SESSION['clinic'],
         "dia:" => $_POST['appt_date'],
         "horario:" => $_POST['time']
-	);
-
-	//TODO: alterar o horario disponivel do medico em func_clinicas com base nessa nova consulta agendada
-
-	$db_instance->write($array_data);
+	);	
+	
+	$db_instance->appointment($array_data);
 	$db_instance->disconnect();
 
     header("location: ../../../front_view/admin_panel/consulties_template.php");
