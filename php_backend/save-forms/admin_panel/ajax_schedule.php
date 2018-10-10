@@ -31,9 +31,6 @@
 	
 		$result = $db_instance->SQLretrieve($sql);
 
-		//echo "<option value=\"0 1 0 0 0 0 0 0\">CRM=".$_GET['crm']."-".$dayofweek."</option>";
-		//echo "<option value=\"0 1 0 0 0 0 0 0\">".$result[0][$week[$dayofweek]]."</option>";
-
 		$time = str_split($result[0][$week[$dayofweek]]);
 		$mask = array("0", "0", "0", "0", "0", "0", "0", "0");
 

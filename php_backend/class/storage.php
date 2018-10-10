@@ -274,6 +274,49 @@
 			return $hour;
 		}
 
+		public function appointment($table_info) {
+			// create a new row on "consultas" table and update doctor schedule on "func_clinica"
+
+			try {
+				
+				//$table_info["TABLE:"] = "consultas";
+				$this->write($table_info);
+
+				$week = array("dom", "seg", "ter", "qua", "qui", "sex", "sab");
+				$dayofweek = date('w', strtotime($table_info["dia:"]));
+
+				$filter = array(
+					"TABLE:" => "func_clinica",
+					"CRM:" => $table_info["crm:"]
+				);
+				$result = $this->read($filter);
+
+				$time = str_split($result[0][$week[$dayofweek]]);
+				$marked = str_split($table_info["horario:"]);
+
+				for ($i = 0; $i < count($time); $i++) {
+					
+					if ($marked[$i] == "1") {
+						$time[$i] = "1"; 
+					}
+				}
+
+				$horario = implode("", $time);
+
+				$sql = "UPDATE GeracaoSaude.func_clinica SET ".$week[$dayofweek]."='".$horario."' WHERE crm='".$table_info["crm:"]."';";
+
+				echo "<br><b>SQL query:</b> ".$sql."<br><br>";
+
+				$this->db_connection->exec($sql);
+				
+				return 1;
+			}
+			catch (Exception $e) {
+				echo "Exception: ".$e->getMessage()."<br>";
+				return 0;
+			}
+		}
+
 		public function SQLinsert($sql) {
 
 			try {
