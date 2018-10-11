@@ -143,13 +143,11 @@
 			dp.events.list = [
 				<?php
 
-					ini_set('display_errors', 1);
-					ini_set('display_startup_errors', 1);
-					error_reporting(E_ALL);
+					//ini_set('display_errors', 1);
+					//ini_set('display_startup_errors', 1);
+					//error_reporting(E_ALL);
 
 					require_once "../../../php_backend/class/storage.php";
-
-					//session_start();
 
 					$db_instance = Storage::getInstance();
 					$db_instance->connect("GeracaoSaude");

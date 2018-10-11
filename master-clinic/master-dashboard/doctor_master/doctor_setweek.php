@@ -51,7 +51,7 @@
 						</a>
 					</li-->
 					<li class="nav-item">
-						<a class="nav-link" href="doctor_schedule.html">
+						<a class="nav-link" href="doctor_schedule.php">
 							<i class="material-icons">schedule</i>
 							<p>Weekly Schedule</p>
 						</a>
@@ -122,7 +122,7 @@
 			var dp = new DayPilot.Calendar("dp");
 
 			// view
-			dp.startDate = "2018-10-28";  // or just dp.startDate = "2013-03-25";
+			dp.startDate = "2018-10-28"; //a regular sunday
 			dp.viewType = "WorkWeek";
 			dp.headerDateFormat = "dddd";
 			dp.eventDeleteHandling = "Update";
@@ -158,13 +158,22 @@
 				});
 				dp.events.remove(e);
 				console.log(args)
-			},
+			};
 
-				//start
-				dp.init();
+			//start
+			dp.init();
 
 			dp.events.list = [
 				<?php
+
+					ini_set('display_errors', 1);
+					ini_set('display_startup_errors', 1);
+					error_reporting(E_ALL);
+
+					require_once "../../../php_backend/class/storage.php";
+
+					$db_instance = Storage::getInstance();
+					$db_instance->connect("GeracaoSaude");
 
 					$week = array("dom", "seg", "ter", "qua", "qui", "sex", "sab");
 					$json = "";
@@ -173,43 +182,42 @@
 						"TABLE:" => "func_clinica",
 						"CRM:" => $_SESSION['login_crm']
 					);
-					$result = $this->read($filter);
+					$result = $db_instance->read($filter);
 
 					for ($i = 1; $i < 6; $i++) {
 
 						$time = str_split($result[0][$week[$i]]);
-						$array_bitmap = explode(" ", $time);
+						$array_bitmap = $time;
 
 						for ($j = 0; $j < count($array_bitmap); $j++) {
 							
-							$json .= "{ ";
-							$json .= "";
-							$json .= 
+							if ($array_bitmap[$j] == "0") {
+								
+								// morning hours indexes on bitmap
+								if ($i < 5) 
+									$ini_hour = (8 + $j);
+								
+								// afternoon
+								else 
+									$ini_hour = 9 + $j;
 
+								if ($ini_hour < 10)
+									$ini_hour = "0".$ini_hour;
+
+								$fin_hour = $ini_hour + 1;
+								if ($fin_hour < 10)
+									$fin_hour = "0".$fin_hour;
+
+								$inicio = "2018-10-".(21+$i)."T".$ini_hour.":00".":00";
+								$fim = "2018-10-".(21+$i)."T".$fin_hour.":00".":00";
+
+								$text = "Clinica ".$result[0]['clinica'];
+								$json .= "{ \"start\": \"".$inicio."\", \"end\": \"".$fim."\", \"id\": \"".$i."\", \"text\": \"".$text."\"}, ";
+							}
 						}
-
-					}
-
-
-
-
-					for ($i = 0; $i < count($time); $i++) {
 						
-						if ($marked[$i] == "1") {
-							$time[$i] = "1"; 
-						}
 					}
-
-					$horario = implode("", $time);
-
-					$sql = "UPDATE GeracaoSaude.func_clinica SET ".$week[$dayofweek]."='".$horario."' WHERE crm='".$table_info["crm:"]."';";
-
-					echo "<br><b>SQL query:</b> ".$sql."<br><br>";
-
-					$this->db_connection->exec($sql);
-					
-					return 1;
-				
+					echo $json;			
 				
 					// {
 					// 	start: "2018-10-30T09:00:00",
@@ -223,6 +231,8 @@
 					// 	id: "2",
 					// 	text: "Event 2"
 					// }
+
+					$db_instance->disconnect();
 				?>
 			];
 			dp.update();
