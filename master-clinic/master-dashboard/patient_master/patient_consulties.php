@@ -67,8 +67,8 @@
 					<div class="collapse navbar-collapse justify-content-end">
 						<ul class="navbar-nav">
 							<li class="nav-item">
-								<a class="nav-link" href="#pablo">
-									<i class="material-icons">notifications</i> Notifications
+							<a class="nav-link" href="../../index.html">
+                				<i class="material-icons">arrow_back</i> LOGOUT
 								</a>
 							</li>
 						</ul>
@@ -82,7 +82,7 @@
 				<div class="row">
 				<div class="col-md-12">
 					<div class="card">
-						<div class="card-header card-header-primary">
+						<div class="card-header card-header-info">
 							<h4 class="card-title ">Consulties</h4>
 							<p class="card-category"></p>
 						</div>

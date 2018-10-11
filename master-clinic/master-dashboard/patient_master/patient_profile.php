@@ -76,8 +76,8 @@
 			<div class="collapse navbar-collapse justify-content-end">
 			<ul class="navbar-nav">
 				<li class="nav-item">
-				<a class="nav-link" href="#pablo">
-					<i class="material-icons">notifications</i> Notifications
+				<a class="nav-link" href="../../index.html">
+                	<i class="material-icons">arrow_back</i> LOGOUT
 				</a>
 				</li>
 				<!-- your navbar here -->
@@ -122,7 +122,7 @@
 		<div class="row">
 		<div class="col-md-12">
 			<div class="card">
-			<div class="card-header card-header-primary">
+			<div class="card-header card-header-info">
 				<h4 class="card-title">Personal Information</h4>
 				<p class="card-category">By sharing your data, you agree to abide by our MedClinic Terms of Service and Honor Code and agree to our Privacy Policy.</p>
 			</div>

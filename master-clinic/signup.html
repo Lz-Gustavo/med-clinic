@@ -60,17 +60,17 @@
 				</div>
 
 				<div id="form-login-cpf" class="form-group">
-					<input id="cpf" class="form-control" name="cpf" type="text" size="18" alt="cpf" />
+					<input id="cpf" class="form-control" name="cpf" type="text" size="18" alt="cpf" required/>
 					<span class="form-highlight"></span>
 					<span class="form-bar"></span>
-					<label for="username" class="float-label">CPF</label>
+					<label for="CPF" class="float-label">CPF</label>
 				</div>
 
 				<div id="form-login-crm" class="form-group">
-					<input id="crm" class="form-control" name="crm" type="text" size="18" alt="crm" />
+					<input id="crm" class="form-control" name="crm" type="text" size="18" alt="crm"/>
 					<span class="form-highlight"></span>
 					<span class="form-bar"></span>
-					<label for="username" class="float-label">CRM</label>
+					<label for="CRM" class="float-label">CRM</label>
 				</div>
 
 				<div id="form-login-password" class="form-group">
@@ -102,14 +102,18 @@
 			$('#patient-radio').click(function () {
 				$('#login-form').hide('fast')
 				$('#form-login-cpf').show('slow')
+				$('#form-login-cpf').attr('required', true);
 				$('#form-login-crm').hide('slow')
+				$('#form-login-crm').removeAttr('required');
 				$('#login-form').show('fast')
 			});
 
 			$('#medic-radio').click(function () {
 				$('#login-form').hide('fast')
 				$('#form-login-cpf').hide('slow')
+				$('#form-login-cpf').removeAttr('required');
 				$('#form-login-crm').show('slow')
+				$('#form-login-crm').attr('required', true);
 				$('#login-form').show('fast')
 			})
 

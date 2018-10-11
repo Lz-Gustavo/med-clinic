@@ -31,8 +31,8 @@
         <ul class="nav">
         	<li class="nav-item active">
 				<a class="nav-link" href="#0">
-					<i class="material-icons">person</i>
-					<p>Profile</p>
+				<i class="material-icons">person</i>
+				<p>Profile</p>
 				</a>
           	</li>
 			<li class="nav-item">
@@ -63,7 +63,7 @@
       <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
         <div class="container-fluid">
           <div class="navbar-wrapper">
-            <a class="navbar-brand" href="#pablo"></a>
+            <a class="navbar-brand" href="#"></a>
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index"
             aria-expanded="false" aria-label="Toggle navigation">
@@ -75,8 +75,8 @@
           <div class="collapse navbar-collapse justify-content-end">
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link" href="#pablo">
-                	<i class="material-icons">notifications</i> Notifications
+                <a class="nav-link" href="../../index.html">
+                	<i class="material-icons">arrow_back</i> LOGOUT
                 </a>
               </li>
               <!-- your navbar here -->
@@ -121,11 +121,13 @@
 			<div class="row">
 				<div class="col-md-12">
 				<div class="card">
-					<div class="card-header card-header-primary">
+					<div class="card-header card-header-info">
 					<h4 class="card-title">Personal Information</h4>
 					<p class="card-category">By sharing your data, you agree to abide by our MedClinic Terms of Service and Honor Code and agree to our Privacy Policy.</p>
 					</div>
 					<div class="card-body">
+					<button id="setweek" class="btn btn-info pull-right">Set Weekly</button>
+
 					<form method="post" action="../../../php_backend/save-forms/master/med_profile.php">
 						<div class="row">
 						<div class="col-md-6">
@@ -174,9 +176,10 @@
 							<input type="text" class="form-control" name="addr" value="<?php echo $_POST['addr'] ?>">
 							</div>
 						</div>
+						
 						</div>
 
-						<button type="submit" class="btn btn-primary pull-right">Update Profile</button>
+						<button type="submit" class="btn btn-info pull-right">Update Profile</button>
 						<div class="clearfix"></div>
 					</form>
 					</div>
@@ -194,19 +197,22 @@
 	</div>
 	</div>
 
-	<!--   Core JS Files   -->
-	<script src="assets/js/core/jquery.min.js" type="text/javascript"></script>
-	<script src="assets/js/core/popper.min.js" type="text/javascript"></script>
-	<script src="assets/js/core/bootstrap-material-design.min.js" type="text/javascript"></script>
-	<script src="assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
-	<!--  Google Maps Plugin    -->
-	<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
 	<!-- Chartist JS -->
 	<script src="assets/js/plugins/chartist.min.js"></script>
 	<!--  Notifications Plugin    -->
 	<script src="assets/js/plugins/bootstrap-notify.js"></script>
 	<!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
 	<script src="assets/js/material-dashboard.min.js?v=2.1.0" type="text/javascript"></script>
+	
+	<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+
+	<script>
+		$(document).ready(function () {
+			$("#setweek").click(function () {
+				location.assign('doctor_setweek.php');
+			});
+		});
+	</script>
 
 </body>
 </html>
