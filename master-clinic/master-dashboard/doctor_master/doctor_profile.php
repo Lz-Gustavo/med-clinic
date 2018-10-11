@@ -35,14 +35,14 @@
 				<p>Profile</p>
 				</a>
           	</li>
-			<li class="nav-item">
+			<!--li class="nav-item">
 				<a class="nav-link" href="doctor_consulties.html">
 				<i class="material-icons">calendar_today</i>
 				<p>Calendar</p>
 				</a>
-			</li>
+			</li-->
 			<li class="nav-item">
-				<a class="nav-link" href="doctor_schedule.html">
+				<a class="nav-link" href="doctor_schedule.php">
 				<i class="material-icons">schedule</i>
 				<p>Weekly Schedule</p>
 				</a>

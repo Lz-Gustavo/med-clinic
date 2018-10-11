@@ -1,6 +1,8 @@
 <!doctype html>
 <html lang="en">
 
+<?php session_start(); ?>
+
 <head>
 	<meta charset="utf-8" />
 	<link rel="apple-touch-icon" sizes="76x76" href="assets/img/apple-icon.png">
@@ -42,12 +44,12 @@
 							<p>Profile</p>
 						</a>
 					</li>
-					<li class="nav-item">
+					<!--li class="nav-item">
 						<a class="nav-link" href="doctor_consulties.html">
 							<i class="material-icons">calendar_today</i>
 							<p>Calendar</p>
 						</a>
-					</li>
+					</li-->
 					<li class="nav-item">
 						<a class="nav-link" href="doctor_schedule.html">
 							<i class="material-icons">schedule</i>
@@ -162,18 +164,66 @@
 				dp.init();
 
 			dp.events.list = [
-				{
-					start: "2018-10-30T09:00:00",
-					end: "2018-10-30T10:00:00",
-					id: "1",
-					text: "Event 1"
-				},
-				{
-					start: "2018-10-31T08:00:00",
-					end: "2018-10-31T15:00:00",
-					id: "2",
-					text: "Event 2"
-				}
+				<?php
+
+					$week = array("dom", "seg", "ter", "qua", "qui", "sex", "sab");
+					$json = "";
+
+					$filter = array(
+						"TABLE:" => "func_clinica",
+						"CRM:" => $_SESSION['login_crm']
+					);
+					$result = $this->read($filter);
+
+					for ($i = 1; $i < 6; $i++) {
+
+						$time = str_split($result[0][$week[$i]]);
+						$array_bitmap = explode(" ", $time);
+
+						for ($j = 0; $j < count($array_bitmap); $j++) {
+							
+							$json .= "{ ";
+							$json .= "";
+							$json .= 
+
+						}
+
+					}
+
+
+
+
+					for ($i = 0; $i < count($time); $i++) {
+						
+						if ($marked[$i] == "1") {
+							$time[$i] = "1"; 
+						}
+					}
+
+					$horario = implode("", $time);
+
+					$sql = "UPDATE GeracaoSaude.func_clinica SET ".$week[$dayofweek]."='".$horario."' WHERE crm='".$table_info["crm:"]."';";
+
+					echo "<br><b>SQL query:</b> ".$sql."<br><br>";
+
+					$this->db_connection->exec($sql);
+					
+					return 1;
+				
+				
+					// {
+					// 	start: "2018-10-30T09:00:00",
+					// 	end: "2018-10-30T10:00:00",
+					// 	id: "1",
+					// 	text: "Event 1"
+					// },
+					// {
+					// 	start: "2018-10-31T08:00:00",
+					// 	end: "2018-10-31T15:00:00",
+					// 	id: "2",
+					// 	text: "Event 2"
+					// }
+				?>
 			];
 			dp.update();
 

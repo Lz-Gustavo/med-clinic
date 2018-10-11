@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en">
-
+<?php session_start(); ?>
 <head>
 	<meta charset="utf-8" />
 	<link rel="apple-touch-icon" sizes="76x76" href="assets/img/apple-icon.png">
@@ -42,12 +42,12 @@
 							<p>Profile</p>
 						</a>
 					</li>
-					<li class="nav-item">
+					<!--li class="nav-item">
 						<a class="nav-link" href="doctor_consulties.html">
 							<i class="material-icons">calendar_today</i>
 							<p>Calendar</p>
 						</a>
-					</li>
+					</li-->
 					<li class="nav-item active">
 						<a class="nav-link" href="#0">
 							<i class="material-icons">schedule</i>
@@ -129,58 +129,78 @@
 			// view
 			dp.startDate = "2018-10-28";  // or just dp.startDate = "2013-03-25";
 			dp.viewType = "WorkWeek";
-			dp.eventDeleteHandling = "Update";
 			dp.businessBeginsHour = 8;
-
-			// event creating
-			dp.onTimeRangeSelected = function (args) {
-				//var name = prompt("New event name:", "Event");
-				var modal = new DayPilot.Modal();
-				modal.onClosed = function (args) {
-					console.log(args.result.args[0]);
-					var e = new DayPilot.Event({
-						start: args.result.args[0].start,
-						end: args.result.args[0].end,
-						//id: DayPilot.guid(),
-						text: args.result.args[0].clinic,
-					});
-					dp.events.add(e);
-					dp.clearSelection();
-					//console.log(e.data)
-				};
-				//console.log(args);
-				modal.showUrl("new_calendar.php?start=" + args.start + "&end=" + args.end);
-			};
-
-			//event remove
-			dp.onEventDeleted = function (args) {
-				var e = new DayPilot.Event({
-					start: args.start,
-					end: args.end,
-					id: DayPilot.guid(),
-					text: name
-				});
-				dp.events.remove(e);
-				console.log(args)
-			},
-
-				//start
-				dp.init();
+			dp.timeRangeSelectedHandling = "Disabled";
+			dp.eventDeleteHandling = "Disabled";
+			dp.eventMoveHandling = "Disabled";
+			dp.eventResizeHandling = "Disabled";
+			dp.eventClickHandling ="Disabled";
+			dp.eventHoverHandling = "Disabled";
+	
+			//start
+			dp.init();
 
 			dp.events.list = [
-				{
-					start: "2018-10-30T09:00:00",
-					end: "2018-10-30T10:00:00",
-					id: "1",
-					text: "Event 1"
-				},
-				{
-					start: "2018-10-31T08:00:00",
-					end: "2018-10-31T15:00:00",
-					id: "2",
-					text: "Event 2"
-				}
+				<?php
+
+					ini_set('display_errors', 1);
+					ini_set('display_startup_errors', 1);
+					error_reporting(E_ALL);
+
+					require_once "../../../php_backend/class/storage.php";
+
+					//session_start();
+
+					$db_instance = Storage::getInstance();
+					$db_instance->connect("GeracaoSaude");
+
+					$filter = array(
+						"TABLE:" => "consultas",
+						"crm:" => $_SESSION['login_crm'],
+					);
+
+					$result = $db_instance->read($filter);
+					
+					for ($i = 0; $i < count($result); $i++) {
+
+						$hour = $db_instance->translate_time($result[$i]['horario']);
+
+						if (strpos($hour, "PM") != FALSE) {
+							
+							$hour = rtrim($hour, "PM");
+							$hour = ((int) $hour) + 12;
+							$hour_fim = $hour + 1;
+
+							$hour = $hour.":00";
+							$hour_fim = $hour_fim.":00";
+						}
+						else {
+							
+							$hour = rtrim($hour, "AM");
+							if (strlen($hour) == 4)
+								$hour = "0".$hour;
+
+							$hour_fim = ((int) $hour) + 1;
+							
+							if ($hour_fim < 10)
+								$hour_fim = "0".$hour_fim;
+							
+							$hour_fim = $hour_fim.":00";
+						}
+
+						$inicio = $result[$i]['dia']."T".$hour.":00";
+						$fim = $result[$i]['dia']."T".$hour_fim.":00";
+						
+						$text = $result[$i]['clinica']."  "."CPF: ".$result[$i]['cpf'];
+
+						$var = "{ \"start\": \"".$inicio."\", \"end\": \"".$fim."\", \"id\": \"".$i."\", \"text\": \"".$text."\"},";
+						echo $var;
+					}
+
+					$db_instance->disconnect();
+				?>
 			];
+
 			dp.update();
 
 		</script>
