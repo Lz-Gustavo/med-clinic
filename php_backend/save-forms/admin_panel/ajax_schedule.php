@@ -2,15 +2,6 @@
 
 	require_once "../../class/storage.php";
 
-	/*<option value="1 0 0 0 0 0 0 0">8:00AM</option>
-	<option value="0 1 0 0 0 0 0 0">9:00AM</option>
-	<option value="0 0 1 0 0 0 0 0">10:00AM</option>
-	<option value="0 0 0 1 0 0 0 0">11:00AM</option>
-	<option value="0 0 0 0 1 0 0 0">1:00PM</option>
-	<option value="0 0 0 0 0 1 0 0">2:00PM</option>
-	<option value="0 0 0 0 0 0 1 0">3:00PM</option>
-	<option value="0 0 0 0 0 0 0 1">4:00PM</option>*/
-
 	if ((isset($_GET['day'])) && (isset($_GET['crm']))) {
 
 		$week = array("dom", "seg", "ter", "qua", "qui", "sex", "sab");
@@ -18,7 +9,6 @@
 		$dayofweek = date('w', strtotime($_GET['day']));
 
 		if (($dayofweek == 0) || ($dayofweek == 6)) {
-			//echo "<script>alert(\"Somente trabalhamos de Seg a Sex\");</script>";
 			return;
 		}
 
@@ -43,7 +33,6 @@
 				$hour = $db_instance->translate_time($value);
 				
 				//print equivalent option
-				//echo "<option value=\"".$value."\">".$hour."</option>";
 				echo "<input type=\"radio\" name=\"time\" value=\"".$value."\">".$hour."<br>"; 
 
 				//reset mask

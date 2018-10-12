@@ -125,15 +125,35 @@
 							</select>
 						</div>
 					</div>
+
+					<div class="horizontal-align w-full">
+						<div style="width: 20%;">
+							<p>Date:</p>
+						</div>
+						<div class="wrap-input m-t-10">
+							<input class="input" type="date" name="appt_date" id="DayCalendar" onchange="getSchedule()">
+						</div>
+					</div>
+		
+					<div class="horizontal-align w-full">
+						<div style="width: 20%;">
+							<p>Hour:</p>
+						</div>
+						<div class="m-t-10">
+							<!--select name="time" id="MedWeek">
+							</select-->
+							<div id="MedWeek">
+							</div>
+						</div>
+					</div>
 					
-					<!--div style="margin: auto; text-align: center; padding-top: 20px">
+					<div style="margin: auto; text-align: center; padding-top: 20px">
 						<button id="submit" class='submit-button' type="submit">Create</button>
-					</div-->
+					</div>
 					
 				</form>
 
-
-				<div class="container-fluid">
+				<!--div class="container-fluid">
 					Week:
 					<a href="javascript:dp.startDate = dp.startDate.addMonths(-1); dp.update();">Previous</a>
 					|
@@ -141,7 +161,7 @@
 
 					<div id="dp"></div>
 
-				</div>
+				</div-->
 				<footer class="footer">
 					<div class="container-fluid">
 					</div>
@@ -225,13 +245,29 @@
 
 			function getSchedule() {
 
-				// ...
+				var crm = document.getElementById("MedCrm").value;
+				var day = document.getElementById("DayCalendar").value;
+
+				if (window.XMLHttpRequest) {
+					// code for IE7+, Firefox, Chrome, Opera, Safari
+					xmlhttp = new XMLHttpRequest();
+				} else {
+					// code for IE6, IE5
+					xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+				}
+				xmlhttp.onreadystatechange = function() {
+					if (this.readyState == 4 && this.status == 200) {
+						document.getElementById("MedWeek").innerHTML = this.responseText;
+					}
+				};
+				xmlhttp.open("GET","../../../php_backend/save-forms/admin_panel/ajax_schedule.php?crm="+crm+"&day="+day, true);
+				xmlhttp.send();
 			}
+
 		</script>
 
-
 		<!--Daypilot JS-->
-		<script type="text/javascript">
+		<!--script type="text/javascript">
 			var dp = new DayPilot.Month("dp");
 			dp.viewType = 'Weeks';
 			dp.showWeekend = false;
@@ -283,7 +319,8 @@
 			};
 
 			dp.init();
-		</script>
+		</script-->
+
 		<script type="text/javascript">
 			$(document).ready(function () {
 				var url = window.location.href;

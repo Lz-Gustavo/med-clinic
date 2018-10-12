@@ -292,7 +292,7 @@
 				$result = $this->read($filter);
 
 				$time = str_split($result[0][$week[$dayofweek]]);
-				$marked = str_split($table_info["horario:"]);
+				$marked = explode(" ", $table_info["horario:"]);
 
 				for ($i = 0; $i < count($time); $i++) {
 					

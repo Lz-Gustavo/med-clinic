@@ -10,13 +10,13 @@
 
 	if (isset($_GET['clinic'])) {
 
-		$sql = "SELECT medicos.especializacao ";
+		$sql = "SELECT DISTINCT medicos.especializacao ";
 		$sql .= "FROM GeracaoSaude.medicos RIGHT JOIN GeracaoSaude.func_clinica ON medicos.crm=func_clinica.crm WHERE clinica='".$_GET['clinic']."'";
 	
 	}
 	else {
 
-		$sql = "SELECT medicos.especializacao ";
+		$sql = "SELECT DISTINCT medicos.especializacao ";
 		$sql .= "FROM GeracaoSaude.medicos RIGHT JOIN GeracaoSaude.func_clinica ON medicos.crm=func_clinica.crm";
 
 	}

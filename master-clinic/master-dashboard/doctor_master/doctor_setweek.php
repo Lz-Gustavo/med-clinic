@@ -127,6 +127,8 @@
 			dp.headerDateFormat = "dddd";
 			dp.eventDeleteHandling = "Update";
 			dp.businessBeginsHour = 8;
+			dp.eventMoveHandling = "Disabled";
+			dp.eventResizeHandling = "Disabled";
 
 			// event creating
 			dp.onTimeRangeSelected = function (args) {
@@ -218,19 +220,6 @@
 						
 					}
 					echo $json;			
-				
-					// {
-					// 	start: "2018-10-30T09:00:00",
-					// 	end: "2018-10-30T10:00:00",
-					// 	id: "1",
-					// 	text: "Event 1"
-					// },
-					// {
-					// 	start: "2018-10-31T08:00:00",
-					// 	end: "2018-10-31T15:00:00",
-					// 	id: "2",
-					// 	text: "Event 2"
-					// }
 
 					$db_instance->disconnect();
 				?>
