@@ -28,6 +28,8 @@
 	<div class="wrapper ">
 		<div class="sidebar" data-color="purple" data-background-color="white">
 			<div class="logo">
+			<img src="../../master-login/src/medclinic-logo.png"  alt="Logo" title="Logo" width="100" style=" display: block;margin-left: auto;margin-right: auto;">
+
 				<a class="simple-text logo-normal">
 					MedClinic
 				</a>
