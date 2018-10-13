@@ -96,7 +96,7 @@
 										<th>Clinic ID</th>
 										<th>Date</th>
 										<th>Hour</th>
-										<th>Notes</th>
+										<!--th>Notes</th-->
 										<th>Prescription</th>
 									</thead>
 
@@ -126,7 +126,7 @@
 												echo "<td>".$result[$i]['clinica']."</td>";
 												echo "<td>".$result[$i]['dia']."</td>";
 												echo "<td>".$hour."</td>";
-												echo "<td>".$result[$i]['obs']."</td>";
+												//echo "<td>".$result[$i]['obs']."</td>";
 												echo "<td>".$result[$i]['receita']."</td>";
 												echo "</tr>";
 											}

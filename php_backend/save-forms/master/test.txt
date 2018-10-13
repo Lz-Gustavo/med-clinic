@@ -1,0 +1,1 @@
+UPDATE GeracaoSaude.func_clinica SET ter='10000000' WHERE crm='1234' AND clinica='2';

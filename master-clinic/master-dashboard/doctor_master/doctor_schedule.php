@@ -158,7 +158,12 @@
 						"crm:" => $_SESSION['login_crm'],
 					);
 
-					$result = $db_instance->read($filter);
+					$sql = "SELECT pacientes.cpf, pacientes.nome, consultas.clinica, consultas.dia, consultas.horario "; 
+					$sql .= "FROM GeracaoSaude.pacientes RIGHT JOIN GeracaoSaude.consultas ON consultas.cpf=pacientes.cpf WHERE consultas.crm='".$_SESSION['login_crm']."';";
+					
+					$result = $db_instance->SQLretrieve($sql);
+
+					//$result = $db_instance->read($filter);
 					
 					for ($i = 0; $i < count($result); $i++) {
 
@@ -190,7 +195,7 @@
 						$inicio = $result[$i]['dia']."T".$hour.":00";
 						$fim = $result[$i]['dia']."T".$hour_fim.":00";
 						
-						$text = $result[$i]['clinica']."  "."CPF: ".$result[$i]['cpf'];
+						$text = "Clinica ".$result[$i]['clinica']." - ".$result[$i]['nome'].", ".$result[$i]['cpf'];
 
 						$var = "{ \"start\": \"".$inicio."\", \"end\": \"".$fim."\", \"id\": \"".$i."\", \"text\": \"".$text."\"},";
 						echo $var;

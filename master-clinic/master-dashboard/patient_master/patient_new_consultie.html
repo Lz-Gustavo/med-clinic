@@ -105,21 +105,21 @@
 							<h6 class="card-title">Clinic</h6>
 							<select class="input form-control" id="ClinicID" name="clinic" onfocus="getClinics()" onchange="getSpec()">
 								<option selected="selected">
-									Choice one
+									Choose One
 								</option>
 							</select>
 
 							<h6 class="card-title" style="margin-top:20px;">Especialization</h6>
 							<select class="input form-control" id="MedSpec" name="spec" onfocus="getSpec()" onchange="getMedicos()">
 								<option selected="selected">
-									Choice one
+									Choose One
 								</option>
 							</select>
 
 							<h6 class="card-title" style="margin-top:20px;">Medic</h6>
 							<select class="input form-control" id="MedCrm" name="crm" onfocus="getMedicos()" onchange="getSchedule()">
 								<option selected="selected">
-									Choice one
+									Choose One
 								</option>
 							</select>
 
@@ -234,6 +234,7 @@
 
 			var crm = document.getElementById("MedCrm").value;
 			var day = document.getElementById("DayCalendar").value;
+			var clinic = document.getElementById("ClinicID").value;
 
 			if (window.XMLHttpRequest) {
 				// code for IE7+, Firefox, Chrome, Opera, Safari
@@ -247,7 +248,7 @@
 					document.getElementById("MedWeek").innerHTML = this.responseText;
 				}
 			};
-			xmlhttp.open("GET", "../../../php_backend/save-forms/admin_panel/ajax_schedule.php?crm=" + crm + "&day=" + day, true);
+			xmlhttp.open("GET", "../../../php_backend/save-forms/master/med_ajax_schedule.php?crm=" + crm + "&day=" + day + "&clinic=" + clinic, true);
 			xmlhttp.send();
 		}
 

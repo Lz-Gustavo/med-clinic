@@ -287,7 +287,8 @@
 
 				$filter = array(
 					"TABLE:" => "func_clinica",
-					"CRM:" => $table_info["crm:"]
+					"CRM:" => $table_info["crm:"],
+					"CLINICA:" => $table_info['clinica:']
 				);
 				$result = $this->read($filter);
 
@@ -303,7 +304,7 @@
 
 				$horario = implode("", $time);
 
-				$sql = "UPDATE GeracaoSaude.func_clinica SET ".$week[$dayofweek]."='".$horario."' WHERE crm='".$table_info["crm:"]."';";
+				$sql = "UPDATE GeracaoSaude.func_clinica SET ".$week[$dayofweek]."='".$horario."' WHERE crm='".$table_info["crm:"]."' AND clinica='".$table_info['clinica:']."';";
 
 				echo "<br><b>SQL query:</b> ".$sql."<br><br>";
 

@@ -198,7 +198,7 @@
 							if ($array_bitmap[$j] == "0") {
 								
 								// morning hours indexes on bitmap
-								if ($i < 5) 
+								if ($j < 4) 
 									$ini_hour = (8 + $j);
 								
 								// afternoon
