@@ -24,13 +24,13 @@
 
 		$sql .= "sangue='".$_POST['blood']."', ";
 	}
+	if (isset($_POST['bday'])) {
+
+		$sql .= "nascimento='".$_POST['bday']."', ";
+	}
 
 	$sql = rtrim($sql, ", ");
 	$sql .= " WHERE cpf='".$_SESSION['login_cpf']."';";
-
-	//$file = fopen("test.txt", "w");
-	//fwrite($file, $sql);
-	//fclose($file);
 
 	$db_instance->SQLinsert($sql);
 	$db_instance->disconnect();

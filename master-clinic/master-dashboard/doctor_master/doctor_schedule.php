@@ -162,8 +162,6 @@
 					$sql .= "FROM GeracaoSaude.pacientes RIGHT JOIN GeracaoSaude.consultas ON consultas.cpf=pacientes.cpf WHERE consultas.crm='".$_SESSION['login_crm']."';";
 					
 					$result = $db_instance->SQLretrieve($sql);
-
-					//$result = $db_instance->read($filter);
 					
 					for ($i = 0; $i < count($result); $i++) {
 

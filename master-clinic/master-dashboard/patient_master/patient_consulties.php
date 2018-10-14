@@ -85,13 +85,14 @@
 				<div class="col-md-12">
 					<div class="card">
 						<div class="card-header card-header-info">
-							<h4 class="card-title ">Consulties</h4>
+							<h4 class="card-title ">Appointments</h4>
 							<p class="card-category"></p>
 						</div>
 						<div class="card-body">
 							<div class="table-responsive">
 								<table class="table">
 									<thead class=" text-primary">
+										<th>Doctor</th>
 										<th>CRM</th>
 										<th>Clinic ID</th>
 										<th>Date</th>
@@ -114,7 +115,8 @@
 											$db_instance->connect("GeracaoSaude");
 											$now = new DateTime(null, new DateTimeZone('America/Sao_Paulo'));
 											
-											$sql = "SELECT * FROM GeracaoSaude.consultas WHERE cpf='".$_SESSION['login_cpf']."';";
+											$sql = "SELECT medicos.nome, consultas.crm, consultas.clinica, consultas.dia, consultas.horario, consultas.obs, consultas.receita ";
+											$sql .= "FROM GeracaoSaude.consultas RIGHT JOIN GeracaoSaude.medicos ON medicos.crm=consultas.crm WHERE consultas.cpf='".$_SESSION['login_cpf']."';";
 											$result = $db_instance->SQLretrieve($sql);
 											
 											for ($i = 0; $i < count($result); $i++) {
@@ -122,6 +124,7 @@
 												$hour = $db_instance->translate_time($result[$i]['horario']);
 
 												echo "<tr>";
+												echo "<td>".$result[$i]['nome']."</td>";
 												echo "<td>".$result[$i]['crm']."</td>";
 												echo "<td>".$result[$i]['clinica']."</td>";
 												echo "<td>".$result[$i]['dia']."</td>";

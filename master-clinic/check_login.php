@@ -26,10 +26,8 @@
             }
             else {
                 echo "-1";
-                //header("location: ./index.html");
             }
         }
-	
 
 		$hd->disconnect();
 	}	

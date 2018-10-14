@@ -1,12 +1,12 @@
 <?php
-	/*	med-clinic	v2.0 									*/
-	/*												*/
+	/*	med-clinic	v2.0 																	*/
+	/*																						*/
 	/*	"storage.php" contains the implementation of the Storage class, which provides		*/
 	/*	read/writes primitives to the data storing methods from other classes. Basically	*/
 	/*	acts like a API set that manipulates information over a MySQL DB, that represent	*/
-	/*	the persistent storage for the system data.						*/
-	/* 												*/
-	/*	developed by: Luiz G. Xavier and Albano Borba			Sept/2018		*/
+	/*	the persistent storage for the system data.											*/
+	/* 																						*/
+	/*	developed by: Luiz G. Xavier and Albano Borba			Sept/2018					*/
 
 	ini_set('display_errors', 1);
 	ini_set('display_startup_errors', 1);
@@ -178,7 +178,7 @@
 		public function login($role, $user, $password) {
 			// String, String, String -> Number (Boolean Repr.)
 			//
-			// authenticates login for doctors and patients, verifying matching credentials of 'Name/CRM' for
+			// authenticates login for doctors and patients, verifying matching credentials of 'Name/PW' for
 			// doctors and patientes, or 'admin/admin' for administrators
 
 			try {
@@ -207,9 +207,6 @@
 				}
 
 				$pw = hash("md5", $password);
-
-				//var_dump($rows);
-				//echo "<br>pass: ".$pw;
 
 				for ($i = 0; $i < count($rows); ++$i) {
 
