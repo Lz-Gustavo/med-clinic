@@ -133,7 +133,7 @@
 
 		<script>
 			function redirect(id) {
-				alert(id);
+				//alert(id);
 				window.location = "doctor_redirect.php?id="+id;
 			};
 		</script>

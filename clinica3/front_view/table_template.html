@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>PsyMed</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--===============================================================================================-->
+
+    <link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="icon" type="image/png" href="images/icons/favicon.ico" />
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="css/util.css">
+    <link rel="stylesheet" type="text/css" href="css/profile_template.css">
+    <!--===============================================================================================-->
+
+</head>
+
+<body style="background-color:#fff;">
+
+
+
+    <div class="box m-b-10">
+        <div class="header-show-dados">
+            <p class="title">Consulties</p>
+        </div>
+
+        <table id="table"></table>
+    </div>
+
+    <!-- JS SCRIPT -->
+    <!--script src="js/jquery-3.2.1.min.js"></script-->
+    
+    <script>
+        $(function () {
+            $('#table').bootstrapTable({
+                idField: 'name',
+                url: '/gh/get/response.json/wenzhixin/bootstrap-table/tree/master/docs/data/data1/',
+                columns: [{
+                    field: 'name',
+                    title: 'Name'
+                }, {
+                    field: 'stargazers_count',
+                    title: 'Stars',
+                    editable: {
+                        type: 'text'
+                    }
+                }, {
+                    field: 'forks_count',
+                    title: 'Forks',
+                    editable: {
+                        type: 'text'
+                    }
+                }, {
+                    field: 'description',
+                    title: 'Description',
+                    editable: {
+                        type: 'textarea'
+                    }
+                }]
+            });
+        });
+    </script>
+
+</body>
+</html

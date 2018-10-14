@@ -1,0 +1,1 @@
+UPDATE GeracaoSaude.func_clinica SET seg='01111111', ter='10111111', qua='11011111', qui='11101111', sex='11110111' WHERE crm='1234' AND clinica='1';

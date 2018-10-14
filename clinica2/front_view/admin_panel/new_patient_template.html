@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>PsyMed</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--===============================================================================================-->
+
+    <link rel="stylesheet" type="text/css" href="../fonts/font-awesome.min.css">
+    <link rel="icon" type="image/png" href="../images/icons/favicon.ico" />
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="../css/util.css">
+    <link rel="stylesheet" type="text/css" href="../css/iframe_admin.css">
+    <!--===============================================================================================-->
+
+</head>
+
+<body style="background-color:#fff;">
+
+    <script>
+        function validate() {
+            var i;
+            var x = new Array();
+            for (i = 0; i < 7; i++){
+                x[i] = document.forms[0][i].value;
+                if (x[i] == "") {
+                    alert("All fields must be filled out before submitting.");
+                    return false;
+                }
+            }
+            //alert("Dados enviados com sucesso!");
+            return true;
+        }
+    </script>
+
+    <div class="box">
+        <div class="header-show-dados">
+            <p class="title">New Patient</p>
+        </div>
+
+        <div class="show-dados">
+		<form method="post" action="../../php_backend/save-forms/admin_panel/save_patient.php" onsubmit="return validate()">
+            <div class="horizontal-align w-full">
+                <div style="width: 20%;">
+                    <p>First Name:</p>
+				</div>
+				
+                <div class="wrap-input m-t-10">
+                    <input class="input" type="text" name="name">
+                </div>
+			</div>
+
+            <div class="horizontal-align w-full">
+                <div style="width: 20%;">
+                    <p>Last name:</p>
+                </div>
+                <div class="wrap-input m-t-10">
+                    <input class="input" type="text" name="last_name">
+                </div>
+			</div>
+            
+            <div class="horizontal-align w-full">
+                <div style="width: 20%;">
+                    <p>Birthday:</p>
+                </div>
+                <div class="wrap-input m-t-10">
+                    <input class="input" type="text" name="bday">
+                </div>
+			</div>
+
+            <div class="horizontal-align w-full">
+                <div style="width: 20%;">
+                    <p>CPF:</p>
+                </div>
+                <div class="wrap-input m-t-10">
+                    <input class="input" type="text" name="cpf" pattern=".{11,11}" title="Insert only the 11 numbers">
+                </div>
+            </div>
+            
+            <div class="horizontal-align w-full">
+                <div style="width: 20%;">
+                    <p>Email:</p>
+                </div>
+                <div class="wrap-input m-t-10">
+                    <input class="input" type="email" name="email">
+                </div>
+			</div>
+
+            <div class="horizontal-align w-full">
+                <div style="width: 20%;">
+                    <p>Telephone:</p>
+                </div>
+                <div class="wrap-input m-t-10">
+                    <input class="input" type="text" name="tel">
+                </div>
+            </div>
+
+            <div class="horizontal-align w-full">
+                <div style="width: 20%;">
+                    <p>Blood Type:</p>
+                </div>
+                <div class="m-t-10">
+                    <select name="blood">
+                        <option value="O-">O-</option>
+                        <option value="O+">O+</option>
+                        <option value="A-">A-</option>
+                        <option value="A+">A+</option>
+                        <option value="B-">B-</option>
+                        <option value="B+">B+</option>
+                        <option value="AB-">AB-</option>
+                        <option value="AB+">AB+</option>                       
+                    </select>
+                </div>
+            </div>
+
+            <div style="margin: auto; text-align: center; padding-top: 20px">
+                <button id="submit" class='submit-button' type="submit">Create</button>
+            </div>
+		
+		</form>
+        </div>
+    </div>
+
+</body>
+</html
