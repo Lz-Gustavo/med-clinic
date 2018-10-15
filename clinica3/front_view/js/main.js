@@ -6,14 +6,14 @@
     [ Change login ]*/
     
     $('.choice-adm-form-btn').click(function(){
-        $('body').get(0).style.setProperty('--main-color', '#4dc0d7');
+        $('body').get(0).style.setProperty('--main-color', '#009933');
         $('.choice-adm-form-btn').css({'background':'var(--main-color'})                
         $('.choice-med-form-btn').css({'background':'#bfbfbf'})
         $('.hide_div').css({'visibility':'visible'});
     });
 
     $('.choice-med-form-btn').click(function(){
-        $('body').get(0).style.setProperty('--main-color', '#785066');
+        $('body').get(0).style.setProperty('--main-color', '#006600');
         $('.choice-med-form-btn').css({'background':'var(--main-color'})                        
         $('.choice-adm-form-btn').css({'background':'#bfbfbf'})
         $('.hide_div').css({'visibility':'visible'});    
